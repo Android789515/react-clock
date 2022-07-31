@@ -1,9 +1,10 @@
-import ClockDisplay from './components/clock-display/ClockDisplay';
+import { AriaRoles } from './types/AriaRoles';
+import StopWatch from './components/stop-watch/StopWatch';
 
 const App = () => {
   return (
-    <main>
-      <ClockDisplay />
+    <main role={AriaRoles.main}>
+        <StopWatch />
     </main>
   );
 }
