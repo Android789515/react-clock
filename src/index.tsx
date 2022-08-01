@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { ThemeContextProvider } from './theme-context/themeContext';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,7 +13,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeContextProvider>
+        <App />
+    </ThemeContextProvider>
   </React.StrictMode>
 );
 
