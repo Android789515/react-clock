@@ -6,9 +6,12 @@ import StopButton from '../stop-button/StopButton';
 import ResetButton from '../reset-button/ResetButton';
 
 const StopWatch = () => {
+    const temporaryTimeToDisplay = 0;
+
     return (
         <div className={styles.stopWatch}>
-            <ClockDisplay/>
+
+            <ClockDisplay timeInSeconds={temporaryTimeToDisplay} />
 
             <StartButton />
             <StopButton />
