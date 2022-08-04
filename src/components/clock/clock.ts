@@ -1,21 +1,16 @@
 type CurrentTicker = NodeJS.Timer | undefined;
 class Clock {
-    #everyOneSecond = 1000;
 
-    #time = 0;
-    getTime() {
-        return this.#time;
+    readonly #onTick;
+
+    constructor(onTick: () => void) {
+        this.#onTick = onTick;
     }
 
-    #tick() {
-        this.#time = Date.now() - this.#startTime;
-    }
-
-    #startTime = 0;
-    #currentTicker: CurrentTicker = undefined;
+    readonly #everyOneSecond = 1000;
+    #currentTicker: CurrentTicker;
     startClock() {
-        this.#startTime = Date.now();
-        this.#currentTicker = setInterval(this.#tick, this.#everyOneSecond);
+        this.#currentTicker = setInterval(this.#onTick, this.#everyOneSecond);
     }
 
     stopClock() {

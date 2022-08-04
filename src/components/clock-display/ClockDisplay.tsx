@@ -1,5 +1,5 @@
 import { AriaRoles } from '../../types/AriaRoles';
-import { TimeInSeconds } from '../../types/timeTypes';
+import type { TimeInSeconds } from '../../types/timeTypes';
 
 import styles from './ClockDisplay.module.scss'
 

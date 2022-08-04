@@ -1,21 +1,34 @@
+import { useState } from 'react';
+
+import type { TimeInSeconds } from '../../types/timeTypes';
+import Clock from '../clock/clock';
+import useMemoizeClock from '../clock/use-memoize-clock/useMemoizeClock';
+
 import styles from './StopWatch.module.scss';
 
 import ClockDisplay from '../clock-display/ClockDisplay';
-import StartButton from '../start-button/StartButton';
-import StopButton from '../stop-button/StopButton';
-import ResetButton from '../reset-button/ResetButton';
+import ActionButton from '../action-button/ActionButton';
 
 const StopWatch = () => {
-    const temporaryTimeToDisplay = 0;
+    const [ stopWatchTime, setStopWatchTime ] = useState<TimeInSeconds>(0);
+    const incrementStopWatchTime = () => setStopWatchTime(currentTime => currentTime + 1);
+
+    const clock = useMemoizeClock(new Clock(incrementStopWatchTime));
 
     return (
         <div className={styles.stopWatch}>
 
-            <ClockDisplay timeInSeconds={temporaryTimeToDisplay} />
+            <ClockDisplay timeInSeconds={stopWatchTime} />
 
-            <StartButton />
-            <StopButton />
-            <ResetButton />
+            <ActionButton
+                actionName='Start'
+                onClick={() => clock.startClock()}
+            />
+
+            <ActionButton
+                actionName='Stop'
+                onClick={() => clock.stopClock()}
+            />
         </div>
     );
 };
