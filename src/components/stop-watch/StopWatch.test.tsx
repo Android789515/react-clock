@@ -1,6 +1,8 @@
 import { screen, render } from '@testing-library/react';
 
-import { AriaRoles } from '../../types/AriaRoles';
+import { AriaRoles } from '../../types/ariaTypes';
+import { stopWatchComponentTitle } from './stop-watch-buttons/StopWatchButtons';
+
 import StopWatch from './StopWatch';
 
 describe('StopWatch', () => {
@@ -12,27 +14,11 @@ describe('StopWatch', () => {
         expect(ClockDisplay).toBeInTheDocument();
     });
 
-    it('Renders a StartButton component', () => {
+    it('Renders a StopWatchButtons component, which has all the buttons for this feature', () => {
         render(<StopWatch />);
 
-        const StartButton = screen.getByRole(AriaRoles.button, { name: 'Start' });
+        const StopWatchButtons = screen.getByTitle(stopWatchComponentTitle);
 
-        expect(StartButton).toBeInTheDocument();
+        expect(StopWatchButtons).toBeInTheDocument();
     });
-
-    it('Renders a StopButton component', () => {
-        render(<StopWatch />);
-
-        const StopButton = screen.getByRole(AriaRoles.button, { name: 'Stop' });
-
-        expect(StopButton).toBeInTheDocument();
-    });
-
-    it('Renders a ResetButton component', () => {
-        render(<StopWatch />);
-
-        const ResetButton = screen.getByRole(AriaRoles.button, { name: 'Reset' });
-
-        expect(ResetButton).toBeInTheDocument();
-    })
 });

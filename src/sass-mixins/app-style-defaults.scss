@@ -1,0 +1,10 @@
+@mixin button {
+  font: inherit;
+  color: inherit;
+
+  cursor: pointer;
+
+  padding: 0;
+  background: none;
+  border: none;
+}

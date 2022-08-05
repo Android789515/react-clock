@@ -7,11 +7,13 @@ import useMemoizeClock from '../clock/use-memoize-clock/useMemoizeClock';
 import styles from './StopWatch.module.scss';
 
 import ClockDisplay from '../clock-display/ClockDisplay';
-import ActionButton from '../action-button/ActionButton';
+import StopWatchButtons from './stop-watch-buttons/StopWatchButtons';
 
 const StopWatch = () => {
     const [ stopWatchTime, setStopWatchTime ] = useState<TimeInSeconds>(0);
+
     const incrementStopWatchTime = () => setStopWatchTime(currentTime => currentTime + 1);
+    const resetStopWatchTime = () => setStopWatchTime(0);
 
     const clock = useMemoizeClock(new Clock(incrementStopWatchTime));
 
@@ -20,14 +22,10 @@ const StopWatch = () => {
 
             <ClockDisplay timeInSeconds={stopWatchTime} />
 
-            <ActionButton
-                actionName='Start'
-                onClick={() => clock.startClock()}
-            />
-
-            <ActionButton
-                actionName='Stop'
-                onClick={() => clock.stopClock()}
+            <StopWatchButtons
+                startClock={() => clock.startClock()}
+                stopClock={() => clock.stopClock()}
+                resetClock={resetStopWatchTime}
             />
         </div>
     );

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { AriaRoles } from './types/AriaRoles';
+import { AriaRoles } from './types/ariaTypes';
 import { themeContext } from './theme-context/themeContext';
 
 import styles from './App.module.scss';

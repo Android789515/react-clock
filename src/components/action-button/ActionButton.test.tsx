@@ -8,9 +8,11 @@ describe('ActionButton', () => {
         const increaseCount = () => count += 1;
 
         const buttonAction = 'Increase Count';
+        const controlsNothing = '';
         render(
             <ActionButton
                 actionName={buttonAction}
+                ariaControls={controlsNothing}
                 onClick={increaseCount}
             />
         );

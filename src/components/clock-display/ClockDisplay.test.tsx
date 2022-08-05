@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react';
 
-import { AriaRoles } from '../../types/AriaRoles';
+import { AriaRoles } from '../../types/ariaTypes';
 
 import ClockDisplay from './ClockDisplay';
 

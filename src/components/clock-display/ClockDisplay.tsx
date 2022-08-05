@@ -1,4 +1,4 @@
-import { AriaRoles } from '../../types/AriaRoles';
+import { AriaRoles } from '../../types/ariaTypes';
 import type { TimeInSeconds } from '../../types/timeTypes';
 
 import styles from './ClockDisplay.module.scss'
@@ -27,6 +27,7 @@ const ClockDisplay = ({ timeInSeconds }: Props) => {
     return (
         <h1
             role={AriaRoles.timer}
+            id={clockDisplayID}
             className={styles.clockDisplay}
         >
             {formattedHours}:{formattedMinutes}:{formattedSeconds}
@@ -34,4 +35,5 @@ const ClockDisplay = ({ timeInSeconds }: Props) => {
     );
 };
 
+export const clockDisplayID = 'clock-display';
 export default ClockDisplay;
