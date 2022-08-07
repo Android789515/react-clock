@@ -19,8 +19,9 @@ const StopWatchButtons = ({ startClock, stopClock, resetClock }: Props) => {
 
     return (
         <div
-            title={stopWatchComponentTitle}
+            title='Stop Watch Buttons'
             className={`${styles.stopWatchButtons} ${styles[getTheme()]}`}
+            role='toolbar'
         >
             <ActionButton
                 actionName='Start'
@@ -43,7 +44,4 @@ const StopWatchButtons = ({ startClock, stopClock, resetClock }: Props) => {
     );
 };
 
-// Title is exported so this component can be
-// retrieved during testing
-export const stopWatchComponentTitle = 'Stop Watch Buttons';
 export default StopWatchButtons;

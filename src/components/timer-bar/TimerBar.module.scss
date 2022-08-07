@@ -1,0 +1,16 @@
+.timerBar {
+  display: block;
+
+  $size: 30em;
+  width: $size;
+  height: $size;
+
+  border: solid white 1em;
+  border-radius: 50%;
+
+  margin: auto;
+}
+
+.timerBarInvisible {
+  display: none;
+}
