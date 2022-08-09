@@ -1,0 +1,50 @@
+@use '../../sass-mixins/app-style-defaults';
+
+.themeSwitch {
+  @include app-style-defaults.button;
+
+  justify-self: end;
+
+  width: 6em;
+  height: 3em;
+
+  padding: .25em;
+  border-radius: 50em;
+}
+
+.themeSwitchLight {
+  background: #333;
+}
+
+.themeSwitchDark {
+  background: #fff;
+}
+
+.themeSwitchKnob {
+  display: inline-block;
+
+  aspect-ratio: 1 / 1;
+
+  height: 100%;
+
+  border-radius: 100%;
+
+  transform: rotateX(0);
+  transition: margin-right 250ms, transform 250ms;
+}
+
+.themeSwitch:active .themeSwitchKnob {
+  transform: rotateX(25deg);
+}
+
+.themeSwitchKnobLeft {
+  background: #fff;
+
+  margin-right: 100%;
+}
+
+.themeSwitchKnobRight {
+  background: #333;
+
+  margin-right: -55%;
+}

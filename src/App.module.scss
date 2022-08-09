@@ -1,9 +1,12 @@
 .app {
   display: grid;
+  grid-template-rows: auto 1fr;
   justify-content: center;
   align-items: center;
 
   min-height: 100vh;
+
+  transition: color 250ms, background-color 250ms;
 }
 
 .lightTheme {

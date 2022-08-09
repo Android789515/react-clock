@@ -5,6 +5,7 @@ import { themeContext } from './theme-context/themeContext';
 
 import styles from './App.module.scss';
 
+import AppHeader from './components/app-header/AppHeader';
 import StopWatch from './components/stop-watch/StopWatch';
 
 const App = () => {
@@ -15,6 +16,8 @@ const App = () => {
             role={AriaRoles.main}
             className={`${styles.app} ${styles[getTheme()]}`}
         >
+            <AppHeader />
+
             <StopWatch />
         </main>
     );
