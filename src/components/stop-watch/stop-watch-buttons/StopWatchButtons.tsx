@@ -20,7 +20,10 @@ const StopWatchButtons = ({ startClock, stopClock, resetClock }: Props) => {
     return (
         <div
             title='Stop Watch Buttons'
-            className={`${styles.stopWatchButtons} ${styles[getTheme()]}`}
+            className={`
+                ${styles.stopWatchButtons}
+                ${styles[getTheme()]}
+            `}
             role='toolbar'
         >
             <ActionButton

@@ -1,16 +1,21 @@
-.timerBar {
-  display: block;
+.timerBarArea {
+  opacity: 0;
 
   $size: 30em;
   width: $size;
   height: $size;
 
-  border: solid white 1em;
-  border-radius: 50%;
-
   margin: auto;
+
+  transition: opacity 1500ms;
 }
 
-.timerBarInvisible {
-  display: none;
+.showTimerBar {
+  opacity: 1;
+}
+
+.timerBar {
+  transition: stroke-dashoffset 250ms;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
 }

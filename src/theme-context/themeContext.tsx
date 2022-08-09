@@ -8,9 +8,12 @@ interface Props {
     children: ReactNode;
 }
 const ThemeContextProvider = ({ children }: Props) => {
-    const [ theme, setTheme ] = useState(Themes.dark);
+    const [ theme, setTheme ] = useState(Themes.light);
 
     const getTheme = () => theme;
+    const isLightTheme = () => Object.is(theme, Themes.light);
+    const isDarkTheme = () => Object.is(theme, Themes.dark);
+
     const toggleTheme = () => {
         const isLightTheme = Object.is(theme, Themes.light);
 
@@ -22,7 +25,7 @@ const ThemeContextProvider = ({ children }: Props) => {
     }
 
     return (
-        <themeContext.Provider value={{ getTheme, toggleTheme }}>
+        <themeContext.Provider value={{ getTheme, toggleTheme, isLightTheme, isDarkTheme }}>
             {children}
         </themeContext.Provider>
     )
