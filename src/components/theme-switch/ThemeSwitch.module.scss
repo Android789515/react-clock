@@ -1,15 +1,23 @@
 @use '../../sass-mixins/app-style-defaults';
+@use '../../App.module';
 
 .themeSwitch {
   @include app-style-defaults.button;
 
   justify-self: end;
 
-  width: 6em;
-  height: 3em;
+  width: 5em;
+  height: 2.5em;
 
   padding: .25em;
   border-radius: 50em;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .themeSwitch {
+    width: 6em;
+    height: 3em;
+  }
 }
 
 .themeSwitchLight {

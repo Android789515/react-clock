@@ -14,7 +14,10 @@ const App = () => {
     return (
         <main
             role={AriaRoles.main}
-            className={`${styles.app} ${styles[getTheme()]}`}
+            className={`
+                ${styles.app}
+                ${styles[getTheme()]}
+            `}
         >
             <AppHeader />
 

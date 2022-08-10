@@ -1,12 +1,17 @@
+$layoutBreakpoint: 31.25em;
+
 .app {
   display: grid;
-  grid-template-rows: auto 1fr;
-  justify-content: center;
-  align-items: center;
+  grid-template-rows: max-content max-content;
+  grid-template-columns: minmax(1em, 1fr) auto minmax(1em, 1fr);
 
   min-height: 100vh;
 
   transition: color 250ms, background-color 250ms;
+}
+
+.app > * {
+  grid-column: 2 / -2;
 }
 
 .lightTheme {

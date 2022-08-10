@@ -8,7 +8,7 @@ const makeDoubleDigit = (number: number): string => {
 
     const isSingleDigit = measurableDigits.length < 2;
     return isSingleDigit ? '0' + number : String(number);
-}
+};
 
 interface Props {
     timeInSeconds: TimeInSeconds;

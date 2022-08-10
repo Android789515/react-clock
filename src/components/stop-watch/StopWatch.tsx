@@ -30,7 +30,9 @@ const StopWatch = () => {
     return (
         <div className={styles.stopWatch}>
 
-            <ClockDisplay timeInSeconds={stopWatchTime} />
+            <ClockDisplay
+                timeInSeconds={stopWatchTime}
+            />
 
             <StopWatchButtons
                 startClock={startStopWatch}
