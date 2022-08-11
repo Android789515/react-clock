@@ -1,16 +1,18 @@
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { ThemeContextProvider } from '../../../theme-context/themeContext';
 import StopWatchButtons from './StopWatchButtons';
+
+const blankFunction = () => {};
 
 describe('StopWatchButtons', () => {
     it('Renders an ActionButton component for starting the stop watch timer', () => {
         render(
             <ThemeContextProvider>
                 <StopWatchButtons
-                    startCounting={() => {}}
-                    stopCounting={() => {}}
-                    resetTime={() => {}}
+                    startCounting={blankFunction}
+                    stopCounting={blankFunction}
+                    resetTime={blankFunction}
                 />
             </ThemeContextProvider>
         );
@@ -25,9 +27,9 @@ describe('StopWatchButtons', () => {
         render(
             <ThemeContextProvider>
                 <StopWatchButtons
-                    startCounting={() => {}}
-                    stopCounting={() => {}}
-                    resetTime={() => {}}
+                    startCounting={blankFunction}
+                    stopCounting={blankFunction}
+                    resetTime={blankFunction}
                 />
             </ThemeContextProvider>
         );
@@ -42,9 +44,9 @@ describe('StopWatchButtons', () => {
         render(
             <ThemeContextProvider>
                 <StopWatchButtons
-                    startCounting={() => {}}
-                    stopCounting={() => {}}
-                    resetTime={() => {}}
+                    startCounting={blankFunction}
+                    stopCounting={blankFunction}
+                    resetTime={blankFunction}
                 />
             </ThemeContextProvider>
         );
