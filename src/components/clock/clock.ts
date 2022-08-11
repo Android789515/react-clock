@@ -3,6 +3,7 @@ type CurrentTicker = NodeJS.Timer | undefined;
 interface StartClockOptions {
     precise?: boolean;
 }
+
 class Clock {
 
     readonly #onTick;
@@ -15,12 +16,13 @@ class Clock {
     readonly #everyOneSecond = 1000;
 
     #currentTicker: CurrentTicker;
+
     startClock(options?: StartClockOptions) {
         this.#currentTicker = setInterval(
             this.#onTick,
             options?.precise
                 ? this.#everyOneMillisecond
-                : this.#everyOneSecond
+                : this.#everyOneSecond,
         );
     }
 
