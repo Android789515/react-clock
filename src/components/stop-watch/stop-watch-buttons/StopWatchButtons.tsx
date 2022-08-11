@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 
+import { AriaRoles } from '../../../types/ariaTypes';
 import { clockDisplayID } from '../../clock-display/ClockDisplay';
 import { themeContext } from '../../../theme-context/themeContext';
 
@@ -8,6 +9,7 @@ import styles from './StopWatchButtons.module.scss';
 import ActionButton from '../../action-button/ActionButton';
 
 type ClockAction = () => void;
+
 interface Props {
     startCounting: ClockAction;
     stopCounting: ClockAction;
@@ -24,7 +26,7 @@ const StopWatchButtons = ({ startCounting, stopCounting, resetTime }: Props) => 
                 ${styles.stopWatchButtons}
                 ${styles[getTheme()]}
             `}
-            role='toolbar'
+            role={AriaRoles.toolbar}
         >
             <ActionButton
                 actionName='Start'
