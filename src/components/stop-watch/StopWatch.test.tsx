@@ -1,7 +1,6 @@
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { AriaRoles } from '../../types/ariaTypes';
-
 
 import { ThemeContextProvider } from '../../theme-context/themeContext';
 import StopWatch from './StopWatch';
