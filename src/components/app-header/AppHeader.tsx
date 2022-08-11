@@ -4,7 +4,9 @@ import ThemeSwitch from '../theme-switch/ThemeSwitch';
 
 const AppHeader = () => {
     return (
-        <header className={styles.appHeader}>
+        <header
+            className={styles.appHeader}
+        >
             <ThemeSwitch />
         </header>
     );
