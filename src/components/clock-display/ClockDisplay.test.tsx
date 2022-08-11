@@ -5,10 +5,14 @@ import { AriaRoles } from '../../types/ariaTypes';
 import ClockDisplay from './ClockDisplay';
 
 describe('ClockDisplay', () => {
-    it('Takes a time in seconds and displays a formatted version, hours:minutes:seconds', () => {
-        const secondsToTest = 3755;
+    it('Takes a time in milliseconds and displays a formatted version, hours:minutes:seconds', () => {
+        const millisecondsToTest = 3_755_000;
 
-        render(<ClockDisplay timeInMilliseconds={secondsToTest} />);
+        render(
+            <ClockDisplay
+                timeInMilliseconds={millisecondsToTest}
+            />
+        );
 
         const DisplayElement = screen.getByRole(AriaRoles.timer);
 
