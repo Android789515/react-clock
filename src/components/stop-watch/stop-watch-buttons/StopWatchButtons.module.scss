@@ -3,8 +3,6 @@
 @use '../../../App.module';
 
 .stopWatchButtons {
-  grid-row: 2;
-
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: .5em;
