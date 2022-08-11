@@ -1,12 +1,5 @@
 .stopWatch {
   display: grid;
-  grid-template: auto auto / auto;
+  grid-template-rows: auto auto;
   grid-row-gap: 2em;
-}
-
-// Clock Display
-// Timer Bar
-.stopWatch > * {
-  grid-row: 1;
-  grid-column: 1;
 }
