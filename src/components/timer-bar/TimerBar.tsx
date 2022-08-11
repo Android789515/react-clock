@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from 'react';
 
-import { TimeInSeconds } from '../../types/timeTypes';
+import type { TimeInSeconds } from '../../types/timeTypes';
 import { Colors } from '../../types/Colors';
 import { themeContext } from '../../theme-context/themeContext';
 

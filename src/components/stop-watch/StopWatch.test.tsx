@@ -26,20 +26,8 @@ describe('StopWatch', () => {
             </ThemeContextProvider>
         );
 
-        const StopWatchButtons = screen.getByRole('toolbar');
+        const StopWatchButtons = screen.getByRole(AriaRoles.toolbar);
 
         expect(StopWatchButtons).toBeInTheDocument();
-    });
-
-    it('Renders a TimberBar component', () => {
-        render(
-            <ThemeContextProvider>
-                <StopWatch />
-            </ThemeContextProvider>
-        );
-
-        const TimerBar = screen.getByRole('progressbar');
-
-        expect(TimerBar).toBeInTheDocument();
     });
 });

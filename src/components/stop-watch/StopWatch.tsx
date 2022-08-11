@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import type { TimeInSeconds } from '../../types/timeTypes';
+import type { TimeInMilliseconds } from '../../types/timeTypes';
 import Clock from '../clock/clock';
 import useMemoizeClock from '../clock/use-memoize-clock/useMemoizeClock';
 
@@ -10,34 +10,37 @@ import ClockDisplay from '../clock-display/ClockDisplay';
 import StopWatchButtons from './stop-watch-buttons/StopWatchButtons';
 
 const StopWatch = () => {
-    const [ stopWatchTime, setStopWatchTime ] = useState<TimeInSeconds>(0);
+    const [ stopWatchTime, setStopWatchTime ] = useState<TimeInMilliseconds>(0);
 
     const incrementStopWatchTime = () => setStopWatchTime(currentTime => currentTime + 1);
-    const resetStopWatchTime = () => {
-        setStopWatchTime(0);
-    };
 
     const clock = useMemoizeClock(new Clock(incrementStopWatchTime));
 
     const startStopWatch = () => {
-        clock.startClock();
+        clock.startClock({ precise: true });
     };
 
-    const stopStopWatch = () => {
+    const suspendStopWatch = () => {
         clock.stopClock();
     };
 
+    const resetStopWatchTime = () => {
+        setStopWatchTime(0);
+    };
+
+    const afterClockStarts = stopWatchTime !== 0;
     return (
         <div className={styles.stopWatch}>
 
             <ClockDisplay
-                timeInSeconds={stopWatchTime}
+                timeInMilliseconds={stopWatchTime}
+                showMilliseconds={afterClockStarts}
             />
 
             <StopWatchButtons
-                startClock={startStopWatch}
-                stopClock={stopStopWatch}
-                resetClock={resetStopWatchTime}
+                startCounting={startStopWatch}
+                stopCounting={suspendStopWatch}
+                resetTime={resetStopWatchTime}
             />
         </div>
     );

@@ -8,7 +8,7 @@ describe('ClockDisplay', () => {
     it('Takes a time in seconds and displays a formatted version, hours:minutes:seconds', () => {
         const secondsToTest = 3755;
 
-        render(<ClockDisplay timeInSeconds={secondsToTest} />);
+        render(<ClockDisplay timeInMilliseconds={secondsToTest} />);
 
         const DisplayElement = screen.getByRole(AriaRoles.timer);
 

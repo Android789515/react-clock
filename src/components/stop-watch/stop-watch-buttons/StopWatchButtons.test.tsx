@@ -1,15 +1,18 @@
 import { screen, render } from '@testing-library/react';
 
+import { ThemeContextProvider } from '../../../theme-context/themeContext';
 import StopWatchButtons from './StopWatchButtons';
 
 describe('StopWatchButtons', () => {
     it('Renders an ActionButton component for starting the stop watch timer', () => {
         render(
-            <StopWatchButtons
-                startClock={() => {}}
-                stopClock={() => {}}
-                resetClock={() => {}}
-            />
+            <ThemeContextProvider>
+                <StopWatchButtons
+                    startCounting={() => {}}
+                    stopCounting={() => {}}
+                    resetTime={() => {}}
+                />
+            </ThemeContextProvider>
         );
 
         const startButtonName = 'Start';
@@ -20,11 +23,13 @@ describe('StopWatchButtons', () => {
 
     it('Renders an ActionButton component for stopping the stop watch timer', () => {
         render(
-            <StopWatchButtons
-                startClock={() => {}}
-                stopClock={() => {}}
-                resetClock={() => {}}
-            />
+            <ThemeContextProvider>
+                <StopWatchButtons
+                    startCounting={() => {}}
+                    stopCounting={() => {}}
+                    resetTime={() => {}}
+                />
+            </ThemeContextProvider>
         );
 
         const stopButtonName = 'Stop';
@@ -35,11 +40,13 @@ describe('StopWatchButtons', () => {
 
     it('Renders an ActionButton component for resetting the stop watch timer', () => {
         render(
-            <StopWatchButtons
-                startClock={() => {}}
-                stopClock={() => {}}
-                resetClock={() => {}}
-            />
+            <ThemeContextProvider>
+                <StopWatchButtons
+                    startCounting={() => {}}
+                    stopCounting={() => {}}
+                    resetTime={() => {}}
+                />
+            </ThemeContextProvider>
         );
 
         const resetButtonName = 'Reset';

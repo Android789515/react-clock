@@ -9,12 +9,12 @@ import ActionButton from '../../action-button/ActionButton';
 
 type ClockAction = () => void;
 interface Props {
-    startClock: ClockAction;
-    stopClock: ClockAction;
-    resetClock: ClockAction;
+    startCounting: ClockAction;
+    stopCounting: ClockAction;
+    resetTime: ClockAction;
 }
 
-const StopWatchButtons = ({ startClock, stopClock, resetClock }: Props) => {
+const StopWatchButtons = ({ startCounting, stopCounting, resetTime }: Props) => {
     const { getTheme } = useContext(themeContext);
 
     return (
@@ -29,19 +29,19 @@ const StopWatchButtons = ({ startClock, stopClock, resetClock }: Props) => {
             <ActionButton
                 actionName='Start'
                 ariaControls={clockDisplayID}
-                onClick={startClock}
+                onClick={startCounting}
             />
 
             <ActionButton
                 actionName='Stop'
                 ariaControls={clockDisplayID}
-                onClick={stopClock}
+                onClick={stopCounting}
             />
 
             <ActionButton
                 actionName='Reset'
                 ariaControls={clockDisplayID}
-                onClick={resetClock}
+                onClick={resetTime}
             />
         </div>
     );
