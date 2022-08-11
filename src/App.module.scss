@@ -3,7 +3,8 @@ $layoutBreakpoint: 31.25em;
 .app {
   display: grid;
   grid-template-rows: max-content max-content;
-  grid-template-columns: minmax(1em, 1fr) auto minmax(1em, 1fr);
+  $sideSpacing: minmax(1em, 1fr);
+  grid-template-columns: $sideSpacing auto $sideSpacing;
 
   min-height: 100vh;
 
