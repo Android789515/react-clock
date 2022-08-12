@@ -2,7 +2,21 @@ import { createContext, ReactNode, useState } from 'react';
 
 import Themes from './themeOptions';
 
-const themeContext = createContext<any>(undefined);
+export interface ThemeContextFunctions {
+    getTheme: () => Themes.light | Themes.dark;
+    isLightTheme: () => boolean;
+    isDarkTheme: () => boolean;
+    toggleTheme: () => void;
+}
+
+const defaultTheme = Themes.light;
+
+const themeContext = createContext<ThemeContextFunctions>({
+    getTheme: () => defaultTheme,
+    isLightTheme: () => false,
+    isDarkTheme: () => false,
+    toggleTheme: () => {}
+});
 
 interface Props {
     children: ReactNode;
