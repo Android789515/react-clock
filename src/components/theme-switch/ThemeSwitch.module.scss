@@ -38,7 +38,7 @@
   border-radius: 100%;
 
   transform: rotateX(0);
-  transition: margin-right 250ms, transform 250ms;
+  transition: transform 250ms, margin-right 250ms;
 }
 
 .themeSwitch:active .themeSwitchKnob {
