@@ -21,8 +21,9 @@ const themeContext = createContext<ThemeContextFunctions>({
 interface Props {
     children: ReactNode;
 }
+
 const ThemeContextProvider = ({ children }: Props) => {
-    const [ theme, setTheme ] = useState(Themes.light);
+    const [ theme, setTheme ] = useState(defaultTheme);
 
     const getTheme = () => theme;
     const isLightTheme = () => Object.is(theme, Themes.light);
