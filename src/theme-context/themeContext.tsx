@@ -30,14 +30,12 @@ const ThemeContextProvider = ({ children }: Props) => {
     const isDarkTheme = () => Object.is(theme, Themes.dark);
 
     const toggleTheme = () => {
-        const isLightTheme = Object.is(theme, Themes.light);
-
-        if (isLightTheme) {
+        if (isLightTheme()) {
             setTheme(Themes.dark);
         } else {
             setTheme(Themes.light);
         }
-    }
+    };
 
     return (
         <themeContext.Provider value={{ getTheme, toggleTheme, isLightTheme, isDarkTheme }}>
