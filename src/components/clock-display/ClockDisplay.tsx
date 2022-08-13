@@ -15,7 +15,7 @@ const removeSeconds = (milliseconds: TimeInMilliseconds) => {
     const millisecondsOnly = secondsAndMilliseconds.slice(-2);
 
     return makeDoubleDigit(millisecondsOnly);
-}
+};
 
 interface Props {
     timeInMilliseconds: TimeInMilliseconds;
@@ -26,7 +26,7 @@ const ClockDisplay = ({ timeInMilliseconds, showMilliseconds }: Props) => {
 
     const formattedMilliseconds = '.' + removeSeconds(timeInMilliseconds);
 
-    const timeInSeconds = Math.floor(timeInMilliseconds / 100) % 1000;
+    const timeInSeconds = Math.floor(timeInMilliseconds / 1000);
     const formattedSeconds = makeDoubleDigit(timeInSeconds % 60);
 
     const totalMinutes = (timeInSeconds / 60) % 60;
