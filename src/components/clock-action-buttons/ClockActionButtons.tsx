@@ -4,7 +4,7 @@ import { AriaRoles } from '../../types/ariaTypes';
 import { clockDisplayID } from '../clock-display/ClockDisplay';
 import { themeContext } from '../../theme-context/themeContext';
 
-import styles from './StopWatchButtons.module.scss';
+import styles from './ClockActionButtons.module.scss';
 
 import ActionButton from '../action-button/ActionButton';
 
@@ -24,7 +24,7 @@ const ClockActionButtons = ({ isClockStarted, startCounting, stopCounting, reset
         <div
             title='Stop Watch Buttons'
             className={`
-                ${styles.stopWatchButtons}
+                ${styles.clockActionButtons}
                 ${styles[getTheme()]}
             `}
             role={AriaRoles.toolbar}
