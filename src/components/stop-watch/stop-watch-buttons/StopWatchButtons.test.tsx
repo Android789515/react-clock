@@ -6,10 +6,12 @@ import StopWatchButtons from './StopWatchButtons';
 const blankFunction = () => {};
 
 describe('StopWatchButtons', () => {
-    it('Renders an ActionButton component for starting the stop watch timer', () => {
+    it('When reset and stopped, renders an ActionButton ' +
+        'component for starting the stop watch timer', () => {
         render(
             <ThemeContextProvider>
                 <StopWatchButtons
+                    isStopWatchStarted={false}
                     startCounting={blankFunction}
                     stopCounting={blankFunction}
                     resetTime={blankFunction}
