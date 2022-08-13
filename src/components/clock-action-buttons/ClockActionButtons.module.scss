@@ -1,0 +1,40 @@
+@use '../../sass-mixins/app-style-defaults';
+@use '../../sass-mixins/reusableStyles';
+@use '../../App.module';
+
+.clockActionButtons {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: .5em;
+  justify-content: center;
+}
+
+// Individual buttons
+.clockActionButtons > * {
+  @include app-style-defaults.button;
+  @include reusableStyles.roundedCorners;
+
+  font-size: 1.8rem;
+
+  padding: .25em .5em .4em .5em;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .clockActionButtons > * {
+    font-size: 3rem;
+  }
+}
+
+.lightTheme > *:focus,
+.lightTheme > *:hover {
+  color: #fff;
+
+  background: #333;
+}
+
+.darkTheme > *:focus,
+.darkTheme > *:hover {
+  color: #333;
+
+  background: #fff;
+}
