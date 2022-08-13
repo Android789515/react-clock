@@ -11,12 +11,13 @@ import ActionButton from '../../action-button/ActionButton';
 type ClockAction = () => void;
 
 interface Props {
+    isStopWatchStarted: boolean;
     startCounting: ClockAction;
     stopCounting: ClockAction;
     resetTime: ClockAction;
 }
 
-const StopWatchButtons = ({ startCounting, stopCounting, resetTime }: Props) => {
+const StopWatchButtons = ({ isStopWatchStarted, startCounting, stopCounting, resetTime }: Props) => {
     const { getTheme } = useContext(themeContext);
 
     return (
