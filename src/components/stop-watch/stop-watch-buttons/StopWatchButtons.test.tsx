@@ -25,6 +25,25 @@ describe('StopWatchButtons', () => {
         expect(StartButton).toBeInTheDocument();
     });
 
+    it('When started, renders an ActionButton component for saving a ' +
+        'lap in place of the start button', () => {
+        render(
+            <ThemeContextProvider>
+                <StopWatchButtons
+                    isStopWatchStarted={true}
+                    startCounting={blankFunction}
+                    stopCounting={blankFunction}
+                    resetTime={blankFunction}
+                />
+            </ThemeContextProvider>
+        );
+
+        const lapButtonName = 'Lap';
+        const LapButton = screen.getByText(lapButtonName);
+
+        expect(LapButton).toBeInTheDocument();
+    });
+
     it('Renders an ActionButton component for stopping the stop watch timer', () => {
         render(
             <ThemeContextProvider>
