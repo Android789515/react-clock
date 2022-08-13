@@ -6,6 +6,7 @@ import { themeContext } from './theme-context/themeContext';
 import styles from './App.module.scss';
 
 import AppHeader from './components/app-header/AppHeader';
+import Timer from './components/timer/Timer';
 
 const App = () => {
     const { getTheme } = useContext(themeContext);
@@ -19,6 +20,8 @@ const App = () => {
             `}
         >
             <AppHeader />
+
+            <Timer />
         </main>
     );
 };
