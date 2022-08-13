@@ -8,13 +8,13 @@ import styles from './StopWatchButtons.module.scss';
 
 import ActionButton from '../../action-button/ActionButton';
 
-type ClockAction = () => void;
+type StopWatchAction = () => void;
 
 interface Props {
     isStopWatchStarted: boolean;
-    startCounting: ClockAction;
-    stopCounting: ClockAction;
-    resetTime: ClockAction;
+    startCounting: StopWatchAction;
+    stopCounting: StopWatchAction;
+    resetTime: StopWatchAction;
 }
 
 const StopWatchButtons = ({ isStopWatchStarted, startCounting, stopCounting, resetTime }: Props) => {
