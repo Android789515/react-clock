@@ -48,6 +48,7 @@ describe('StopWatchButtons', () => {
         render(
             <ThemeContextProvider>
                 <StopWatchButtons
+                    isStopWatchStarted={false}
                     startCounting={blankFunction}
                     stopCounting={blankFunction}
                     resetTime={blankFunction}
@@ -65,6 +66,7 @@ describe('StopWatchButtons', () => {
         render(
             <ThemeContextProvider>
                 <StopWatchButtons
+                    isStopWatchStarted={false}
                     startCounting={blankFunction}
                     stopCounting={blankFunction}
                     resetTime={blankFunction}
