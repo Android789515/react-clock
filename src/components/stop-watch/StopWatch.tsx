@@ -16,11 +16,15 @@ const StopWatch = () => {
 
     const clock = useMemoizeClock(new Clock(incrementStopWatchTime));
 
+    const [ isStopWatchStarted, setIsStopWatchStarted ] = useState(false);
+
     const startStopWatch = () => {
+        setIsStopWatchStarted(true);
         clock.startClock({ precise: true });
     };
 
     const suspendStopWatch = () => {
+        setIsStopWatchStarted(false);
         clock.stopClock();
     };
 
@@ -38,6 +42,7 @@ const StopWatch = () => {
             />
 
             <StopWatchButtons
+                isStopWatchStarted={isStopWatchStarted}
                 startCounting={startStopWatch}
                 stopCounting={suspendStopWatch}
                 resetTime={resetStopWatchTime}
