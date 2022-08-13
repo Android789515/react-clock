@@ -5,7 +5,9 @@ import TimerBar from './timer-bar/TimerBar';
 
 const Timer = () => {
     return (
-        <div>
+        <div
+            className={styles.timer}
+        >
             <ClockDisplay
                 timeInMilliseconds={0}
             />
