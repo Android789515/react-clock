@@ -29,11 +29,22 @@ const StopWatchButtons = ({ isStopWatchStarted, startCounting, stopCounting, res
             `}
             role={AriaRoles.toolbar}
         >
-            <ActionButton
-                actionName='Start'
-                ariaControls={clockDisplayID}
-                onClick={startCounting}
-            />
+            {isStopWatchStarted
+                ? (
+                    <ActionButton
+                        actionName='Lap'
+                        ariaControls={clockDisplayID}
+                        onClick={() => {}}
+                    />
+                )
+                : (
+                    <ActionButton
+                        actionName='Start'
+                        ariaControls={clockDisplayID}
+                        onClick={startCounting}
+                    />
+                )
+            }
 
             <ActionButton
                 actionName='Stop'
