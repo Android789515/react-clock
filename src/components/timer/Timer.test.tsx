@@ -29,4 +29,16 @@ describe('Timer', () => {
 
         expect(TimerBar).toBeInTheDocument();
     });
+
+    it('Renders a TimerButtons component', () => {
+        render(
+            <ThemeContextProvider>
+                <Timer />
+            </ThemeContextProvider>
+        );
+
+        const TimerButtons = screen.getByRole(AriaRoles.toolbar);
+
+        expect(TimerButtons).toBeInTheDocument();
+    });
 });
