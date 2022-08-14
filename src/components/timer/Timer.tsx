@@ -10,15 +10,22 @@ const Timer = () => {
         <div
             className={styles.timer}
         >
-            <ClockDisplay
-                timeInMilliseconds={0}
-            />
+            <div
+                className={styles.timerDisplay}
+            >
+                <ClockDisplay
+                    timeInMilliseconds={0}
+                />
+            </div>
 
-            <TimerBar
-                isActive={false}
-                currentTimeInSeconds={0}
-                totalTimeInSeconds={1000}
-            />
+            <div
+                className={styles.timerBar}
+            >
+                <TimerBar
+                    isActive={true}
+                    currentTimeInSeconds={0}
+                />
+            </div>
 
             <div
                 className={styles.timerButtons}

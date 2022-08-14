@@ -1,3 +1,20 @@
 .timer {
+  display: grid;
+  grid-template: auto 1fr / 1fr;
+  grid-row-gap: 2em;
+  justify-content: center;
+  align-items: center;
+}
 
+.timer > * {
+  grid-column: 1;
+}
+
+.timerDisplay,
+.timerBar {
+  grid-row: 1;
+}
+
+.timerButtons {
+  grid-row: 2;
 }
