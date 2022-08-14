@@ -2,9 +2,10 @@ import styles from './Timer.module.scss';
 
 import ClockDisplay from '../clock-display/ClockDisplay';
 import TimerBar from './timer-bar/TimerBar';
-import TimerButtons from './timer-buttons/TimerButtons';
+import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
 
 const Timer = () => {
+
     return (
         <div
             className={styles.timer}
@@ -19,15 +20,17 @@ const Timer = () => {
                 totalTimeInSeconds={1000}
             />
 
-            <TimerButtons
-                startTimer={() => {}}
-                stopTimer={() => {}}
-                resetTimer={() => {}}
-            />
+            <div
+                className={styles.timerButtons}
+            >
+                <ClockActionButtons
+                    startCounting={() => {}}
+                    stopCounting={() => {}}
+                    resetTime={() => {}}
+                />
+            </div>
         </div>
     );
 };
-
-//
 
 export default Timer;
