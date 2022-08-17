@@ -51,7 +51,10 @@ const TimerBar = ({ isActive, currentTimeInSeconds }: Props) => {
     const timeBarVisibility = isActive ? styles.showTimerBar : '';
     return (
         <svg
-            className={`${styles.timerBarArea} ${timeBarVisibility}`}
+            className={`
+                ${styles.timerBarLayout}
+                ${timeBarVisibility}
+            `}
         >
             <linearGradient
                 id={barGradient}
