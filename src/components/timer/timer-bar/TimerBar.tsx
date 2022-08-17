@@ -16,17 +16,21 @@ const TimerBar = ({ isActive, currentTimeInSeconds }: Props) => {
     const [ totalTimeInSeconds ] = useState(currentTimeInSeconds);
 
     const timerBarRadius = '14em';
-    const timerBarRef = useRef(null);
+    const timerBarRef = useRef<SVGCircleElement>(null);
 
     const setProgress = () => {
-        const timerBar = timerBarRef.current! as SVGCircleElement;
-        const timerBarCircumference = timerBar && timerBar.r.baseVal.value * 2 * Math.PI;
+        const timerBar = timerBarRef.current;
 
-        timerBar.style.strokeDasharray = `${timerBarCircumference} ${timerBarCircumference}`;
+        const isTimerBarMounted = timerBar !== null;
+        if (isTimerBarMounted) {
+            const timerBarCircumference = timerBar && timerBar.r.baseVal.value * 2 * Math.PI;
 
-        const percent = (currentTimeInSeconds / totalTimeInSeconds) * 100;
-        const progressOffset = timerBarCircumference - percent / 100 * timerBarCircumference;
-        timerBar.style.strokeDashoffset = String(progressOffset);
+            timerBar.style.strokeDasharray = `${timerBarCircumference} ${timerBarCircumference}`;
+
+            const percent = (currentTimeInSeconds / totalTimeInSeconds) * 100;
+            const progressOffset = timerBarCircumference - percent / 100 * timerBarCircumference;
+            timerBar.style.strokeDashoffset = String(progressOffset);
+        }
     };
 
     useEffect(setProgress, [currentTimeInSeconds]);
