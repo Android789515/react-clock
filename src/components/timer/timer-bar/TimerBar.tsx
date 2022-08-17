@@ -49,6 +49,8 @@ const TimerBar = ({ isActive, currentTimeInSeconds }: Props) => {
     const barColor = isLightTheme() ? `url(#${barGradient})` : Colors.white;
 
     const timeBarVisibility = isActive ? styles.showTimerBar : '';
+
+    const howToRenderCircle = 'geometricPrecision';
     return (
         <svg
             className={`
@@ -70,6 +72,7 @@ const TimerBar = ({ isActive, currentTimeInSeconds }: Props) => {
                 stroke={barBackgroundColor}
                 strokeWidth={timerBarWidth}
                 fill='transparent'
+                shapeRendering={howToRenderCircle}
                 r={timerBarRadius}
                 cx={timerBarOffset}
                 cy={timerBarOffset}
@@ -81,6 +84,7 @@ const TimerBar = ({ isActive, currentTimeInSeconds }: Props) => {
                 strokeWidth={timerBarWidth}
                 strokeLinecap='round'
                 fill='transparent'
+                shapeRendering={howToRenderCircle}
                 r={timerBarRadius}
                 cx={timerBarOffset}
                 cy={timerBarOffset}
