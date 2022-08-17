@@ -1,8 +1,9 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 
-import type { TimeInSeconds } from '../../types/timeTypes';
-import { Colors } from '../../types/Colors';
-import { themeContext } from '../../theme-context/themeContext';
+import type { TimeInSeconds } from '../../../types/timeTypes';
+import { Colors } from '../../../types/Colors';
+import { AriaRoles } from '../../../types/ariaTypes';
+import { themeContext } from '../../../theme-context/themeContext';
 
 import styles from './TimerBar.module.scss';
 
@@ -11,7 +12,8 @@ interface Props {
     currentTimeInSeconds: TimeInSeconds;
 }
 
-const TimerBar = ({ isActive, currentTimeInSeconds, totalTimeInSeconds }: Props) => {
+const TimerBar = ({ isActive, currentTimeInSeconds }: Props) => {
+    const [ totalTimeInSeconds ] = useState(currentTimeInSeconds);
 
     const timerBarRadius = '14em';
     const timerBarRef = useRef(null);
@@ -66,7 +68,7 @@ const TimerBar = ({ isActive, currentTimeInSeconds, totalTimeInSeconds }: Props)
                 cy={timerBarOffset}
             />
             <circle
-                role='progressbar'
+                role={AriaRoles.progressbar}
                 className={styles.timerBar}
                 stroke={barColor}
                 strokeWidth={timerBarWidth}
