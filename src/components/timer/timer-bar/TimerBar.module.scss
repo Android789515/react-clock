@@ -1,13 +1,23 @@
-.timerBarArea {
-  opacity: 0;
+@use '../../../App.module';
 
-  $size: 30em;
-  width: $size;
-  height: $size;
+.timerBarLayout {
+  display: none;
+}
 
-  margin: auto;
+@media (min-width: App.$layoutBreakpoint) {
+  .timerBarLayout {
+    display: revert;
 
-  transition: opacity 1500ms;
+    opacity: 0;
+
+    $size: 30em;
+    width: $size;
+    height: $size;
+
+    margin: auto;
+
+    transition: opacity 1500ms;
+  }
 }
 
 .showTimerBar {
