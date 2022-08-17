@@ -9,7 +9,6 @@ import styles from './TimerBar.module.scss';
 interface Props {
     isActive: boolean;
     currentTimeInSeconds: TimeInSeconds;
-    totalTimeInSeconds: TimeInSeconds;
 }
 
 const TimerBar = ({ isActive, currentTimeInSeconds, totalTimeInSeconds }: Props) => {

@@ -8,7 +8,6 @@ describe('TimerBar', () => {
             <TimerBar
                 isActive={false}
                 currentTimeInSeconds={0}
-                totalTimeInSeconds={0}
             />
         );
 
