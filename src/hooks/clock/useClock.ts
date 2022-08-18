@@ -1,34 +1,38 @@
-type CurrentTicker = NodeJS.Timer | undefined;
+import { useState } from 'react';
 
-interface StartClockOptions {
-    precise?: boolean;
-}
+type OnTickFunction = () => void;
+const useClock = (onTick: OnTickFunction) => {
+    type CurrentTicker = NodeJS.Timer | null;
+    const [ currentTicker, setCurrentTicker ] = useState<CurrentTicker>(null);
 
-class Clock {
-
-    readonly #onTick;
-
-    constructor(onTick: () => void) {
-        this.#onTick = onTick;
+    interface StartClockOptions {
+        precise?: boolean;
     }
+    const startClock = (options?: StartClockOptions) => {
+        const everyOneMillisecond = 1;
+        const everyOneSecond = 1000;
 
-    readonly #everyOneMillisecond = 1;
-    readonly #everyOneSecond = 1000;
+        setCurrentTicker(
+            setInterval(
+                onTick,
+                options?.precise
+                    ? everyOneMillisecond
+                    : everyOneSecond
+            )
+        )
+    };
 
-    #currentTicker: CurrentTicker;
+    const stopClock = () => {
+        if (currentTicker) {
+            clearInterval(currentTicker);
+            setCurrentTicker(null);
+        }
+    };
 
-    startClock(options?: StartClockOptions) {
-        this.#currentTicker = setInterval(
-            this.#onTick,
-            options?.precise
-                ? this.#everyOneMillisecond
-                : this.#everyOneSecond,
-        );
-    }
+    return {
+        startClock,
+        stopClock
+    };
+};
 
-    stopClock() {
-        clearInterval(this.#currentTicker);
-    }
-}
-
-export default Clock;
+export default useClock;
