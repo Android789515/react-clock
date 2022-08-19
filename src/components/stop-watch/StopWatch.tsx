@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import type { TimeInMilliseconds } from '../../types/timeTypes';
+import useClock from '../../hooks/clock/useClock';
 
 import styles from './StopWatch.module.scss';
 
 import ClockDisplay from '../clock-display/ClockDisplay';
 import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
-import useClock from '../../hooks/clock/useClock';
 
 const StopWatch = () => {
     const [ stopWatchTime, setStopWatchTime ] = useState<TimeInMilliseconds>(0);
