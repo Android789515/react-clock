@@ -1,7 +1,7 @@
 import styles from './Timer.module.scss';
 
 import ClockDisplay from '../clock-display/ClockDisplay';
-import TimerBar from './timer-bar/TimerBar';
+import TimerProgressBar from './timer-progress-bar/TimerProgressBar';
 import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
 
 const Timer = () => {
@@ -21,7 +21,7 @@ const Timer = () => {
             <div
                 className={styles.timerBar}
             >
-                <TimerBar
+                <TimerProgressBar
                     isActive={true}
                     currentTimeInSeconds={0}
                 />
