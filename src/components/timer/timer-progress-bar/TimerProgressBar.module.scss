@@ -1,0 +1,42 @@
+@use '../../../App.module';
+
+.timerBarLayout {
+  display: none;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .timerBarLayout {
+    display: revert;
+
+    opacity: 0;
+
+    $size: 30em;
+    width: $size;
+    height: $size;
+
+    margin: auto;
+
+    transition: opacity 1500ms;
+  }
+}
+
+.showTimerBar {
+  opacity: 1;
+}
+
+$timerBarRadius: 14em;
+$timerBarOffset: 15em;
+.timerBar {
+  cx: $timerBarOffset;
+  cy: $timerBarOffset;
+  r: $timerBarRadius;
+
+  stroke-width: 2em;
+  stroke-linecap: round;
+  fill: transparent;
+  shape-rendering: geometricPrecision;
+
+  transition: stroke-dashoffset 250ms;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
