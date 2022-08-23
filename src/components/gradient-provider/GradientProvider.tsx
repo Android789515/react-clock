@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { v4 as generateUUID } from 'uuid';
 
 interface GradientUnits {
@@ -9,22 +9,40 @@ interface GradientUnits {
     y2: string;
 }
 
+type SVG_Stops = ReactNode | ReactNode[];
+type GradientColorURL = `url(#${HTML_ID})`;
 interface Props {
     linear?: boolean;
     radial?: boolean;
     gradientUnits: GradientUnits;
-    stops: ReactNode[];
-    renderWithGradient: (gradientColor: string) => JSX.Element;
+    stops: SVG_Stops;
+    renderWithGradient: (gradientColor: GradientColorURL) => JSX.Element;
 }
 
 const GradientProvider = ({ linear, radial, gradientUnits, stops, renderWithGradient }: Props) => {
-    const [ GradientType, setGradientType ] = useState<JSX.Element>();
-
     type UUID = string;
     type GradientID = UUID;
     const [ gradientID ] = useState<GradientID>(generateUUID());
-    const gradientURL = `url(#${gradientID})`;
+    const gradientURL: GradientColorURL = `url(#${gradientID})`;
 
+    // Since stops may be provided as an array, this
+    // component will add keys automatically.
+    const [ processedStops, updateProcessedStops ] = useState(stops);
+
+    const keyStopsIfArray = () => {
+        if (Array.isArray(stops)) {
+            const keyedStops = stops.map(stop => (
+                <Fragment key={generateUUID()}>
+                    {stop}
+                </Fragment>
+            ));
+
+            updateProcessedStops(keyedStops);
+        }
+    };
+    useEffect(keyStopsIfArray, [])
+
+    const [ GradientType, setGradientType ] = useState<JSX.Element>();
     useEffect(() => {
         if (linear) {
             setGradientType(
@@ -32,7 +50,7 @@ const GradientProvider = ({ linear, radial, gradientUnits, stops, renderWithGrad
                     id={gradientID}
                     {...gradientUnits}
                 >
-                    {stops}
+                    {processedStops}
                 </linearGradient>
             );
         } else if (radial) {
@@ -41,7 +59,7 @@ const GradientProvider = ({ linear, radial, gradientUnits, stops, renderWithGrad
                     id={gradientID}
                     {...gradientUnits}
                 >
-                    {stops}
+                    {processedStops}
                 </radialGradient>
             );
         }
