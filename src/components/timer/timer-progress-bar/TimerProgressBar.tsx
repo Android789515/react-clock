@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 import type { TimeInSeconds } from '../../../types/timeTypes';
 import { AriaRoles } from '../../../types/ariaTypes';
@@ -13,10 +13,10 @@ import TimerProgressBarBackground from './timer-progress-bar-background/TimerPro
 interface Props {
     isActive: boolean;
     currentTimeInSeconds: TimeInSeconds;
+    totalTimeInSeconds: TimeInSeconds;
 }
 
-const TimerProgressBar = ({ isActive, currentTimeInSeconds }: Props) => {
-    const [ totalTimeInSeconds ] = useState(currentTimeInSeconds);
+const TimerProgressBar = ({ isActive, currentTimeInSeconds, totalTimeInSeconds }: Props) => {
 
     const timerBarRef = useRef<SVGCircleElement>(null);
 
