@@ -23,7 +23,7 @@ interface Props {
     renderWithGradient: (gradientColor: GradientColorURL) => JSX.Element;
 }
 
-const GradientProvider = ({ linear, radial, gradientUnits, stops, renderWithGradient }: Props) => {
+const SVGGradientProvider = ({ linear, radial, gradientUnits, stops, renderWithGradient }: Props) => {
     type UUID = string;
     type GradientID = UUID;
     const [ gradientID ] = useState<GradientID>(generateUUID());
@@ -77,4 +77,4 @@ const GradientProvider = ({ linear, radial, gradientUnits, stops, renderWithGrad
     )
 };
 
-export default GradientProvider;
+export default SVGGradientProvider;
