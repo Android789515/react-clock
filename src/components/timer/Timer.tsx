@@ -71,6 +71,9 @@ const Timer = () => {
                 totalTimeInSeconds={timeToCountFrom}
             />
 
+            {/* Re-usable component wrapped in div, so that it
+                can be styled for this component.
+             */}
             <div
                 className={styles.timerButtons}
             >
