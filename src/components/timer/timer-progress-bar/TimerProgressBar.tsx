@@ -7,7 +7,7 @@ import { themeContext } from '../../../theme-context/themeContext';
 
 import styles from './TimerProgressBar.module.scss';
 
-import GradientProvider from '../../gradient-provider/GradientProvider';
+import SVGGradientProvider from '../../svg-gradient-provider/SVGGradientProvider';
 import TimerProgressBarBackground from './timer-progress-bar-background/TimerProgressBarBackground';
 
 interface Props {
@@ -54,7 +54,7 @@ const TimerProgressBar = ({ isActive, currentTimeInSeconds }: Props) => {
         >
             <TimerProgressBarBackground isLightTheme={isLightTheme()} />
 
-            <GradientProvider
+            <SVGGradientProvider
                 linear
                 gradientUnits={{
                     x1: '0%',
