@@ -17,9 +17,9 @@ describe('EditableClockDisplayOverlay', () => {
             </ThemeContextProvider>
         );
 
-        const Component = screen.getByRole(AriaRoles.timer);
+        const ClockDisplay = screen.getByRole(AriaRoles.timer);
 
-        expect(Component).toBeInTheDocument();
+        expect(ClockDisplay).toBeInTheDocument();
     });
 
     it('When clicked it becomes active, displaying the editable overlay', async () => {
@@ -33,14 +33,37 @@ describe('EditableClockDisplayOverlay', () => {
             </ThemeContextProvider>
         );
 
-        const Component = screen.getByRole(AriaRoles.timer);
+        const ClockDisplay = screen.getByRole(AriaRoles.timer);
 
         await waitFor(() => {
-            Component.click();
+            ClockDisplay.click();
         });
 
-        const UpdatedComponent = screen.getByRole(AriaRoles.textInput);
+        const EditableClockDisplay = screen.getByRole(AriaRoles.textInput);
 
-        expect(UpdatedComponent).toHaveFocus();
+        expect(EditableClockDisplay).toHaveFocus();
+    });
+
+    it('Updates its displayed time when focused and typed in', async () => {
+        render(
+            <ThemeContextProvider>
+                <EditableClockDisplayOverlay
+                    disabled={false}
+                    timeInSeconds={0}
+                    updateTimeInSeconds={() => {}}
+                />
+            </ThemeContextProvider>
+        );
+
+        const ClockDisplay = screen.getByRole(AriaRoles.timer);
+        fireEvent.click(ClockDisplay);
+
+        const EditableClockDisplay = screen.getByRole(AriaRoles.textInput);
+
+        const updatedSeconds = 12;
+        fireEvent.change(EditableClockDisplay, { target: { value: updatedSeconds } });
+
+        const expectedDisplay = '00:00:12';
+        expect(EditableClockDisplay).toHaveDisplayValue(expectedDisplay);
     });
 });
