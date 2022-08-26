@@ -5,7 +5,7 @@ import useClock from '../../hooks/clock/useClock';
 
 import styles from './Timer.module.scss';
 
-import ClockDisplay from '../clock-display/ClockDisplay';
+import EditableClockDisplayOverlay from './editable-clock-display-overlay/EditableClockDisplayOverlay';
 import TimerProgressBar from './timer-progress-bar/TimerProgressBar';
 import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
 
@@ -59,13 +59,11 @@ const Timer = () => {
         <div
             className={styles.timer}
         >
-            <div
-                className={styles.timerDisplay}
-            >
-                <ClockDisplay
-                    timeInMilliseconds={0}
-                />
-            </div>
+            <EditableClockDisplayOverlay
+                disabled={isClockStarted}
+                timeInSeconds={counterTime}
+                updateTimeInSeconds={updateTimeToCountFrom}
+            />
 
             <div
                 className={styles.timerBar}
