@@ -65,14 +65,11 @@ const Timer = () => {
                 updateTimeInSeconds={updateTimeToCountFrom}
             />
 
-            <div
-                className={styles.timerBar}
-            >
-                <TimerProgressBar
-                    isActive={true}
-                    currentTimeInSeconds={0}
-                />
-            </div>
+            <TimerProgressBar
+                isActive={true}
+                currentTimeInSeconds={counterTime}
+                totalTimeInSeconds={timeToCountFrom}
+            />
 
             <div
                 className={styles.timerButtons}
