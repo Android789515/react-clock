@@ -2,11 +2,15 @@ import type { ReactNode } from 'react';
 import { Fragment, useEffect, useState } from 'react';
 import { v4 as generateUUID } from 'uuid';
 
+import type { HTML_ID } from '../../types/HTML_Types';
+
+type StartingCoordinate = string;
+type EndingCoordinate = string;
 interface GradientUnits {
-    x1: string;
-    x2: string;
-    y1: string;
-    y2: string;
+    x1: StartingCoordinate;
+    x2: EndingCoordinate;
+    y1: StartingCoordinate;
+    y2: EndingCoordinate;
 }
 
 type SVG_Stops = ReactNode | ReactNode[];
