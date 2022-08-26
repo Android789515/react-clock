@@ -1,0 +1,29 @@
+.editableClockDisplayOverlayLayout {
+  grid-row: 1;
+
+  z-index: 1;
+}
+
+// Un-styling
+.editableClockDisplayOverlay {
+  background: none;
+  padding: 0;
+
+  border: none;
+}
+
+.editableClockDisplayOverlay {
+  font-size: 6rem;
+  font-weight: 700;
+  text-align: center;
+  color: inherit;
+
+  display: block;
+
+  // Fix annoying Firefox issue
+  max-width: 460px;
+
+  outline: solid lightblue 2px;
+
+  margin: auto;
+}
