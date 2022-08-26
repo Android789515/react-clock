@@ -30,4 +30,7 @@ img {
 input,
 textarea {
     font: inherit;
+
+    /* For firefox */
+    min-width: 0;
 }
