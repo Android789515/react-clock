@@ -45,6 +45,10 @@ const TimerProgressBar = ({ isActive, currentTimeInSeconds }: Props) => {
         lightBlue = '#00aaf5',
         lightGreen = '#00d257'
     }
+
+    // The radius property must be set in the markup
+    // otherwise it cannot be grabbed when accessing
+    // SVG element
     return (
         <svg
             className={`
@@ -72,6 +76,7 @@ const TimerProgressBar = ({ isActive, currentTimeInSeconds }: Props) => {
                         className={styles.timerBar}
                         stroke={isLightTheme() ? gradientColor : Colors.white}
                         ref={timerBarRef}
+                        r='14em'
                     />
                 )}
             />
