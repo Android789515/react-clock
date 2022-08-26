@@ -75,9 +75,9 @@ const Timer = () => {
                 className={styles.timerButtons}
             >
                 <ClockActionButtons
-                    startCounting={() => {}}
-                    stopCounting={() => {}}
-                    resetTime={() => {}}
+                    startCounting={startTimer}
+                    stopCounting={stopTimer}
+                    resetTime={resetTimer}
                 />
             </div>
         </div>
