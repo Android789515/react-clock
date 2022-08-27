@@ -9,14 +9,14 @@ import AppHeader from './components/app-header/AppHeader';
 import Timer from './components/timer/Timer';
 
 const App = () => {
-    const { getTheme } = useContext(themeContext);
+    const { isLightTheme } = useContext(themeContext);
 
     return (
         <main
             role={AriaRoles.main}
             className={`
                 ${styles.app}
-                ${styles[getTheme()]}
+                ${isLightTheme() ? styles.lightTheme : styles.darkTheme}
             `}
         >
             <AppHeader />
