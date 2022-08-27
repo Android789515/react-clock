@@ -43,8 +43,9 @@ const EditableClockDisplayOverlay = ({ disabled, timeInSeconds, updateTimeInSeco
 
         updateOverlayTime(prevTime => {
             const isNewTimeTooLong = String(newOverlayTime).length > maxOverlayTimeLength;
+            const isNewOverlayTimeValid = !Object.is(newOverlayTime, NaN);
 
-            if (!isNewTimeTooLong) {
+            if (isNewOverlayTimeValid && !isNewTimeTooLong) {
                 return newOverlayTime;
             } else {
                 return prevTime;
