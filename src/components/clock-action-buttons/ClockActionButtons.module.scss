@@ -25,15 +25,15 @@
   }
 }
 
-.lightTheme > *:focus,
-.lightTheme > *:hover {
+.clockActionButtonsLight > *:focus,
+.clockActionButtonsLight > *:hover {
   color: #fff;
 
   background: #333;
 }
 
-.darkTheme > *:focus,
-.darkTheme > *:hover {
+.clockActionButtonsDark > *:focus,
+.clockActionButtonsDark > *:hover {
   color: #333;
 
   background: #fff;

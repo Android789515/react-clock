@@ -18,14 +18,14 @@ interface Props {
 }
 
 const ClockActionButtons = ({ isClockStarted, startCounting, stopCounting, resetTime }: Props) => {
-    const { getTheme } = useContext(themeContext);
+    const { isLightTheme } = useContext(themeContext);
 
     return (
         <div
             title='Stop Watch Buttons'
             className={`
                 ${styles.clockActionButtons}
-                ${styles[getTheme()]}
+                ${isLightTheme() ? styles.clockActionButtonsLight : styles.clockActionButtonsDark}
             `}
             role={AriaRoles.toolbar}
         >
