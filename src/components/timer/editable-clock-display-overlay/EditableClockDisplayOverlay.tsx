@@ -37,9 +37,9 @@ const EditableClockDisplayOverlay = ({ disabled, timeInSeconds, updateTimeInSeco
 
     const setOverlayTime = ({ target }: ChangeEvent) => {
         // Remove the colons from the updated overlay time.
-        const editableOverlayTime = removeCharacter(':', (target as HTMLInputElement).value);
+        const overlayTime = removeCharacter(':', (target as HTMLInputElement).value);
         // Automatically removes leading zeros.
-        const newOverlayTime = Number(editableOverlayTime);
+        const newOverlayTime = Number(overlayTime);
 
         updateOverlayTime(prevTime => {
             const isNewTimeTooLong = String(newOverlayTime).length > maxOverlayTimeLength;
