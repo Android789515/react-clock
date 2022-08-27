@@ -13,3 +13,15 @@
 .timerButtons {
   grid-row: 2;
 }
+
+.timerButtonsInactive {
+  transform: translateY(-12em);
+
+  transition: transform 2750ms;
+}
+
+.timerButtonsActive {
+  transform: translateY(0em);
+
+  transition: transform 250ms;
+}
