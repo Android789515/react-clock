@@ -29,44 +29,37 @@ const Timer = () => {
     // from is updated by the user.
     useEffect(resetCounterTime, [timeToCountFrom]);
 
-    const [ isClockStarted, setIsClockStarted ] = useState(false);
-    const { startClock, stopClock } = useClock(incrementCounterTime);
-
-    const startTimer = () => {
-        startClock();
-        setIsClockStarted(true);
-    };
-
-    const stopTimer = () => {
-        stopClock();
-        setIsClockStarted(false);
-    };
+    const { startClock, stopClock, isClockStarted } = useClock(incrementCounterTime);
 
     const resetTimer = () => {
-        stopTimer();
+        stopClock();
         resetCounterTime();
     };
 
     const preventNegativeTime = () => {
-        if (isClockStarted && counterTime === 0) {
+        if (isClockStarted() && counterTime === 0) {
             updateCounterTime(0);
-            stopTimer();
+            stopClock();
         }
     };
     useEffect(preventNegativeTime, [isClockStarted]);
+
+    const timeNotReset = counterTime !== timeToCountFrom;
+    const canCountFromTime = timeToCountFrom !== 0;
+    const isProgressBarActive = () => ( isClockStarted() && canCountFromTime ) || timeNotReset;
 
     return (
         <div
             className={styles.timer}
         >
             <EditableClockDisplayOverlay
-                disabled={isClockStarted}
+                disabled={isClockStarted()}
                 timeInSeconds={counterTime}
                 updateTimeInSeconds={updateTimeToCountFrom}
             />
 
             <TimerProgressBar
-                isActive={true}
+                isActive={isProgressBarActive()}
                 currentTimeInSeconds={counterTime}
                 totalTimeInSeconds={timeToCountFrom}
             />
@@ -75,11 +68,14 @@ const Timer = () => {
                 can be styled for this component.
              */}
             <div
-                className={styles.timerButtons}
+                className={`
+                    ${styles.timerButtons}
+                    ${isProgressBarActive() ? styles.timerButtonsActive : styles.timerButtonsInactive}
+                `}
             >
                 <ClockActionButtons
-                    startCounting={startTimer}
-                    stopCounting={stopTimer}
+                    startCounting={startClock}
+                    stopCounting={stopClock}
                     resetTime={resetTimer}
                 />
             </div>
