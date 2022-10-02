@@ -5,10 +5,15 @@ const useClock = (onTick: OnTickFunction) => {
     type CurrentTicker = NodeJS.Timer | null;
     const [ currentTicker, setCurrentTicker ] = useState<CurrentTicker>(null);
 
+    const [ isStarted, setIsStarted ] = useState(false);
+    const isClockStarted = () => isStarted;
+
     interface StartClockOptions {
         precise?: boolean;
     }
     const startClock = (options?: StartClockOptions) => {
+        setIsStarted(true);
+
         const everyOneMillisecond = 1;
         const everyOneSecond = 1000;
 
@@ -19,10 +24,12 @@ const useClock = (onTick: OnTickFunction) => {
                     ? everyOneMillisecond
                     : everyOneSecond
             )
-        )
+        );
     };
 
     const stopClock = () => {
+        setIsStarted(false);
+
         if (currentTicker) {
             clearInterval(currentTicker);
             setCurrentTicker(null);
@@ -30,6 +37,7 @@ const useClock = (onTick: OnTickFunction) => {
     };
 
     return {
+        isClockStarted,
         startClock,
         stopClock
     };
