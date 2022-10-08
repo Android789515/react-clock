@@ -25,7 +25,7 @@ const TimerProgressBar = ({ isActive, currentTimeInSeconds, totalTimeInSeconds }
 
         const isTimerBarMounted = timerBar !== null;
         if (isTimerBarMounted) {
-            const timerBarCircumference = timerBar && timerBar.r.baseVal.value * 2 * Math.PI;
+            const timerBarCircumference = timerBar && timerBar.r?.baseVal.value * 2 * Math.PI;
 
             timerBar.style.strokeDasharray = `${timerBarCircumference} ${timerBarCircumference}`;
 
