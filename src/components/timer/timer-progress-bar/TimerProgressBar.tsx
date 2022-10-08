@@ -55,6 +55,7 @@ const TimerProgressBar = ({ isActive, currentTimeInSeconds, totalTimeInSeconds }
                 ${styles.timerBarLayout}
                 ${timeBarVisibility}
             `}
+            aria-label={timerProgressBarLabel}
         >
             <TimerProgressBarBackground isLightTheme={isLightTheme()} />
 
@@ -84,4 +85,5 @@ const TimerProgressBar = ({ isActive, currentTimeInSeconds, totalTimeInSeconds }
     );
 };
 
+export const timerProgressBarLabel = 'timer-progress-bar';
 export default TimerProgressBar;
