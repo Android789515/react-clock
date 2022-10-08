@@ -82,6 +82,7 @@ const EditableClockDisplayOverlay = ({ disabled, timeInSeconds, updateTimeInSeco
         <div
             className={styles.editableClockDisplayOverlayLayout}
             onClick={enableEditing}
+            aria-label={editableClockDisplayOverlayLabel}
         >
             {
                 !disabled && isEditing
@@ -101,4 +102,5 @@ const EditableClockDisplayOverlay = ({ disabled, timeInSeconds, updateTimeInSeco
     );
 };
 
+export const editableClockDisplayOverlayLabel = 'editable-clock-display';
 export default EditableClockDisplayOverlay;
