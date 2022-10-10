@@ -29,7 +29,7 @@ const Timer = () => {
     // from is updated by the user.
     useEffect(resetCounterTime, [timeToCountFrom]);
 
-    const { startClock, stopClock, isClockStarted } = useClock(incrementCounterTime);
+    const { startClock, stopClock, isClockStarted } = useClock(decrementCounterTime);
 
     const resetTimer = () => {
         stopClock();
@@ -45,8 +45,8 @@ const Timer = () => {
     useEffect(preventNegativeTime, [isClockStarted]);
 
     const timeNotReset = counterTime !== timeToCountFrom;
-    const canCountFromTime = timeToCountFrom !== 0;
-    const isProgressBarActive = () => ( isClockStarted() && canCountFromTime ) || timeNotReset;
+    const canCountDown = timeToCountFrom !== 0;
+    const isProgressBarActive = () => ( isClockStarted() && canCountDown ) || timeNotReset;
 
     return (
         <div
