@@ -36,14 +36,6 @@ const Timer = () => {
         resetCounterTime();
     };
 
-    const preventNegativeTime = () => {
-        if (isClockStarted() && counterTime === 0) {
-            updateCounterTime(0);
-            stopClock();
-        }
-    };
-    useEffect(preventNegativeTime, [isClockStarted]);
-
     const timeNotReset = counterTime !== timeToCountFrom;
     const canCountDown = timeToCountFrom !== 0;
     const isProgressBarActive = () => ( isClockStarted() && canCountDown ) || timeNotReset;
