@@ -17,7 +17,7 @@ const Timer = () => {
     // Less confusing to call it counterTime than timerTime.
     const [ counterTime, updateCounterTime ] = useState<TimeInSeconds>(timeToCountFrom)
 
-    const incrementCounterTime = () => updateCounterTime(prevTime => {
+    const decrementCounterTime = () => updateCounterTime(prevTime => {
         if (prevTime) {
             return prevTime - 1;
         } else {
