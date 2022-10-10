@@ -12,6 +12,9 @@ const useClock = (onTick: OnTickFunction) => {
         precise?: boolean;
     }
     const startClock = (options?: StartClockOptions) => {
+        // Prevent starting a clock that's already running.
+        if (isClockStarted()) return
+
         setIsStarted(true);
 
         const everyOneMillisecond = 1;
