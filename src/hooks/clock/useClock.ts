@@ -12,7 +12,7 @@ const useClock = (onTick: OnTickFunction) => {
         precise?: boolean;
     }
     const startClock = (options?: StartClockOptions) => {
-        // Prevent starting a clock that's already running.
+        // Prevent starting a new interval when one's already running.
         if (isClockStarted()) return
 
         setIsStarted(true);
