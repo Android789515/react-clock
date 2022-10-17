@@ -14,14 +14,15 @@ const useClock = (onTick: OnTickFunction) => {
     const startClock = (options?: StartClockOptions) => {
         setIsStarted(true);
 
-        const everyOneMillisecond = 1;
+        // Minimum update time for browsers is 4ms
+        const everyTenMillisecond = 10;
         const everyOneSecond = 1000;
 
         setCurrentTicker(
             setInterval(
                 onTick,
                 options?.precise
-                    ? everyOneMillisecond
+                    ? everyTenMillisecond
                     : everyOneSecond
             )
         );
