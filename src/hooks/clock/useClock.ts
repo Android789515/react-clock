@@ -15,6 +15,8 @@ const useClock = (onTick: OnTickFunction) => {
         setIsStarted(true);
 
         // Minimum update time for browsers is 4ms
+        // this will run the function passed to the hook
+        // every 10ms, which is as precise as it can be
         const everyTenMillisecond = 10;
         const everyOneSecond = 1000;
 
