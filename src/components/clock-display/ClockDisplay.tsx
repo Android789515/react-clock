@@ -11,7 +11,7 @@ const makeDoubleDigit = (number: number | string): string => {
 };
 
 const removeSeconds = (milliseconds: TimeInMilliseconds) => {
-    const secondsAndMilliseconds = (milliseconds / 100).toFixed(2);
+    const secondsAndMilliseconds = (milliseconds / 1000).toFixed(2);
     const millisecondsOnly = secondsAndMilliseconds.slice(-2);
 
     return makeDoubleDigit(millisecondsOnly);
