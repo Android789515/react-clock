@@ -11,7 +11,12 @@ import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
 const StopWatch = () => {
     const [ stopWatchTime, setStopWatchTime ] = useState<TimeInMilliseconds>(0);
 
-    const incrementStopWatchTime = () => setStopWatchTime(currentTime => currentTime + 1);
+    const incrementStopWatchTime = () => setStopWatchTime(currentTime => {
+        // Increment by 10ms as the startClock function
+        // is only precise to that amount
+        const tenMilliseconds = 10;
+        return currentTime + tenMilliseconds;
+    });
 
     const { startClock, stopClock } = useClock(incrementStopWatchTime);
 
