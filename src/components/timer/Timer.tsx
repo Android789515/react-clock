@@ -66,7 +66,11 @@ const Timer = () => {
                 `}
             >
                 <ClockActionButtons
-                    startCounting={startClock}
+                    startCounting={() => {
+                        // Prevents starting the clock when
+                        // it's set to 0
+                        if (canCountDown) startClock();
+                    }}
                     stopCounting={stopClock}
                     resetTime={resetTimer}
                 />
