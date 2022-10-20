@@ -3,12 +3,19 @@ $layoutBreakpoint: 35.25em;
 .app {
   display: grid;
   grid-template-rows: max-content max-content;
+  grid-row-gap: 7em;
   $sideSpacing: minmax(1em, 1fr);
   grid-template-columns: $sideSpacing auto $sideSpacing;
 
   min-height: 100vh;
 
   transition: color 250ms, background-color 250ms;
+}
+
+@media (min-width: $layoutBreakpoint) {
+  .app {
+    grid-row-gap: 11.6em;
+  }
 }
 
 .app > * {
