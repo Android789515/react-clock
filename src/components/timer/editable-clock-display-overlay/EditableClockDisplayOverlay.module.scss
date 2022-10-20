@@ -1,3 +1,5 @@
+@use '../../../App.module';
+
 .editableClockDisplayOverlayLayout {
   grid-row: 1;
 
@@ -13,7 +15,7 @@
 }
 
 .editableClockDisplayOverlay {
-  font-size: 6rem;
+  font-size: 3rem;
   font-weight: 700;
   text-align: center;
   color: inherit;
@@ -21,9 +23,18 @@
   display: block;
 
   // Fix annoying Firefox issue
-  max-width: 460px;
+  max-width: 230px;
 
   outline: solid lightblue 2px;
 
   margin: auto;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .editableClockDisplayOverlay {
+    font-size: 6rem;
+
+    // Fix annoying Firefox issue
+    max-width: 460px;
+  }
 }
