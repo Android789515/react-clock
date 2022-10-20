@@ -8,8 +8,6 @@
 
 @media (min-width: App.$layoutBreakpoint) {
   .timerBarLayout {
-    display: revert;
-
     opacity: 0;
 
     $size: 30em;
@@ -20,10 +18,12 @@
 
     transition: opacity 1500ms;
   }
-}
 
-.showTimerBar {
-  opacity: 1;
+  .showTimerBar {
+    display: revert;
+
+    opacity: 1;
+  }
 }
 
 $timerBarRadius: 14em;
