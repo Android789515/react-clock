@@ -37,14 +37,15 @@ const Timer = () => {
     };
 
     const timeNotReset = counterTime !== timeToCountFrom;
-    const canCountDown = timeToCountFrom !== 0;
-    const isTimerActive = () => ( isClockStarted() && canCountDown ) || timeNotReset;
+    const canCountDown = timeToCountFrom !== 0 && counterTime > 0;
+    // Timer can still be active while clock is stopped.
+    const isTimerActive = ( isClockStarted() && canCountDown ) || timeNotReset;
 
     return (
         <div
             className={`
                 ${styles.timer}
-                ${isTimerActive() ? styles.timerActive : styles.timerInactive}
+                ${isTimerActive ? styles.timerActive : styles.timerInactive}
             `}
         >
             <EditableClockDisplayOverlay
@@ -54,7 +55,7 @@ const Timer = () => {
             />
 
             <TimerProgressBar
-                isActive={isTimerActive()}
+                isActive={isTimerActive}
                 currentTimeInSeconds={counterTime}
                 totalTimeInSeconds={timeToCountFrom}
             />
