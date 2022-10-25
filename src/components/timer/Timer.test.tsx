@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
 
-import { editableClockDisplayOverlayLabel } from './editable-clock-display-overlay/EditableClockDisplayOverlay';
+import { AriaRoles } from '../../types/ariaTypes';
 import { timerProgressBarLabel } from './timer-progress-bar/TimerProgressBar';
 
 import Timer from './Timer';
 
 describe('Timer', () => {
-    it('Renders an EditableClockDisplayOverlay component', () => {
+    it('Renders a ClockDisplay component', () => {
         render(<Timer />);
 
-        const EditableClockDisplayOverlay = screen.getByLabelText(editableClockDisplayOverlayLabel);
+        const EditableClockDisplayOverlay = screen.getByRole(AriaRoles.timer);
         expect(EditableClockDisplayOverlay).toBeInTheDocument();
     });
 

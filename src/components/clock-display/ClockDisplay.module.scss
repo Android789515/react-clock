@@ -1,17 +1,37 @@
 @use '../../App.module';
 
+// Un-styling
+.clockDisplay {
+  background: none;
+  padding: 0;
+
+  border: none;
+}
+
 .clockDisplay {
   font-size: 3rem;
+  font-weight: 700;
   text-align: center;
+  color: inherit;
 
+  grid-row: 1;
   justify-self: center;
   align-self: center;
 
-  margin: 0;
+  display: block;
+
+  z-index: 1;
+  outline: none;
+
+  // Fix annoying Firefox issue
+  max-width: 230px;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
   .clockDisplay {
     font-size: 6rem;
+
+    // Fix annoying Firefox issue
+    max-width: 460px;
   }
 }

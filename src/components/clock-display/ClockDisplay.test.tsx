@@ -1,42 +1,43 @@
-import { screen, render } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 
 import { AriaRoles } from '../../types/ariaTypes';
 
 import ClockDisplay from './ClockDisplay';
 
 describe('ClockDisplay', () => {
-    it('Takes a time in milliseconds and displays a formatted version, hours:minutes:seconds', () => {
-        const millisecondsToTest = 3_755_000;
-
-        render(
-            <ClockDisplay
-                timeInMilliseconds={millisecondsToTest}
-            />
-        );
-
-        const DisplayElement = screen.getByRole(AriaRoles.timer);
-
-        const expectedDisplayResult = '01:02:35';
-        const actualDisplayResult = DisplayElement.textContent;
-
-        expect(actualDisplayResult).toEqual(expectedDisplayResult);
-    });
 
     it('Takes an optional prop instructing whether to display the milliseconds', () => {
         const millisecondsToTest = 9_857_655;
 
         render(
             <ClockDisplay
-                timeInMilliseconds={millisecondsToTest}
+                disabled={true}
                 showMilliseconds={true}
+                timeInMilliseconds={millisecondsToTest}
+                updateTimeInSeconds={() => {}}
+            />
+        );
+
+        const DisplayElement = screen.getByRole(AriaRoles.timer);
+        const expectedDisplayResult = '02:44:17.655';
+        expect(DisplayElement).toHaveDisplayValue(expectedDisplayResult);
+    });
+
+    it('Updates its displayed time when focused and typed in', async () => {
+        render(
+            <ClockDisplay
+                disabled={true}
+                timeInMilliseconds={0}
+                updateTimeInSeconds={() => {}}
             />
         );
 
         const DisplayElement = screen.getByRole(AriaRoles.timer);
 
-        const expectedDisplayResult = '02:44:17.55';
-        const actualDisplayResult = DisplayElement.textContent;
+        const updatedSeconds = 12;
+        fireEvent.change(DisplayElement, { target: { value: updatedSeconds } });
 
-        expect(actualDisplayResult).toEqual(expectedDisplayResult);
+        const expectedDisplay = '00:00:12';
+        expect(DisplayElement).toHaveDisplayValue(expectedDisplay);
     });
 });

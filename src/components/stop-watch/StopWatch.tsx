@@ -41,8 +41,9 @@ const StopWatch = () => {
         <div className={styles.stopWatch}>
 
             <ClockDisplay
-                timeInMilliseconds={stopWatchTime}
+                disabled={true}
                 showMilliseconds={afterClockStarts}
+                timeInMilliseconds={stopWatchTime}
             />
 
             <ClockActionButtons
