@@ -5,6 +5,7 @@ import useClock from '../../hooks/clock/useClock';
 
 import styles from './Timer.module.scss';
 
+import Alarm from './alarm/Alarm';
 import EditableClockDisplayOverlay from './editable-clock-display-overlay/EditableClockDisplayOverlay';
 import TimerProgressBar from './timer-progress-bar/TimerProgressBar';
 import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
@@ -48,6 +49,9 @@ const Timer = () => {
                 ${isTimerActive ? styles.timerActive : styles.timerInactive}
             `}
         >
+            <Alarm
+                shouldRingAlarm={isClockStarted() && counterTime === 0}
+            />
             <EditableClockDisplayOverlay
                 disabled={isClockStarted()}
                 timeInSeconds={counterTime}
