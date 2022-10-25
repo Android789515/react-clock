@@ -1,51 +1,58 @@
-import { AriaRoles } from '../../types/ariaTypes';
-import type { TimeInMilliseconds } from '../../types/timeTypes';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+
+import { AriaRoles, InputTypes } from '../../types/ariaTypes';
+import type { TimeInMilliseconds, TimeInSeconds } from '../../types/timeTypes';
+import { removeCharacter } from '../../utils/stringUtils';
+import { formatTime } from '../../utils/timeConversionUtils';
 
 import styles from './ClockDisplay.module.scss';
 
-const makeDoubleDigit = (number: number | string): string => {
-    const measurableDigits = String(number);
-
-    const isSingleDigit = measurableDigits.length < 2;
-    return isSingleDigit ? '0' + number : String(number);
-};
-
-const removeSeconds = (milliseconds: TimeInMilliseconds) => {
-    const secondsAndMilliseconds = (milliseconds / 1000).toFixed(2);
-    const millisecondsOnly = secondsAndMilliseconds.slice(-2);
-
-    return makeDoubleDigit(millisecondsOnly);
-};
-
 interface Props {
-    timeInMilliseconds: TimeInMilliseconds;
+    disabled: boolean;
     showMilliseconds?: boolean;
+    timeInMilliseconds: TimeInMilliseconds;
+    updateTimeInSeconds?: Dispatch<SetStateAction<TimeInSeconds>>;
 }
 
-const ClockDisplay = ({ timeInMilliseconds, showMilliseconds }: Props) => {
+const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, updateTimeInSeconds }: Props) => {
+    const maxDisplayTimeLength = 6;
 
-    const formattedMilliseconds = '.' + removeSeconds(timeInMilliseconds);
+    const setDisplayTime = ({ target }: ChangeEvent) => {
+        // Remove the colons from the updated display time.
+        const displayTime = removeCharacter(':', (target as HTMLInputElement).value);
+        // Automatically removes leading zeros.
+        const newDisplayTime = Number(displayTime);
 
-    const timeInSeconds = Math.floor(timeInMilliseconds / 1000);
-    const formattedSeconds = makeDoubleDigit(timeInSeconds % 60);
+        if (updateTimeInSeconds) {
+            updateTimeInSeconds(prevTime => {
+                const isNewTimeTooLong = String(newDisplayTime).length > maxDisplayTimeLength;
+                const isNewDisplayTimeValid = !Object.is(newDisplayTime, NaN);
 
-    const totalMinutes = (timeInSeconds / 60) % 60;
-    const formattedMinutes = makeDoubleDigit(Math.floor(totalMinutes));
+                if (!isNewTimeTooLong && isNewDisplayTimeValid) {
+                    return newDisplayTime;
+                } else {
+                    return prevTime;
+                }
+            });
+        }
+    };
 
-    const totalHours = (timeInSeconds / 3600) % 120;
-    const formattedHours = makeDoubleDigit(Math.floor(totalHours));
-
+    const { hours, minutes, seconds, milliseconds } = formatTime(timeInMilliseconds);
     return (
-        <h1
-            role={AriaRoles.timer}
-            id={clockDisplayID}
+        <input
             className={styles.clockDisplay}
-        >
-            {formattedHours}:
-            {formattedMinutes}:
-            {formattedSeconds}
-            {showMilliseconds && formattedMilliseconds}
-        </h1>
+            id={clockDisplayID}
+            role={AriaRoles.timer}
+            type={InputTypes.text}
+            disabled={disabled}
+            value={
+                hours + ':'
+                + minutes + ':'
+                + seconds
+                + (showMilliseconds ? '.' + milliseconds : '')
+            }
+            onChange={setDisplayTime}
+        />
     );
 };
 

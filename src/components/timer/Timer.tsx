@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import type { TimeInSeconds } from '../../types/timeTypes';
+import { toMilliseconds } from '../../utils/timeConversionUtils';
 import useClock from '../../hooks/clock/useClock';
 
 import styles from './Timer.module.scss';
 
-import EditableClockDisplayOverlay from './editable-clock-display-overlay/EditableClockDisplayOverlay';
+import ClockDisplay from '../clock-display/ClockDisplay';
 import TimerProgressBar from './timer-progress-bar/TimerProgressBar';
 import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
 
@@ -24,16 +25,16 @@ const Timer = () => {
             return prevTime;
         }
     });
-    const resetCounterTime = () => updateCounterTime(timeToCountFrom);
+    const setCounterTime = () => updateCounterTime(timeToCountFrom);
     // Sets the counter time if the time to count
     // from is updated by the user.
-    useEffect(resetCounterTime, [timeToCountFrom]);
+    useEffect(setCounterTime, [timeToCountFrom]);
 
     const { startClock, stopClock, isClockStarted } = useClock(decrementCounterTime);
 
     const resetTimer = () => {
         stopClock();
-        resetCounterTime();
+        setCounterTime();
     };
 
     const timeNotReset = counterTime !== timeToCountFrom;
@@ -47,9 +48,9 @@ const Timer = () => {
                 ${isTimerActive() ? styles.timerActive : styles.timerInactive}
             `}
         >
-            <EditableClockDisplayOverlay
+            <ClockDisplay
                 disabled={isClockStarted()}
-                timeInSeconds={counterTime}
+                timeInMilliseconds={toMilliseconds(counterTime)}
                 updateTimeInSeconds={updateTimeToCountFrom}
             />
 
