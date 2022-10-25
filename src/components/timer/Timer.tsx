@@ -63,15 +63,11 @@ const Timer = () => {
             {/* Re-usable component wrapped in div, so that it
                 can be styled for this component.
              */}
-            <div
-                className={`
-                    ${styles.timerButtons}
-                `}
-            >
+            <div className={`${styles.timerButtons}`}>
                 <ClockActionButtons
                     startCounting={() => {
                         // Prevents starting the clock when
-                        // it's set to 0
+                        // it's set to 0.
                         if (canCountDown) startClock();
                     }}
                     stopCounting={stopClock}
