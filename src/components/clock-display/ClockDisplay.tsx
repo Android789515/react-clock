@@ -23,7 +23,8 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
         // Automatically removes leading zeros.
         const newDisplayTime = Number(displayTime);
 
-        if (setTime) {
+        const wasTimeSetterDefined = setTime !== undefined;
+        if (wasTimeSetterDefined) {
             const isNewTimeTooLong = String(newDisplayTime).length > maxDisplayTimeLength;
             const isNewDisplayTimeValid = !Object.is(newDisplayTime, NaN);
 
