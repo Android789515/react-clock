@@ -8,6 +8,8 @@
 
 @media (min-width: App.$layoutBreakpoint) {
   .timerBarLayout {
+    display: revert;
+
     opacity: 0;
 
     $size: 30em;
@@ -20,8 +22,6 @@
   }
 
   .showTimerBar {
-    display: revert;
-
     opacity: 1;
   }
 }
