@@ -19,13 +19,13 @@
 @media (min-width: App.$layoutBreakpoint) {
   .timer {
     // Pulls the clock display back up to
-    // the center of the screen
+    // the center of the screen.
     transform: translateY(-11.6em);
   }
 
   .timerInactive {
     .timerButtons {
-      //transform: translateY(-12em);
+      transform: translateY(-12em);
 
       transition: transform 2750ms;
     }
