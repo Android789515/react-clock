@@ -11,19 +11,33 @@ import ClockDisplay from '../clock-display/ClockDisplay';
 import TimerProgressBar from './timer-progress-bar/TimerProgressBar';
 import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
 
+interface CounterTimeState {
+    totalTime: TimeInSeconds
+    currentTime: TimeInSeconds
+}
+
 const Timer = () => {
-    // What the user can set.
-    const [ timeToCountFrom, updateTimeToCountFrom ] = useState<TimeInSeconds>(0);
-
-    // What the clock uses.
     // Less confusing to call it counterTime than timerTime.
-    const [ counterTime, updateCounterTime ] = useState<TimeInSeconds>(timeToCountFrom)
+    const [ counterTime, updateCounterTime ] = useState<CounterTimeState>({
+        totalTime: 0,
+        currentTime: 0
+    });
 
-    const decrementCounterTime = () => updateCounterTime(prevTime => {
-        if (prevTime) {
-            return prevTime - 1;
+    const setTimeToCountFrom = (timeInSeconds: TimeInSeconds) => updateCounterTime(() => {
+        return { totalTime: timeInSeconds, currentTime: timeInSeconds };
+    });
+
+    const resetCounterTime = () => updateCounterTime(prevState => {
+        return { ...prevState, currentTime: prevState.totalTime };
+    });
+
+    const decrementCounterTime = () => updateCounterTime(prevState => {
+        const { currentTime } = prevState;
+
+        if (currentTime > 0) {
+            return { ...prevState, currentTime: currentTime - 1 };
         } else {
-            return prevTime;
+            return prevState;
         }
     });
     const setCounterTime = () => updateCounterTime(timeToCountFrom);
@@ -35,13 +49,12 @@ const Timer = () => {
 
     const resetTimer = () => {
         stopClock();
-        setCounterTime();
+        resetCounterTime();
     };
 
-    const timeNotReset = counterTime !== timeToCountFrom;
-    const canCountDown = timeToCountFrom !== 0 && counterTime > 0;
+    const canCountDown = counterTime.totalTime > 0 && counterTime.currentTime > 0;
     // Timer can still be active while clock is stopped.
-    const isTimerActive = ( isClockStarted() && canCountDown ) || timeNotReset;
+    const isTimerActive = isClockStarted() || counterTime.currentTime < counterTime.totalTime;
 
     return (
         <div
@@ -51,18 +64,18 @@ const Timer = () => {
             `}
         >
             <Alarm
-                shouldRingAlarm={isClockStarted() && counterTime === 0}
+                shouldRingAlarm={isClockStarted() && counterTime.currentTime === 0}
             />
             <ClockDisplay
                 disabled={isClockStarted()}
-                timeInMilliseconds={toMilliseconds(counterTime)}
-                updateTimeInSeconds={updateTimeToCountFrom}
+                timeInMilliseconds={toMilliseconds(counterTime.currentTime)}
+                setTime={setTimeToCountFrom}
             />
 
             <TimerProgressBar
                 isActive={isTimerActive}
-                currentTimeInSeconds={counterTime}
-                totalTimeInSeconds={timeToCountFrom}
+                currentTimeInSeconds={counterTime.currentTime}
+                totalTimeInSeconds={counterTime.totalTime}
             />
 
             {/* Re-usable component wrapped in div, so that it
