@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent } from 'react';
 
 import { AriaRoles, InputTypes } from '../../types/ariaTypes';
 import type { TimeInMilliseconds, TimeInSeconds } from '../../types/timeTypes';
@@ -11,10 +11,10 @@ interface Props {
     disabled: boolean;
     showMilliseconds?: boolean;
     timeInMilliseconds: TimeInMilliseconds;
-    updateTimeInSeconds?: Dispatch<SetStateAction<TimeInSeconds>>;
+    setTime?: (time: TimeInMilliseconds | TimeInSeconds) => void;
 }
 
-const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, updateTimeInSeconds }: Props) => {
+const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime }: Props) => {
     const maxDisplayTimeLength = 6;
 
     const setDisplayTime = ({ target }: ChangeEvent) => {
@@ -23,17 +23,13 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, updateTi
         // Automatically removes leading zeros.
         const newDisplayTime = Number(displayTime);
 
-        if (updateTimeInSeconds) {
-            updateTimeInSeconds(prevTime => {
-                const isNewTimeTooLong = String(newDisplayTime).length > maxDisplayTimeLength;
-                const isNewDisplayTimeValid = !Object.is(newDisplayTime, NaN);
+        if (setTime) {
+            const isNewTimeTooLong = String(newDisplayTime).length > maxDisplayTimeLength;
+            const isNewDisplayTimeValid = !Object.is(newDisplayTime, NaN);
 
-                if (!isNewTimeTooLong && isNewDisplayTimeValid) {
-                    return newDisplayTime;
-                } else {
-                    return prevTime;
-                }
-            });
+            if (!isNewTimeTooLong && isNewDisplayTimeValid) {
+                setTime(newDisplayTime);
+            }
         }
     };
 
