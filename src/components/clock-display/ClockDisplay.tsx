@@ -26,9 +26,9 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
         const wasTimeSetterDefined = setTime !== undefined;
         if (wasTimeSetterDefined) {
             const isNewTimeTooLong = String(newDisplayTime).length > maxDisplayTimeLength;
-            const isNewDisplayTimeValid = !Object.is(newDisplayTime, NaN);
+            const isNewTimeValidNumber = !Object.is(newDisplayTime, NaN);
 
-            if (!isNewTimeTooLong && isNewDisplayTimeValid) {
+            if (!isNewTimeTooLong && isNewTimeValidNumber) {
                 setTime(newDisplayTime);
             }
         }
