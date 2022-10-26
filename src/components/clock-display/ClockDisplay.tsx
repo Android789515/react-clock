@@ -20,16 +20,16 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
     const setDisplayTime = ({ target }: ChangeEvent) => {
         // Remove the colons from the updated display time.
         const displayTime = removeCharacter(':', (target as HTMLInputElement).value);
-        // Automatically removes leading zeros.
-        const newDisplayTime = Number(displayTime);
+        // Automatically remove leading zeros.
+        const newTime = Number(displayTime);
 
         const wasTimeSetterDefined = setTime !== undefined;
         if (wasTimeSetterDefined) {
-            const isNewTimeTooLong = String(newDisplayTime).length > maxDisplayTimeLength;
-            const isNewTimeValidNumber = !Object.is(newDisplayTime, NaN);
+            const isNewTimeTooLong = String(newTime).length > maxDisplayTimeLength;
+            const isNewTimeValidNumber = !Object.is(newTime, NaN);
 
             if (!isNewTimeTooLong && isNewTimeValidNumber) {
-                setTime(newDisplayTime);
+                setTime(newTime);
             }
         }
     };
