@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import type { TimeInSeconds } from '../../types/timeTypes';
 import { toMilliseconds } from '../../utils/timeConversionUtils';
@@ -40,10 +40,6 @@ const Timer = () => {
             return prevState;
         }
     });
-    const setCounterTime = () => updateCounterTime(timeToCountFrom);
-    // Sets the counter time if the time to count
-    // from is updated by the user.
-    useEffect(setCounterTime, [timeToCountFrom]);
 
     const { startClock, stopClock, isClockStarted } = useClock(decrementCounterTime);
 
