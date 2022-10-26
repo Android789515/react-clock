@@ -16,26 +16,26 @@
   grid-row: 2;
 }
 
-.timerInactive {
-  .timerButtons {
-    //transform: translateY(-12em);
-
-    transition: transform 2750ms;
-  }
-}
-
-.timerActive {
-  .timerButtons {
-    transform: translateY(0em);
-
-    transition: transform 250ms;
-  }
-}
-
 @media (min-width: App.$layoutBreakpoint) {
   .timer {
     // Pulls the clock display back up to
     // the center of the screen
     transform: translateY(-11.6em);
+  }
+
+  .timerInactive {
+    .timerButtons {
+      //transform: translateY(-12em);
+
+      transition: transform 2750ms;
+    }
+  }
+
+  .timerActive {
+    .timerButtons {
+      transform: translateY(0em);
+
+      transition: transform 250ms;
+    }
   }
 }
