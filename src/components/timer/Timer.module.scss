@@ -33,10 +33,7 @@
 }
 
 @media (min-width: App.$layoutBreakpoint) {
-  // Timer bar shows after layout breakpoint,
-  // when there's enough space on the screen
-  // for it
-  .timerActive {
+  .timer {
     // Pulls the clock display back up to
     // the center of the screen
     transform: translateY(-11.6em);
