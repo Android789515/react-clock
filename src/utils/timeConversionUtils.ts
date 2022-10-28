@@ -20,29 +20,27 @@ const makeDoubleDigit = (number: number | string): string => {
 };
 
 const removeSeconds = (milliseconds: TimeInMilliseconds) => {
-    const secondsAndMilliseconds = toSeconds(milliseconds);
-    const millisecondsOnly = String(secondsAndMilliseconds).slice(-3);
-
-    return makeDoubleDigit(millisecondsOnly);
+    return Number(String(milliseconds).slice(-3));
 };
 
 export const formatTime = (timeInMilliseconds: TimeInMilliseconds) => {
 
-    const formattedMilliseconds = removeSeconds(timeInMilliseconds);
+    const milliseconds = removeSeconds(timeInMilliseconds);
+    const formattedMilliseconds = makeDoubleDigit(milliseconds);
 
-    const timeInSeconds = Math.floor(toSeconds(timeInMilliseconds));
-    const formattedSeconds = makeDoubleDigit(timeInSeconds % 60);
+    const totalSeconds = Math.floor(toSeconds(timeInMilliseconds));
+    const formattedSeconds = makeDoubleDigit(totalSeconds % 60);
 
-    const totalMinutes = (timeInSeconds / 60) % 60;
-    const formattedMinutes = makeDoubleDigit(Math.floor(totalMinutes));
+    const totalMinutes = (totalSeconds / 60);
+    const formattedMinutes = makeDoubleDigit(Math.floor(totalMinutes  % 60));
 
-    const totalHours = (timeInSeconds / 3600) % 120;
-    const formattedHours = makeDoubleDigit(Math.floor(totalHours));
+    const totalHours = (totalSeconds / 3600);
+    const formattedHours = makeDoubleDigit(Math.floor(totalHours % 120));
 
     return {
-        hours: formattedHours,
-        minutes: formattedMinutes,
-        seconds: formattedSeconds,
-        milliseconds: formattedMilliseconds
+        formattedHours,
+        formattedMinutes,
+        formattedSeconds,
+        formattedMilliseconds
     };
 };
