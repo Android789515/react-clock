@@ -1,4 +1,4 @@
-type Character = string;
+import { v4 as generateUUID } from 'uuid';
 
 export const prefix = (string: string, prefix: string, repeatAmount?: number) => {
     const shouldRepeatPrefix = repeatAmount || repeatAmount === 0;
@@ -24,4 +24,11 @@ export const insertCharacter = (character: Character, string: string, everyNthCh
 export const removeCharacter = (character: Character, string: string) => {
     const everyCharacter = '';
     return string.split(character).join(everyCharacter);
+};
+
+export const segmentString = (string: string, segmentLength: number) => {
+    const splitCharacter = generateUUID();
+    const segmentableString = insertCharacter(splitCharacter, string, segmentLength);
+
+    return segmentableString.split(splitCharacter);
 };
