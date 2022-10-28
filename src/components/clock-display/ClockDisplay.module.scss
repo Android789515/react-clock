@@ -24,7 +24,7 @@
   outline: none;
 
   // Fix annoying Firefox issue
-  max-width: 230px;
+  max-width: 270px;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
@@ -32,6 +32,6 @@
     font-size: 6rem;
 
     // Fix annoying Firefox issue
-    max-width: 460px;
+    max-width: 510px;
   }
 }
