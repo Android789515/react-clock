@@ -1,4 +1,4 @@
-import { TimeInSeconds, TimeInMilliseconds } from '../types/timeTypes';
+import { TimeInSeconds, TimeInMilliseconds, Milliseconds } from '../types/timeTypes';
 
 export const toMilliseconds = (timeInSeconds: TimeInSeconds) => {
     return timeInSeconds * 1000;
@@ -19,7 +19,7 @@ const makeDoubleDigit = (number: number | string): string => {
     return isSingleDigit ? '0' + number : String(number);
 };
 
-const removeSeconds = (milliseconds: TimeInMilliseconds) => {
+const removeSeconds = (milliseconds: Milliseconds) => {
     return Number(String(milliseconds).slice(-3));
 };
 
