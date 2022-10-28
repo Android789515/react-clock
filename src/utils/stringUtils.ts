@@ -14,6 +14,7 @@ export const prefix = (string: string, prefix: string, repeatAmount?: number) =>
     }
 };
 
+type Character = string;
 export const insertCharacter = (character: Character, string: string, everyNthCharacter: number) => {
     // Match may return null, so a fallback is used.
     const decomposedString = string.match(new RegExp(`.{1,${everyNthCharacter}}`, 'g')) || [string];
