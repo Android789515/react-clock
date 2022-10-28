@@ -54,4 +54,34 @@ describe('ClockDisplay', () => {
         const expectedDisplayAfterChange = '00:00:12';
         expect(UpdatedComponent).toHaveDisplayValue(expectedDisplayAfterChange);
     });
+
+    it('Accepts a new display time of up to 6 characters', () => {
+
+        let time: TimeInMilliseconds = 0;
+        const { rerender } = render(
+            <ClockDisplay
+                disabled={false}
+                timeInMilliseconds={time}
+                // User enters time in seconds, and it must
+                // be converted to ms to be re-passed as a prop.
+                setTime={newTime => time = toMilliseconds(newTime)}
+            />
+        );
+
+        const Component = screen.getByRole(AriaRoles.timer);
+        fireEvent.change(Component, { target: { value: '1259436' } });
+        rerender(
+            <ClockDisplay
+                disabled={false}
+                timeInMilliseconds={time}
+                // User enters time in seconds, and it must
+                // be converted to ms to be re-passed as a prop.
+                setTime={newTime => time = toMilliseconds(newTime)}
+            />
+        );
+
+        const UpdatedComponent = screen.getByRole(AriaRoles.timer);
+        const expectedDisplayAfterChange = '12:59:43';
+        expect(UpdatedComponent).toHaveDisplayValue(expectedDisplayAfterChange);
+    });
 });
