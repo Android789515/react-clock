@@ -13,10 +13,13 @@ export const getTotalSeconds = (hours: number, minutes: number, seconds: number)
 };
 
 const makeDoubleDigit = (number: number | string): string => {
-    const measurableDigits = String(number);
+    const digitAmount = String(number).length;
 
-    const isSingleDigit = measurableDigits.length < 2;
-    return isSingleDigit ? '0' + number : String(number);
+    if (digitAmount < 2) {
+        return '0' + number;
+    } else {
+        return String(number);
+    }
 };
 
 const removeSeconds = (milliseconds: Milliseconds) => {
