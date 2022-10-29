@@ -29,7 +29,8 @@ const removeSeconds = (milliseconds: Milliseconds) => {
 export const formatTime = (timeInMilliseconds: TimeInMilliseconds) => {
 
     const milliseconds = removeSeconds(timeInMilliseconds);
-    const formattedMilliseconds = makeDoubleDigit(milliseconds);
+    const significantMillisecondDigits = milliseconds / 10;
+    const formattedMilliseconds = makeDoubleDigit(significantMillisecondDigits);
 
     const totalSeconds = Math.floor(toSeconds(timeInMilliseconds));
     const formattedSeconds = makeDoubleDigit(totalSeconds % 60);
