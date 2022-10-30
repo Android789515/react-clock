@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { TimeInSeconds } from '../../types/timeTypes';
 import { toMilliseconds } from '../../utils/timeConversionUtils';
-import useClock from '../../hooks/clock/useClock';
+import useClock from '../../independent-hooks/clock/useClock';
 
 import styles from './Timer.module.scss';
 

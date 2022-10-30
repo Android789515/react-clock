@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import type { TimeInMilliseconds } from '../../types/timeTypes';
-import useClock from '../../hooks/clock/useClock';
+import useClock from '../../independent-hooks/clock/useClock';
 
 import styles from './StopWatch.module.scss';
 
