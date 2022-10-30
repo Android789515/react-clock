@@ -24,7 +24,12 @@ const Notifications = ({ nextNotification, clearNotification }: Props) => {
     };
 
     return (
-        <div className={styles.notifications}>
+        <div
+            className={`
+                ${styles.notifications}
+                ${isHidden ? styles.notificationsHidden : ''}
+            `}
+        >
             <h2 className={styles.notificationsTitle}>
                 {nextNotification?.body}
             </h2>
