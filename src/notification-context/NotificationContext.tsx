@@ -26,13 +26,27 @@ const NotificationContextProvider = ({ children }: Props) => {
         }));
     };
 
+    const [ nextNotification, setNextNotification ] = useState<Notification>();
+
     const getNextNotification = () => {
         const nextNotification = notifications.at(0);
         if (nextNotification) {
             _removeNotification();
-            return nextNotification;
+            setNextNotification(nextNotification);
         }
     };
+
+    const [ waitForNext, setWaitForNext ] = useState(false);
+
+    const [ isMount, setIsMount ] = useState(true);
+    useEffect(() => {
+        if (!waitForNext && !isMount) {
+            getNextNotification();
+            setWaitForNext(true);
+        }
+
+        setIsMount(false);
+    }, [notifications]);
 
     return (
         <notificationContext.Provider
