@@ -1,3 +1,7 @@
 @mixin roundedCorners {
   border-radius: .25em;
 }
+
+@mixin pillShape {
+  border-radius: 50px;
+}
