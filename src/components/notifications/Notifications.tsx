@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import { Notification } from '../../notification-context/notifiationTypes';
 
 import styles from './Notifications.module.scss';
@@ -7,11 +9,24 @@ interface Props {
     clearNotification: () => void
 }
 
-const Notifications = ({ notifications, getNextNotification }: Props) => {
+const Notifications = ({ nextNotification, clearNotification }: Props) => {
+    const [ isHidden, setIsHidden ] = useState(true);
+
+    useEffect(() => {
+        if (nextNotification) {
+            setIsHidden(false);
+        }
+    }, [nextNotification]);
+
+    const handleCloseButtonClick = () => {
+        setIsHidden(true);
+        clearNotification();
+    };
+
     return (
         <div className={styles.notifications}>
             <h2 className={styles.notificationsTitle}>
-                Some notification!
+                {nextNotification?.body}
             </h2>
 
             <button className={styles.notificationsCloseButton} />
