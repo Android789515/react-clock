@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { v4 as generateUUID } from 'uuid';
 
 import { AriaRoles } from '../../types/ariaTypes';
 import { clockDisplayID } from '../clock-display/ClockDisplay';
@@ -34,6 +35,7 @@ const ClockActionButtons = ({ actions }: Props) => {
         >
             {actions.map(({ name, action }) => (
                 <ActionButton
+                    key={generateUUID()}
                     actionName={name}
                     ariaControls={clockDisplayID}
                     onClick={action}
