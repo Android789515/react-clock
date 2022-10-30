@@ -3,8 +3,8 @@ import { Notification } from '../../notification-context/notifiationTypes';
 import styles from './Notifications.module.scss';
 
 interface Props {
-    notifications: Notification[]
-    getNextNotification: () => Notification | undefined
+    nextNotification: Notification | undefined
+    clearNotification: () => void
 }
 
 const Notifications = ({ notifications, getNextNotification }: Props) => {

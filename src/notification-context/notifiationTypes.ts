@@ -6,5 +6,4 @@ export interface Notification {
 
 export interface NotificationContextFunctions {
     addNotification: (notification: Notification) => void
-    getNextNotification: () => Notification | undefined
 }
