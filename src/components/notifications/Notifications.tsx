@@ -1,6 +1,13 @@
+import { Notification } from '../../notification-context/notifiationTypes';
+
 import styles from './Notifications.module.scss'
 
-const Notifications = () => {
+interface Props {
+    notifications: Notification[]
+    getNextNotification: () => Notification | undefined
+}
+
+const Notifications = ({ notifications, getNextNotification }: Props) => {
     return (
         <div>
 

@@ -43,7 +43,10 @@ const NotificationContextProvider = ({ children }: Props) => {
             }}
         >
             {children}
-            <Notifications />
+            <Notifications
+                notifications={notifications}
+                getNextNotification={getNextNotification}
+            />
         </notificationContext.Provider>
     );
 };
