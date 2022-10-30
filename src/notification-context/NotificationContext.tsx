@@ -1,9 +1,10 @@
-import { ReactNode, createContext } from 'react';
+import { ReactNode, createContext, useState } from 'react';
 
-import { NotificationContextFunctions } from './notifiationTypes';
+import { NotificationContextFunctions, Notification } from './notifiationTypes';
 
 const notificationContext = createContext<NotificationContextFunctions>({
-    notify: () => {}
+    addNotification: (notification: Notification) => {},
+    getNextNotification: () => ({ body: '' })
 });
 
 interface Props {
@@ -11,14 +12,32 @@ interface Props {
 }
 
 const NotificationContextProvider = ({ children }: Props) => {
-    const notify = () => {
 
+    const [ notifications, updateNotifications ] = useState<Notification[]>([]);
+
+    const addNotification = (notification: Notification) => {
+        updateNotifications(prevNotifications => [...prevNotifications, notification]);
+    };
+
+    const _removeNotification = () => {
+        updateNotifications(notifications.filter((notification, index) => {
+            return index > 0;
+        }));
+    };
+
+    const getNextNotification = () => {
+        const nextNotification = notifications.at(0);
+        if (nextNotification) {
+            _removeNotification();
+            return nextNotification;
+        }
     };
 
     return (
         <notificationContext.Provider
             value={{
-                notify
+                addNotification,
+                getNextNotification
             }}
         >
             {children}

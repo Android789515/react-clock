@@ -1,7 +1,10 @@
+export type NotificationBody = string;
+
 export interface Notification {
-    body: Text
+    body: NotificationBody
 }
 
 export interface NotificationContextFunctions {
-    notify: (notification: Notification) => void
+    addNotification: (notification: Notification) => void
+    getNextNotification: () => Notification | undefined
 }
