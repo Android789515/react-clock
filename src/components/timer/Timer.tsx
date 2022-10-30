@@ -43,12 +43,20 @@ const Timer = () => {
 
     const { startClock, stopClock, isClockStarted } = useClock(decrementCounterTime);
 
+    const canCountDown = counterTime.totalTime > 0 && counterTime.currentTime > 0;
+    const startTimer = () => {
+        // Prevents starting the clock when
+        // it's set to 0.
+        if (canCountDown) startClock();
+    };
+
+    const stopTimer = () => stopClock();
+
     const resetTimer = () => {
         stopClock();
         resetCounterTime();
     };
 
-    const canCountDown = counterTime.totalTime > 0 && counterTime.currentTime > 0;
     // Timer can still be active while clock is stopped.
     const isTimerActive = isClockStarted() || counterTime.currentTime < counterTime.totalTime;
 
@@ -80,12 +88,8 @@ const Timer = () => {
             <div className={`${styles.timerButtons}`}>
                 <ClockActionButtons
                     actions={[
-                        { name: 'Start', action: () => {
-                            // Prevents starting the clock when
-                            // it's set to 0.
-                            if (canCountDown) startClock();
-                        }},
-                        { name: 'Stop', action: stopClock },
+                        { name: 'Start', action: startTimer},
+                        { name: 'Stop', action: stopTimer },
                         { name: 'Reset', action: resetTimer }
                     ]}
                 />
