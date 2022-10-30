@@ -47,10 +47,13 @@ const StopWatch = () => {
             />
 
             <ClockActionButtons
-                isClockStarted={isStopWatchStarted}
-                startCounting={startStopWatch}
-                stopCounting={suspendStopWatch}
-                resetTime={resetStopWatchTime}
+                actions={[
+                    isStopWatchStarted
+                    ? { name: 'Lap', action: () => {} }
+                    : { name: 'Start', action: startStopWatch },
+                    { name: 'Stop', action: suspendStopWatch },
+                    { name: 'Reset', action: resetStopWatchTime }
+                ]}
             />
         </div>
     );

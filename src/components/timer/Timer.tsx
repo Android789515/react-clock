@@ -79,13 +79,15 @@ const Timer = () => {
              */}
             <div className={`${styles.timerButtons}`}>
                 <ClockActionButtons
-                    startCounting={() => {
-                        // Prevents starting the clock when
-                        // it's set to 0.
-                        if (canCountDown) startClock();
-                    }}
-                    stopCounting={stopClock}
-                    resetTime={resetTimer}
+                    actions={[
+                        { name: 'Start', action: () => {
+                            // Prevents starting the clock when
+                            // it's set to 0.
+                            if (canCountDown) startClock();
+                        }},
+                        { name: 'Stop', action: stopClock },
+                        { name: 'Reset', action: resetTimer }
+                    ]}
                 />
             </div>
         </div>

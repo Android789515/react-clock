@@ -8,16 +8,19 @@ import styles from './ClockActionButtons.module.scss';
 
 import ActionButton from '../action-button/ActionButton';
 
-type StopWatchAction = () => void;
+type WatchAction = () => void;
+type ActionName = string;
 
-interface Props {
-    isClockStarted?: boolean;
-    startCounting: StopWatchAction;
-    stopCounting: StopWatchAction;
-    resetTime: StopWatchAction;
+interface ActionButtonProp {
+    name: ActionName;
+    action: WatchAction;
 }
 
-const ClockActionButtons = ({ isClockStarted, startCounting, stopCounting, resetTime }: Props) => {
+interface Props {
+    actions: ActionButtonProp[]
+}
+
+const ClockActionButtons = ({ actions }: Props) => {
     const { isLightTheme } = useContext(themeContext);
 
     return (
@@ -29,34 +32,13 @@ const ClockActionButtons = ({ isClockStarted, startCounting, stopCounting, reset
             `}
             role={AriaRoles.toolbar}
         >
-            {isClockStarted
-                ? (
-                    <ActionButton
-                        actionName='Lap'
-                        ariaControls={clockDisplayID}
-                        onClick={() => {}}
-                    />
-                )
-                : (
-                    <ActionButton
-                        actionName='Start'
-                        ariaControls={clockDisplayID}
-                        onClick={startCounting}
-                    />
-                )
-            }
-
-            <ActionButton
-                actionName='Stop'
-                ariaControls={clockDisplayID}
-                onClick={stopCounting}
-            />
-
-            <ActionButton
-                actionName='Reset'
-                ariaControls={clockDisplayID}
-                onClick={resetTime}
-            />
+            {actions.map(({ name, action }) => (
+                <ActionButton
+                    actionName={name}
+                    ariaControls={clockDisplayID}
+                    onClick={action}
+                />
+            ))}
         </div>
     );
 };
