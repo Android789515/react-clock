@@ -34,7 +34,10 @@ const Notifications = ({ nextNotification, clearNotification }: Props) => {
                 {nextNotification?.body}
             </h2>
 
-            <button className={styles.notificationsCloseButton} />
+            <button
+                className={styles.notificationsCloseButton}
+                onClick={handleCloseButtonClick}
+            />
         </div>
     );
 };
