@@ -2,6 +2,8 @@ import { ReactNode, createContext, useState } from 'react';
 
 import { NotificationContextFunctions, Notification } from './notifiationTypes';
 
+import Notifications from '../components/notifications/Notifications';
+
 const notificationContext = createContext<NotificationContextFunctions>({
     addNotification: (notification: Notification) => {},
     getNextNotification: () => ({ body: '' })
@@ -41,6 +43,7 @@ const NotificationContextProvider = ({ children }: Props) => {
             }}
         >
             {children}
+            <Notifications />
         </notificationContext.Provider>
     );
 };
