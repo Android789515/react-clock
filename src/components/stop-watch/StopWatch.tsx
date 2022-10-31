@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import type { TimeInMilliseconds } from '../../types/timeTypes';
 import useClock from '../../independent-hooks/clock/useClock';
+import useLaps from './useLaps/useLaps';
 
 import styles from './StopWatch.module.scss';
 
@@ -36,6 +37,8 @@ const StopWatch = () => {
         setStopWatchTime(0);
     };
 
+    const { addLap } = useLaps();
+
     const afterClockStarts = stopWatchTime !== 0;
     return (
         <div className={styles.stopWatch}>
@@ -49,7 +52,7 @@ const StopWatch = () => {
             <ClockActionButtons
                 actions={[
                     isStopWatchStarted
-                    ? { name: 'Lap', action: () => {} }
+                    ? { name: 'Lap', action: () => addLap(stopWatchTime) }
                     : { name: 'Start', action: startStopWatch },
                     { name: 'Stop', action: suspendStopWatch },
                     { name: 'Reset', action: resetStopWatchTime }
