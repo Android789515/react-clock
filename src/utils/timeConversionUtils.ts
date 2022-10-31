@@ -1,4 +1,4 @@
-import { TimeInSeconds, TimeInMilliseconds, Milliseconds } from '../types/timeTypes';
+import { TimeInSeconds, TimeInMilliseconds, Milliseconds, FormattedTime } from '../types/timeTypes';
 
 export const toMilliseconds = (timeInSeconds: TimeInSeconds) => {
     return timeInSeconds * 1000;
@@ -26,7 +26,7 @@ const removeSeconds = (milliseconds: Milliseconds) => {
     return Number(String(milliseconds).slice(-3));
 };
 
-export const formatTime = (timeInMilliseconds: TimeInMilliseconds) => {
+export const formatTime = (timeInMilliseconds: TimeInMilliseconds): FormattedTime => {
 
     const milliseconds = removeSeconds(timeInMilliseconds);
     const significantMillisecondDigits = milliseconds / 10;
@@ -42,9 +42,9 @@ export const formatTime = (timeInMilliseconds: TimeInMilliseconds) => {
     const formattedHours = makeDoubleDigit(Math.floor(totalHours % 120));
 
     return {
-        formattedHours,
-        formattedMinutes,
-        formattedSeconds,
-        formattedMilliseconds
+        hours: formattedHours,
+        minutes: formattedMinutes,
+        seconds: formattedSeconds,
+        milliseconds: formattedMilliseconds
     };
 };

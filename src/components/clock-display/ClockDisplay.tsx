@@ -69,10 +69,10 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
     };
 
     const {
-        formattedHours,
-        formattedMinutes,
-        formattedSeconds,
-        formattedMilliseconds
+        hours,
+        minutes,
+        seconds,
+        milliseconds
     } = formatTime(timeInMilliseconds);
     return (
         <input
@@ -82,10 +82,10 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
             type={InputTypes.text}
             disabled={disabled}
             value={
-                formattedHours + ':'
-                + formattedMinutes + ':'
-                + formattedSeconds
-                + (showMilliseconds ? `.${formattedMilliseconds}` : '')
+                hours + ':'
+                + minutes + ':'
+                + seconds
+                + (showMilliseconds ? `.${milliseconds}` : '')
             }
             onChange={setDisplayTime}
         />
