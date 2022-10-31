@@ -33,9 +33,9 @@ const ClockActionButtons = ({ actions }: Props) => {
             `}
             role={AriaRoles.toolbar}
         >
-            {actions.map(({ name, action }) => (
+            {actions.map(({ name, action }, index) => (
                 <ActionButton
-                    key={generateUUID()}
+                    key={index}
                     actionName={name}
                     ariaControls={clockDisplayID}
                     onClick={action}
