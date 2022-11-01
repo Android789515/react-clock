@@ -5,7 +5,6 @@ import { themeContext } from './theme-context/themeContext';
 
 import styles from './App.module.scss';
 
-import { NotificationContextProvider } from './notification-context/NotificationContext';
 import AppHeader from './components/app-header/AppHeader';
 import StopWatch from './components/stop-watch/StopWatch';
 
@@ -20,11 +19,9 @@ const App = () => {
                 ${isLightTheme() ? styles.lightTheme : styles.darkTheme}
             `}
         >
-            <NotificationContextProvider>
-                <AppHeader />
+            <AppHeader />
 
-                <StopWatch />
-            </NotificationContextProvider>
+            <StopWatch />
         </main>
     );
 };
