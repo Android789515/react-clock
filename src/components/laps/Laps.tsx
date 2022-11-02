@@ -1,8 +1,14 @@
+import type { FormattedTime } from '../../types/timeTypes';
+
 import styles from './Laps.module.scss';
 
-const Laps = () => {
+interface Props {
+    laps: FormattedTime[]
+}
+
+const Laps = ({ laps }: Props) => {
     return (
-        <ul>
+        <ul className={styles.laps}>
 
         </ul>
     );
