@@ -1,12 +1,15 @@
 import styles from './Lap.module.scss';
 
-import type { FormattedTime } from '../../../types/timeTypes';
+import type { TimeInMilliseconds } from '../../../types/timeTypes';
+import { formatTime } from '../../../utils/timeConversionUtils';
 
 interface Props {
-    lap: FormattedTime
+    lap: TimeInMilliseconds;
 }
 
-const Lap = ({ lap: { hours, minutes, seconds, milliseconds } }: Props) => {
+const Lap = ({ lap }: Props) => {
+    const { hours, minutes, seconds, milliseconds } = formatTime(lap);
+
     return (
         <li className={styles.lap}>
             {hours}:{minutes}:{seconds}.{milliseconds}

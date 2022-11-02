@@ -1,14 +1,12 @@
 import { useState } from 'react';
 
-import type { TimeInMilliseconds, FormattedTime } from '../../../types/timeTypes';
-import { formatTime } from '../../../utils/timeConversionUtils';
+import type { TimeInMilliseconds } from '../../../types/timeTypes';
 
 const useLaps = () => {
-    const [ laps, updateLaps ] = useState<FormattedTime[]>([]);
+    const [ laps, updateLaps ] = useState<TimeInMilliseconds[]>([]);
 
     const addLap = (currentTime: TimeInMilliseconds) => {
-        const newLap = formatTime(currentTime);
-        updateLaps(prevLaps => [...prevLaps, newLap]);
+        updateLaps(prevLaps => [...prevLaps, currentTime]);
     };
 
     const getLaps = () => laps;
