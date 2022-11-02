@@ -4,6 +4,7 @@ export enum AriaRoles {
     application = 'application',
     button = 'button',
     list = 'list',
+    listItem = 'listitem',
     main = 'main',
     progressbar = 'progressbar',
     textInput = 'textbox',
