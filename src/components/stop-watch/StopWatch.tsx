@@ -9,6 +9,7 @@ import styles from './StopWatch.module.scss';
 
 import ClockDisplay from '../clock-display/ClockDisplay';
 import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
+import Laps from '../laps/Laps';
 
 const StopWatch = () => {
     const [ stopWatchTime, setStopWatchTime ] = useState<TimeInMilliseconds>(0);
@@ -38,7 +39,7 @@ const StopWatch = () => {
         setStopWatchTime(0);
     };
 
-    const { addLap } = useLaps();
+    const { addLap, getLaps } = useLaps();
 
     const afterClockStarts = stopWatchTime !== 0;
     return (
@@ -62,6 +63,8 @@ const StopWatch = () => {
                     { name: 'Reset', action: resetStopWatchTime }
                 ]}
             />
+
+            <Laps laps={getLaps()} />
         </main>
     );
 };

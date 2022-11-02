@@ -29,4 +29,16 @@ describe('StopWatch', () => {
 
         expect(StopWatchButtons).toBeInTheDocument();
     });
+
+    it('Renders a Laps component', () => {
+        render(
+            <ThemeContextProvider>
+                <StopWatch />
+            </ThemeContextProvider>
+        );
+
+        const LapsComponent = screen.getByRole(AriaRoles.list);
+
+        expect(LapsComponent).toBeInTheDocument();
+    });
 });
