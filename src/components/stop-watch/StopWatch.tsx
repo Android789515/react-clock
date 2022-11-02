@@ -35,11 +35,12 @@ const StopWatch = () => {
         stopClock();
     };
 
-    const resetStopWatchTime = () => {
-        setStopWatchTime(0);
-    };
+    const { addLap, getLaps, clearLaps } = useLaps();
 
-    const { addLap, getLaps } = useLaps();
+    const resetStopWatch = () => {
+        setStopWatchTime(0);
+        clearLaps();
+    };
 
     const afterClockStarts = stopWatchTime !== 0;
     return (
@@ -60,7 +61,7 @@ const StopWatch = () => {
                     ? { name: 'Lap', action: () => addLap(stopWatchTime) }
                     : { name: 'Start', action: startStopWatch },
                     { name: 'Stop', action: suspendStopWatch },
-                    { name: 'Reset', action: resetStopWatchTime }
+                    { name: 'Reset', action: resetStopWatch }
                 ]}
             />
 

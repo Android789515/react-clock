@@ -20,11 +20,14 @@ const useLaps = () => {
         updateLaps(prevLaps => [...prevLaps, _createLap(currentTime)]);
     };
 
+    const clearLaps = () => updateLaps([]);
+
     const getLaps = () => laps;
 
     return {
         addLap,
         getLaps,
+        clearLaps
     };
 };
 
