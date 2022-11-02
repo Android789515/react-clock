@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import type { TimeInSeconds } from '../../types/timeTypes';
+import { AriaRoles } from '../../types/ariaTypes';
 import { toMilliseconds } from '../../utils/timeConversionUtils';
 import useClock from '../../independent-hooks/clock/useClock';
 
@@ -61,7 +62,8 @@ const Timer = () => {
     const isTimerActive = isClockStarted() || counterTime.currentTime < counterTime.totalTime;
 
     return (
-        <div
+        <main
+            role={AriaRoles.main}
             className={`
                 ${styles.timer}
                 ${isTimerActive ? styles.timerActive : styles.timerInactive}
@@ -94,7 +96,7 @@ const Timer = () => {
                     ]}
                 />
             </div>
-        </div>
+        </main>
     );
 };
 

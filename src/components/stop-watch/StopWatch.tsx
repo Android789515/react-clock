@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import type { TimeInMilliseconds } from '../../types/timeTypes';
+import { AriaRoles } from '../../types/ariaTypes';
 import useClock from '../../independent-hooks/clock/useClock';
 import useLaps from './useLaps/useLaps';
 
@@ -41,7 +42,10 @@ const StopWatch = () => {
 
     const afterClockStarts = stopWatchTime !== 0;
     return (
-        <div className={styles.stopWatch}>
+        <main
+            role={AriaRoles.main}
+            className={styles.stopWatch}
+        >
 
             <ClockDisplay
                 disabled={true}
@@ -58,7 +62,7 @@ const StopWatch = () => {
                     { name: 'Reset', action: resetStopWatchTime }
                 ]}
             />
-        </div>
+        </main>
     );
 };
 
