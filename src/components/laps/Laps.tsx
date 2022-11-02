@@ -1,11 +1,11 @@
-import type { FormattedTime } from '../../types/timeTypes';
+import type { TimeInMilliseconds } from '../../types/timeTypes';
 
 import Lap from './lap/Lap';
 
 import styles from './Laps.module.scss';
 
 interface Props {
-    laps: FormattedTime[]
+    laps: TimeInMilliseconds[]
 }
 
 const Laps = ({ laps }: Props) => {

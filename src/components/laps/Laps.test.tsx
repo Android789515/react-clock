@@ -1,17 +1,13 @@
 import { screen, render, within } from '@testing-library/react';
 
-import type { FormattedTime } from '../../types/timeTypes';
+import type { TimeInMilliseconds } from '../../types/timeTypes';
 import { AriaRoles } from '../../types/ariaTypes';
 
 import Laps from './Laps';
 
 describe('Laps', () => {
     it('Renders a Lap component (li element) for each lap', () => {
-        const laps: FormattedTime[] = [
-            { hours: '01', minutes: '00', seconds: '21', milliseconds: '000' },
-            { hours: '26', minutes: '12', seconds: '01', milliseconds: '250' },
-            { hours: '00', minutes: '00', seconds: '00', milliseconds: '100' }
-        ];
+        const laps: TimeInMilliseconds[] = [ 1, 29876, 112 ];
 
         render(<Laps laps={laps} />);
 
