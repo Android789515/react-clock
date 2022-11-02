@@ -1,6 +1,12 @@
 import styles from './Lap.module.scss';
 
-const Lap = () => {
+import type { FormattedTime } from '../../../types/timeTypes';
+
+interface Props {
+    lap: FormattedTime
+}
+
+const Lap = ({ lap }: Props) => {
     return (
         <li className={styles.lap}>
 
