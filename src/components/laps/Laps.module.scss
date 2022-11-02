@@ -2,4 +2,8 @@
 
 .laps {
   @include app-style-defaults.list;
+
+  font-size: 1.5rem;
+
+  margin: 1em auto 0 auto;
 }
