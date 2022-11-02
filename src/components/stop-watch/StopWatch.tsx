@@ -3,7 +3,7 @@ import { useState } from 'react';
 import type { TimeInMilliseconds } from '../../types/timeTypes';
 import { AriaRoles } from '../../types/ariaTypes';
 import useClock from '../../independent-hooks/clock/useClock';
-import useLaps from './useLaps/useLaps';
+import useLaps from '../laps/useLaps/useLaps';
 
 import styles from './StopWatch.module.scss';
 
