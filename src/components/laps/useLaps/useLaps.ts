@@ -11,8 +11,11 @@ const useLaps = () => {
         updateLaps(prevLaps => [...prevLaps, newLap]);
     };
 
+    const getLaps = () => laps;
+
     return {
-        addLap
+        addLap,
+        getLaps,
     };
 };
 
