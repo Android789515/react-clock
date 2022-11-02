@@ -1,3 +1,5 @@
-.laps {
+@use '../../sass-mixins/app-style-defaults';
 
+.laps {
+  @include app-style-defaults.list;
 }
