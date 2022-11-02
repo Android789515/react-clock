@@ -1,7 +1,7 @@
 import { screen, render, within } from '@testing-library/react';
 
-import { AriaRoles } from '../../types/ariaTypes';
 import type { FormattedTime } from '../../types/timeTypes';
+import { AriaRoles } from '../../types/ariaTypes';
 
 import Laps from './Laps';
 
