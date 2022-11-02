@@ -6,8 +6,9 @@
 
   justify-self: end;
 
+  aspect-ratio: 2 / 1;
+
   width: 5em;
-  height: 2.5em;
 
   padding: .25em;
   border-radius: 50em;
@@ -16,7 +17,6 @@
 @media (min-width: App.$layoutBreakpoint) {
   .themeSwitch {
     width: 6em;
-    height: 3em;
   }
 }
 
