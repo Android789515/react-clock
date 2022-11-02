@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { TimeInMilliseconds, FormattedTime } from '../../../types/timeTypes';
+import type { TimeInMilliseconds, FormattedTime } from '../../../types/timeTypes';
 import { formatTime } from '../../../utils/timeConversionUtils';
 
 const useLaps = () => {

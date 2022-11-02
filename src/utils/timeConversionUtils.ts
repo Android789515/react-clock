@@ -1,4 +1,4 @@
-import { TimeInSeconds, TimeInMilliseconds, Milliseconds, FormattedTime } from '../types/timeTypes';
+import type { TimeInSeconds, TimeInMilliseconds, Milliseconds, FormattedTime } from '../types/timeTypes';
 
 export const toMilliseconds = (timeInSeconds: TimeInSeconds) => {
     return timeInSeconds * 1000;

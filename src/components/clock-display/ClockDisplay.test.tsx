@@ -1,7 +1,7 @@
 import { screen, fireEvent, render } from '@testing-library/react';
 
 import { AriaRoles } from '../../types/ariaTypes';
-import { TimeInMilliseconds } from '../../types/timeTypes';
+import type { TimeInMilliseconds } from '../../types/timeTypes';
 import { toMilliseconds } from '../../utils/timeConversionUtils';
 
 import ClockDisplay from './ClockDisplay';

@@ -1,4 +1,4 @@
-import { Notification } from '../../notification-context/notifiationTypes';
+import type { Notification } from '../../notification-context/notifiationTypes';
 
 import styles from './Notifications.module.scss';
 
