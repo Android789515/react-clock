@@ -12,8 +12,8 @@ const App = () => {
     const { isLightTheme } = useContext(themeContext);
 
     return (
-        <main
-            role={AriaRoles.main}
+        <div
+            role={AriaRoles.application}
             className={`
                 ${styles.app}
                 ${isLightTheme() ? styles.lightTheme : styles.darkTheme}
@@ -22,7 +22,7 @@ const App = () => {
             <AppHeader />
 
             <StopWatch />
-        </main>
+        </div>
     );
 };
 
