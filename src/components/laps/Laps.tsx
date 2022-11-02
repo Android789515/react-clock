@@ -9,7 +9,11 @@ interface Props {
 const Laps = ({ laps }: Props) => {
     return (
         <ul className={styles.laps}>
+            {laps.map((lap, index) => (
+                <li key={index}>
 
+                </li>
+            ))}
         </ul>
     );
 };
