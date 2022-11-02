@@ -6,10 +6,10 @@ interface Props {
     lap: FormattedTime
 }
 
-const Lap = ({ lap }: Props) => {
+const Lap = ({ lap: { hours, minutes, seconds, milliseconds } }: Props) => {
     return (
         <li className={styles.lap}>
-
+            {hours}:{minutes}:{seconds}.{milliseconds}
         </li>
     );
 };
