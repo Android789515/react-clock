@@ -12,13 +12,19 @@ import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
 import Laps from '../laps/Laps';
 
 const StopWatch = () => {
-    const [ stopWatchTime, setStopWatchTime ] = useState<TimeInMilliseconds>(0);
+    const [ stopWatchTime, setStopWatchTime ] = useState({
+        totalTime: 0,
+        lapTime: 0
+    });
 
-    const incrementStopWatchTime = () => setStopWatchTime(currentTime => {
+    const incrementStopWatchTime = () => setStopWatchTime(({ totalTime, lapTime }) => {
         // Increment by 10ms as the startClock function
         // is only precise to that amount
         const tenMilliseconds = 10;
-        return currentTime + tenMilliseconds;
+        return {
+            totalTime: totalTime + tenMilliseconds,
+            lapTime: lapTime + tenMilliseconds
+        };
     });
 
     const { startClock, stopClock } = useClock(incrementStopWatchTime);
@@ -38,11 +44,11 @@ const StopWatch = () => {
     const { addLap, getLaps, clearLaps } = useLaps();
 
     const resetStopWatch = () => {
-        setStopWatchTime(0);
+        setStopWatchTime({ totalTime: 0, lapTime: 0 });
         clearLaps();
     };
 
-    const afterClockStarts = stopWatchTime !== 0;
+    const afterClockStarts = stopWatchTime.totalTime !== 0;
     return (
         <main
             role={AriaRoles.main}
@@ -52,13 +58,13 @@ const StopWatch = () => {
             <ClockDisplay
                 disabled={true}
                 showMilliseconds={afterClockStarts}
-                timeInMilliseconds={stopWatchTime}
+                timeInMilliseconds={stopWatchTime.totalTime}
             />
 
             <ClockActionButtons
                 actions={[
                     isStopWatchStarted
-                    ? { name: 'Lap', action: () => addLap(stopWatchTime) }
+                    ? { name: 'Lap', action: () => {} }
                     : { name: 'Start', action: startStopWatch },
                     { name: 'Stop', action: suspendStopWatch },
                     { name: 'Reset', action: resetStopWatch }
