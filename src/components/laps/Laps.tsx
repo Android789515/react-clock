@@ -15,6 +15,8 @@ const Laps = ({ laps, currentLapTime }: Props) => {
             {laps.map((lap, index) => (
                 <Lap key={index} lap={lap} />
             ))}
+
+            <Lap lap={currentLapTime} />
         </ul>
     );
 };

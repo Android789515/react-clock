@@ -6,7 +6,8 @@ import { AriaRoles } from '../../types/ariaTypes';
 import Laps from './Laps';
 
 describe('Laps', () => {
-    it('Renders a Lap component (li element) for each saved lap', () => {
+    it('Renders a Lap component (li element) for each saved lap' +
+        'and one extra for the current lap', () => {
         const laps: TimeInMilliseconds[] = [ 1, 29876, 112 ];
 
         render(
@@ -21,6 +22,6 @@ describe('Laps', () => {
         const { getAllByRole } = within(Component);
         const LapComponents = getAllByRole(AriaRoles.listItem);
 
-        expect(LapComponents).toHaveLength(3);
+        expect(LapComponents).toHaveLength(4);
     });
 });
