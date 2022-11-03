@@ -1,4 +1,5 @@
 @use '../../sass-mixins/app-style-defaults';
+@use '../../App.module';
 
 .laps {
   @include app-style-defaults.list;
@@ -14,4 +15,10 @@
   margin-top: 1em;
 
   counter-reset: lap;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .laps {
+    font-size: 2.5rem;
+  }
 }
