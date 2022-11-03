@@ -78,7 +78,7 @@ const StopWatch = () => {
                 ]}
             />
 
-            <Laps laps={getLaps()} />
+            { isStopWatchStarted && <Laps laps={getLaps()} /> }
         </main>
     );
 };

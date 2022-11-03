@@ -30,16 +30,16 @@ describe('StopWatch', () => {
         expect(StopWatchButtons).toBeInTheDocument();
     });
 
-    it('Renders a Laps component', () => {
+    it('Does not render any laps when it hasn\'t been started', () => {
         render(
             <ThemeContextProvider>
                 <StopWatch />
             </ThemeContextProvider>
         );
 
-        const LapsComponent = screen.getByRole(AriaRoles.list);
+        const LapsComponent = screen.queryByRole(AriaRoles.list);
 
-        expect(LapsComponent).toBeInTheDocument();
+        expect(LapsComponent).not.toBeInTheDocument();
     });
 
     it('Renders a new Lap component when the lap button is pressed', async () => {
