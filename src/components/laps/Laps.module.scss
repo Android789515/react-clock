@@ -14,8 +14,15 @@
   counter-reset: lap;
 }
 
+$lapBorder: solid 1px;
 .laps > li {
   padding: .75em 0;
+
+  border-top: $lapBorder;
+}
+
+.laps > li:last-child {
+  border-bottom: $lapBorder;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
