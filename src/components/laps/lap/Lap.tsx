@@ -5,9 +5,11 @@ import { formatTime } from '../../../utils/timeConversionUtils';
 
 interface Props {
     lap: TimeInMilliseconds;
+    isBestLap?: boolean
+    isWorstLap?: boolean
 }
 
-const Lap = ({ lap }: Props) => {
+const Lap = ({ lap, isBestLap, isWorstLap }: Props) => {
     const { hours, minutes, seconds, milliseconds } = formatTime(lap);
 
     return (
