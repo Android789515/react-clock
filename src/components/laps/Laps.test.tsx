@@ -6,7 +6,7 @@ import { AriaRoles } from '../../types/ariaTypes';
 import Laps from './Laps';
 
 describe('Laps', () => {
-    it('Renders a Lap component (li element) for each lap', () => {
+    it('Renders a Lap component (li element) for each saved lap', () => {
         const laps: TimeInMilliseconds[] = [ 1, 29876, 112 ];
 
         render(<Laps laps={laps} />);
