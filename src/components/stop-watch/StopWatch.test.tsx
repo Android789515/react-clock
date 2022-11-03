@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 
 import { AriaRoles } from '../../types/ariaTypes';
 
@@ -40,5 +40,29 @@ describe('StopWatch', () => {
         const LapsComponent = screen.getByRole(AriaRoles.list);
 
         expect(LapsComponent).toBeInTheDocument();
+    });
+
+    it('Renders a new Lap component when the lap button is pressed', async () => {
+        render(
+            <ThemeContextProvider>
+                <StopWatch />
+            </ThemeContextProvider>
+        );
+
+        const StartButton = screen.getByRole(AriaRoles.button, { name: 'Start' });
+
+        await waitFor(() => {
+            StartButton.click();
+        });
+
+        const LapButton = screen.getByRole(AriaRoles.button, { name: 'Lap' });
+
+        await waitFor(() => {
+            LapButton.click();
+        });
+
+        const NewLapComponent = screen.getByRole(AriaRoles.listItem);
+
+        expect(NewLapComponent).toBeInTheDocument();
     });
 });
