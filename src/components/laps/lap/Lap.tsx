@@ -13,7 +13,13 @@ const Lap = ({ lap, isBestLap, isWorstLap }: Props) => {
     const { hours, minutes, seconds, milliseconds } = formatTime(lap);
 
     return (
-        <li className={styles.lap}>
+        <li
+            className={`
+                ${styles.lap}
+                ${isBestLap ? styles.bestLap : ''}
+                ${isWorstLap ? styles.worstLap : ''}
+            `}
+        >
             {hours}:{minutes}:{seconds}.{milliseconds}
         </li>
     );
