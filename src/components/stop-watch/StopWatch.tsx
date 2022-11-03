@@ -55,7 +55,7 @@ const StopWatch = () => {
         clearLaps();
     };
 
-    const afterClockStarts = stopWatchTime.totalTime !== 0;
+    const whileStopWatchActive = stopWatchTime.totalTime !== 0;
     return (
         <main
             role={AriaRoles.main}
@@ -64,7 +64,7 @@ const StopWatch = () => {
 
             <ClockDisplay
                 disabled={true}
-                showMilliseconds={afterClockStarts}
+                showMilliseconds={whileStopWatchActive}
                 timeInMilliseconds={stopWatchTime.totalTime}
             />
 
@@ -78,7 +78,7 @@ const StopWatch = () => {
                 ]}
             />
 
-            { isStopWatchStarted && <Laps laps={getLaps()} /> }
+            { whileStopWatchActive && <Laps laps={getLaps()} /> }
         </main>
     );
 };
