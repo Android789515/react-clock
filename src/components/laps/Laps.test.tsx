@@ -9,7 +9,12 @@ describe('Laps', () => {
     it('Renders a Lap component (li element) for each saved lap', () => {
         const laps: TimeInMilliseconds[] = [ 1, 29876, 112 ];
 
-        render(<Laps laps={laps} />);
+        render(
+        <Laps
+            laps={laps}
+            currentLapTime={0}
+        />
+        );
 
         const Component = screen.getByRole(AriaRoles.list);
 

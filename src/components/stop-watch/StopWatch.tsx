@@ -78,7 +78,12 @@ const StopWatch = () => {
                 ]}
             />
 
-            { whileStopWatchActive && <Laps laps={getLaps()} /> }
+            { whileStopWatchActive && (
+                <Laps
+                    laps={getLaps()}
+                    currentLapTime={stopWatchTime.lapTime}
+                />
+            ) }
         </main>
     );
 };
