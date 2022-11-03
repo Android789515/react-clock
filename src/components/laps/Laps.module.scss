@@ -7,12 +7,15 @@
   font-size: 1.5rem;
 
   display: grid;
-  grid-row-gap: 1em;
   justify-content: center;
 
   width: 100%;
 
   counter-reset: lap;
+}
+
+.laps > li {
+  padding: .75em 0;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
