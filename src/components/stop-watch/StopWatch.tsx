@@ -43,6 +43,13 @@ const StopWatch = () => {
 
     const { addLap, getLaps, clearLaps } = useLaps();
 
+    const lapStopWatch = () => {
+        addLap(stopWatchTime.lapTime);
+        setStopWatchTime(({ totalTime }) => {
+            return { totalTime, lapTime: 0 };
+        });
+    };
+
     const resetStopWatch = () => {
         setStopWatchTime({ totalTime: 0, lapTime: 0 });
         clearLaps();
@@ -64,7 +71,7 @@ const StopWatch = () => {
             <ClockActionButtons
                 actions={[
                     isStopWatchStarted
-                    ? { name: 'Lap', action: () => {} }
+                    ? { name: 'Lap', action: lapStopWatch }
                     : { name: 'Start', action: startStopWatch },
                     { name: 'Stop', action: suspendStopWatch },
                     { name: 'Reset', action: resetStopWatch }
