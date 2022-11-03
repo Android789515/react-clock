@@ -16,7 +16,15 @@
   counter-reset: lap;
 }
 
-$lapBorder: solid #000 1px;
+.lapsLight {
+  border-color: #000;
+}
+
+.lapsDark {
+  border-color: #fff;
+}
+
+$lapBorder: solid 1px;
 .laps > li {
   padding: .75em 0;
 
