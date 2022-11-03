@@ -1,4 +1,14 @@
+@use '../../App.module';
+
 .stopWatch {
   display: grid;
+  $minWidth: 17.89375em;
+  grid-template-columns: $minWidth;
   grid-row-gap: 2em;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .stopWatch {
+    grid-template-columns: auto;
+  }
 }

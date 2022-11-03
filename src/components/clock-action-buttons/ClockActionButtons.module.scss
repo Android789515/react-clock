@@ -4,7 +4,7 @@
 
 .clockActionButtons {
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 33%);
   grid-column-gap: .5em;
   justify-content: center;
 }
