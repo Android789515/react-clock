@@ -3,6 +3,8 @@ import type { HTML_ID } from './HTML_Types';
 export enum AriaRoles {
     application = 'application',
     button = 'button',
+    list = 'list',
+    listItem = 'listitem',
     main = 'main',
     progressbar = 'progressbar',
     textInput = 'textbox',

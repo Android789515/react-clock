@@ -3,21 +3,28 @@ import { useState } from 'react';
 import type { TimeInMilliseconds } from '../../types/timeTypes';
 import { AriaRoles } from '../../types/ariaTypes';
 import useClock from '../../independent-hooks/clock/useClock';
-import useLaps from './useLaps/useLaps';
+import useLaps from '../laps/useLaps/useLaps';
 
 import styles from './StopWatch.module.scss';
 
 import ClockDisplay from '../clock-display/ClockDisplay';
 import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
+import Laps from '../laps/Laps';
 
 const StopWatch = () => {
-    const [ stopWatchTime, setStopWatchTime ] = useState<TimeInMilliseconds>(0);
+    const [ stopWatchTime, setStopWatchTime ] = useState({
+        totalTime: 0,
+        lapTime: 0
+    });
 
-    const incrementStopWatchTime = () => setStopWatchTime(currentTime => {
+    const incrementStopWatchTime = () => setStopWatchTime(({ totalTime, lapTime }) => {
         // Increment by 10ms as the startClock function
         // is only precise to that amount
         const tenMilliseconds = 10;
-        return currentTime + tenMilliseconds;
+        return {
+            totalTime: totalTime + tenMilliseconds,
+            lapTime: lapTime + tenMilliseconds
+        };
     });
 
     const { startClock, stopClock } = useClock(incrementStopWatchTime);
@@ -34,13 +41,21 @@ const StopWatch = () => {
         stopClock();
     };
 
-    const resetStopWatchTime = () => {
-        setStopWatchTime(0);
+    const { addLap, getLaps, clearLaps } = useLaps();
+
+    const lapStopWatch = () => {
+        addLap(stopWatchTime.lapTime);
+        setStopWatchTime(({ totalTime }) => {
+            return { totalTime, lapTime: 0 };
+        });
     };
 
-    const { addLap } = useLaps();
+    const resetStopWatch = () => {
+        setStopWatchTime({ totalTime: 0, lapTime: 0 });
+        clearLaps();
+    };
 
-    const afterClockStarts = stopWatchTime !== 0;
+    const whileStopWatchActive = stopWatchTime.totalTime !== 0;
     return (
         <main
             role={AriaRoles.main}
@@ -49,19 +64,26 @@ const StopWatch = () => {
 
             <ClockDisplay
                 disabled={true}
-                showMilliseconds={afterClockStarts}
-                timeInMilliseconds={stopWatchTime}
+                showMilliseconds={whileStopWatchActive}
+                timeInMilliseconds={stopWatchTime.totalTime}
             />
 
             <ClockActionButtons
                 actions={[
                     isStopWatchStarted
-                    ? { name: 'Lap', action: () => addLap(stopWatchTime) }
+                    ? { name: 'Lap', action: lapStopWatch }
                     : { name: 'Start', action: startStopWatch },
                     { name: 'Stop', action: suspendStopWatch },
-                    { name: 'Reset', action: resetStopWatchTime }
+                    { name: 'Reset', action: resetStopWatch }
                 ]}
             />
+
+            { whileStopWatchActive && (
+                <Laps
+                    laps={getLaps()}
+                    currentLapTime={stopWatchTime.lapTime}
+                />
+            ) }
         </main>
     );
 };

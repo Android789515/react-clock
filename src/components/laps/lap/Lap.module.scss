@@ -1,0 +1,20 @@
+.lap::before {
+  counter-increment: lap;
+
+  content: 'Lap ' counter(lap) ':';
+}
+
+.lap {
+  display: flex;
+  justify-content: space-between;
+
+  width: 10em;
+}
+
+.bestLap {
+  color: #25ed13;
+}
+
+.worstLap {
+  color: #ff2303;
+}

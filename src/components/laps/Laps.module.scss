@@ -1,0 +1,42 @@
+@use '../../sass-mixins/app-style-defaults';
+@use '../../App.module';
+
+.laps {
+  @include app-style-defaults.list;
+
+  font-size: 1.5rem;
+
+  display: grid;
+  justify-content: center;
+
+  width: 100%;
+
+  margin-top: 1em;
+
+  counter-reset: lap;
+}
+
+.lapsLight {
+  border-color: #000;
+}
+
+.lapsDark {
+  border-color: #fff;
+}
+
+$lapBorder: solid 1px;
+.laps > li {
+  padding: .75em 0;
+
+  border-top: $lapBorder;
+}
+
+.laps > li:last-child {
+  border-bottom: $lapBorder;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .laps {
+    font-size: 2.5rem;
+  }
+}
