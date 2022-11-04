@@ -15,6 +15,22 @@ interface Props {
 const Laps = ({ laps, currentLapTime }: Props) => {
     const { isLightTheme } = useContext(themeContext);
 
+    const RecordedLaps = laps.map((lap, index) => {
+        const isBestLap = lap === Math.min(...laps);
+        const isWorstLap = lap === Math.max(...laps);
+
+        const isFirstLap = laps.length === 1;
+
+        return (
+            <Lap
+                key={index}
+                lap={lap}
+                isBestLap={isBestLap && !isFirstLap}
+                isWorstLap={isWorstLap && !isFirstLap}
+            />
+        );
+    })
+
     return (
         <ul
             className={`
@@ -22,22 +38,9 @@ const Laps = ({ laps, currentLapTime }: Props) => {
                 ${isLightTheme() ? styles.lapsLight : styles.lapsDark}
             `}
         >
-            {laps.map((lap, index) => {
-                const isBestLap = lap === Math.min(...laps);
-                const isWorstLap = lap === Math.max(...laps);
+            {RecordedLaps}
 
-                const isFirstLap = laps.length === 1;
-
-                return (
-                    <Lap
-                        key={index}
-                        lap={lap}
-                        isBestLap={isBestLap && !isFirstLap}
-                        isWorstLap={isWorstLap && !isFirstLap}
-                    />
-                );
-            })}
-
+            {/* Current lap */}
             <Lap lap={currentLapTime} />
         </ul>
     );
