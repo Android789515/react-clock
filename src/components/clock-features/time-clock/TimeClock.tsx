@@ -37,7 +37,7 @@ const TimeClock = () => {
     }, []);
 
     return (
-        <main>
+        <main className={styles.timeClock}>
             <ClockDisplay
                 disabled
                 timeInMilliseconds={currentTime}
