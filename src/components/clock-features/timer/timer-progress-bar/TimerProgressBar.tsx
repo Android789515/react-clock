@@ -1,13 +1,13 @@
 import { useContext, useEffect, useRef } from 'react';
 
-import type { TimeInSeconds } from '../../../types/timeTypes';
-import { AriaRoles } from '../../../types/ariaTypes';
-import { Colors } from '../../../types/Colors';
-import { themeContext } from '../../../theme-context/themeContext';
+import type { TimeInSeconds } from '../../../../types/timeTypes';
+import { AriaRoles } from '../../../../types/ariaTypes';
+import { Colors } from '../../../../types/Colors';
+import { themeContext } from '../../../../theme-context/themeContext';
 
 import styles from './TimerProgressBar.module.scss';
 
-import SVGGradientProvider from '../../svg-gradient-provider/SVGGradientProvider';
+import SVGGradientProvider from '../../../svg-gradient-provider/SVGGradientProvider';
 import TimerProgressBarBackground from './timer-progress-bar-background/TimerProgressBarBackground';
 
 interface Props {

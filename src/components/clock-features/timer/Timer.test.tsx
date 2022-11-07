@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { AriaRoles } from '../../types/ariaTypes';
+import { AriaRoles } from '../../../types/ariaTypes';
 import { timerProgressBarLabel } from './timer-progress-bar/TimerProgressBar';
 
 import Timer from './Timer';
