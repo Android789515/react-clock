@@ -17,8 +17,8 @@ const ToggleSwitch = ({ isInitiallyToggledOn = false, whenToggledOn, whenToggled
     const { isLightTheme } = useContext(themeContext);
 
     const switchBackground = isLightTheme()
-        ? styles.themeSwitchLight
-        : styles.themeSwitchDark;
+        ? styles.toggleSwitchLight
+        : styles.toggleSwitchDark;
 
     const [ isToggledOn, setIsToggledOn ] = useState(isInitiallyToggledOn);
 
@@ -35,20 +35,20 @@ const ToggleSwitch = ({ isInitiallyToggledOn = false, whenToggledOn, whenToggled
     const toggleSwitch = () => isToggledOn ? toggleOff() : toggleOn();
 
     const knobPosition = isToggledOn
-        ? styles.themeSwitchKnobLeft
-        : styles.themeSwitchKnobRight;
+        ? styles.toggleSwitchKnobLeft
+        : styles.toggleSwitchKnobRight;
 
     return (
         <button
             className={`
-                ${styles.themeSwitch}
+                ${styles.toggleSwitch}
                 ${switchBackground}
             `}
             onClick={toggleSwitch}
         >
             <span
                 className={`
-                    ${styles.themeSwitchKnob}
+                    ${styles.toggleSwitchKnob}
                     ${knobPosition}
                 `}
             />
