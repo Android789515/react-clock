@@ -2,10 +2,10 @@ import { useContext } from 'react';
 
 import { themeContext } from '../../theme-context/themeContext';
 
-import styles from './ThemeSwitch.module.scss';
+import styles from './ToggleSwitch.module.scss';
 
-const ThemeSwitch = () => {
-    const { isLightTheme, toggleTheme } = useContext(themeContext);
+const ToggleSwitch = () => {
+    const { isLightTheme } = useContext(themeContext);
 
     const switchBackground = isLightTheme()
         ? styles.themeSwitchLight
@@ -21,7 +21,6 @@ const ThemeSwitch = () => {
                 ${styles.themeSwitch}
                 ${switchBackground}
             `}
-            onClick={toggleTheme}
         >
             <span
                 className={`
@@ -33,4 +32,4 @@ const ThemeSwitch = () => {
     );
 };
 
-export default ThemeSwitch;
+export default ToggleSwitch;
