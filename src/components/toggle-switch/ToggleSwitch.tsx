@@ -4,7 +4,15 @@ import { themeContext } from '../../theme-context/themeContext';
 
 import styles from './ToggleSwitch.module.scss';
 
-const ToggleSwitch = () => {
+type ToggleOnFunction = () => void;
+type ToggleOffFunction = () => void;
+
+interface Props {
+    whenToggledOn: ToggleOnFunction;
+    whenToggledOff: ToggleOffFunction;
+}
+
+const ToggleSwitch = ({ whenToggledOn, whenToggledOff }: Props) => {
     const { isLightTheme } = useContext(themeContext);
 
     const switchBackground = isLightTheme()
