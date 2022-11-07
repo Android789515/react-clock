@@ -6,7 +6,7 @@ import { themeContext } from './theme-context/themeContext';
 import styles from './App.module.scss';
 
 import AppHeader from './components/app-header/AppHeader';
-import StopWatch from './components/clock-features/stop-watch/StopWatch';
+import TimeClock from './components/clock-features/time-clock/TimeClock';
 
 const App = () => {
     const { isLightTheme } = useContext(themeContext);
@@ -21,7 +21,7 @@ const App = () => {
         >
             <AppHeader />
 
-            <StopWatch />
+            <TimeClock />
         </div>
     );
 };
