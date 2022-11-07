@@ -1,15 +1,14 @@
 import { useState } from 'react';
 
-import type { TimeInMilliseconds } from '../../types/timeTypes';
-import { AriaRoles } from '../../types/ariaTypes';
-import useClock from '../../independent-hooks/clock/useClock';
-import useLaps from '../laps/useLaps/useLaps';
+import { AriaRoles } from '../../../types/ariaTypes';
+import useClock from '../../../independent-hooks/clock/useClock';
+import useLaps from '../../laps/useLaps/useLaps';
 
 import styles from './StopWatch.module.scss';
 
-import ClockDisplay from '../clock-display/ClockDisplay';
-import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
-import Laps from '../laps/Laps';
+import ClockDisplay from '../../clock-display/ClockDisplay';
+import ClockActionButtons from '../../clock-action-buttons/ClockActionButtons';
+import Laps from '../../laps/Laps';
 
 const StopWatch = () => {
     const [ stopWatchTime, setStopWatchTime ] = useState({

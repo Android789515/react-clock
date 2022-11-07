@@ -1,16 +1,16 @@
 import { useState } from 'react';
 
-import type { TimeInSeconds } from '../../types/timeTypes';
-import { AriaRoles } from '../../types/ariaTypes';
-import { toMilliseconds } from '../../utils/timeConversionUtils';
-import useClock from '../../independent-hooks/clock/useClock';
+import type { TimeInSeconds } from '../../../types/timeTypes';
+import { AriaRoles } from '../../../types/ariaTypes';
+import { toMilliseconds } from '../../../utils/timeConversionUtils';
+import useClock from '../../../independent-hooks/clock/useClock';
 
 import styles from './Timer.module.scss';
 
 import Alarm from './alarm/Alarm';
-import ClockDisplay from '../clock-display/ClockDisplay';
+import ClockDisplay from '../../clock-display/ClockDisplay';
 import TimerProgressBar from './timer-progress-bar/TimerProgressBar';
-import ClockActionButtons from '../clock-action-buttons/ClockActionButtons';
+import ClockActionButtons from '../../clock-action-buttons/ClockActionButtons';
 
 interface CounterTimeState {
     totalTime: TimeInSeconds

@@ -1,13 +1,13 @@
 import styles from './AppHeader.module.scss';
 
-import ThemeSwitch from '../theme-switch/ThemeSwitch';
+import ToggleSwitch from '../toggle-switch/ToggleSwitch';
 
 const AppHeader = () => {
     return (
         <header
             className={styles.appHeader}
         >
-            <ThemeSwitch />
+            <ToggleSwitch />
         </header>
     );
 };

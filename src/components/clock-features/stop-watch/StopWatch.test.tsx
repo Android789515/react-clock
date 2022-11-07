@@ -1,8 +1,8 @@
 import { screen, render, waitFor } from '@testing-library/react';
 
-import { AriaRoles } from '../../types/ariaTypes';
+import { AriaRoles } from '../../../types/ariaTypes';
 
-import { ThemeContextProvider } from '../../theme-context/themeContext';
+import { ThemeContextProvider } from '../../../theme-context/themeContext';
 import StopWatch from './StopWatch';
 
 describe('StopWatch', () => {
