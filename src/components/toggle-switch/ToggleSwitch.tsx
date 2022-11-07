@@ -35,8 +35,8 @@ const ToggleSwitch = ({ isInitiallyToggledOn = false, whenToggledOn, whenToggled
     const toggleSwitch = () => isToggledOn ? toggleOff() : toggleOn();
 
     const knobPosition = isToggledOn
-        ? styles.toggleSwitchKnobLeft
-        : styles.toggleSwitchKnobRight;
+        ? styles.toggleSwitchKnobRight
+        : styles.toggleSwitchKnobLeft;
 
     return (
         <button
