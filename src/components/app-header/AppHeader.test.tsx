@@ -6,15 +6,15 @@ import { ThemeContextProvider } from '../../theme-context/themeContext';
 import AppHeader from './AppHeader';
 
 describe('AppHeader', () => {
-    it('Renders a ThemeSwitch component', () => {
+    it('Renders a ToggleSwitch component for switching the app theme', () => {
         render(
             <ThemeContextProvider>
                 <AppHeader />
             </ThemeContextProvider>
         );
 
-        const ThemeSwitchComponent = screen.getByRole(AriaRoles.button);
+        const ToggleSwitchComponent = screen.getByRole(AriaRoles.button);
 
-        expect(ThemeSwitchComponent).toBeInTheDocument();
+        expect(ToggleSwitchComponent).toBeInTheDocument();
     });
 });
