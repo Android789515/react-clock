@@ -1,34 +1,34 @@
 @use '../../sass-mixins/app-style-defaults';
 @use '../../App.module';
 
-.themeSwitch {
+.toggleSwitch {
   @include app-style-defaults.button;
 
   justify-self: end;
 
-  width: 5em;
-  height: 2.5em;
+  aspect-ratio: 2 / 1;
+
+  width: 3em;
 
   padding: .25em;
   border-radius: 50em;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
-  .themeSwitch {
+  .toggleSwitch {
     width: 6em;
-    height: 3em;
   }
 }
 
-.themeSwitchLight {
+.toggleSwitchLight {
   background: #333;
 }
 
-.themeSwitchDark {
+.toggleSwitchDark {
   background: #fff;
 }
 
-.themeSwitchKnob {
+.toggleSwitchKnob {
   display: inline-block;
 
   aspect-ratio: 1 / 1;
@@ -41,17 +41,17 @@
   transition: transform 250ms, margin-right 250ms;
 }
 
-.themeSwitch:active .themeSwitchKnob {
+.toggleSwitch:active .toggleSwitchKnob {
   transform: rotateX(25deg);
 }
 
-.themeSwitchKnobLeft {
+.toggleSwitchKnobLeft {
   margin-right: 100%;
 
   background: #fff;
 }
 
-.themeSwitchKnobRight {
+.toggleSwitchKnobRight {
   margin-right: -55%;
 
   background: #333;

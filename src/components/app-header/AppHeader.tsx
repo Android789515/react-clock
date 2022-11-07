@@ -1,13 +1,22 @@
+import { useContext } from 'react';
+
+import { themeContext } from '../../theme-context/themeContext';
+
 import styles from './AppHeader.module.scss';
 
-import ThemeSwitch from '../theme-switch/ThemeSwitch';
+import ToggleSwitch from '../toggle-switch/ToggleSwitch';
 
 const AppHeader = () => {
+    const { toggleTheme } = useContext(themeContext);
+
     return (
         <header
             className={styles.appHeader}
         >
-            <ThemeSwitch />
+            <ToggleSwitch
+                whenToggledOn={toggleTheme}
+                whenToggledOff={toggleTheme}
+            />
         </header>
     );
 };
