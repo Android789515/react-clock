@@ -1,5 +1,6 @@
 @use 'sass:math';
 
+@use '../../App.module';
 @use '../../sass-mixins/app-style-defaults';
 
 .toggleSwitch {
@@ -13,6 +14,16 @@
   aspect-ratio: 2 / 1;
 
   border-radius: 50px;
+}
+
+// Scales smaller toggle switches up
+// for larger screens
+@media (min-width: App.$layoutBreakpoint) {
+  .toggleSwitchSmall {
+    // Scale up by 2 for larger screens
+    // Move back into container
+    transform: scale(2) translate(-25%, 25%);
+  }
 }
 
 .toggleSwitchKnob {
