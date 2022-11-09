@@ -14,6 +14,7 @@ const AppHeader = () => {
             className={styles.appHeader}
         >
             <ToggleSwitch
+                scale={1}
                 whenToggledOn={toggleTheme}
                 whenToggledOff={toggleTheme}
             />
