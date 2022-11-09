@@ -1,10 +1,19 @@
+@use '../../App.module';
+
 .appHeader {
   grid-row: 1;
   grid-column: 1 / -1;
 
   display: grid;
+  grid-template-rows: 3em;
 
   padding: 2em;
 
   margin-bottom: 5em;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .appHeader {
+    grid-template-rows: 6em;
+  }
 }
