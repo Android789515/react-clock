@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @use '../../sass-mixins/app-style-defaults';
 @use '../../App.module';
 
@@ -6,9 +8,10 @@
 
   justify-self: end;
 
-  aspect-ratio: 2 / 1;
+  display: grid;
+  grid-template: 100% / 100%;
 
-  width: 3em;
+  aspect-ratio: 2 / 1;
 
   padding: .25em;
   border-radius: 50em;
@@ -16,7 +19,7 @@
 
 @media (min-width: App.$layoutBreakpoint) {
   .toggleSwitch {
-    width: 6em;
+    transform: scale(2);
   }
 }
 
@@ -38,21 +41,31 @@
   border-radius: 100%;
 
   transform: rotateX(0);
-  transition: transform 250ms, margin-right 250ms;
+  transition: transform 250ms, margin-left 250ms;
 }
 
 .toggleSwitch:active .toggleSwitchKnob {
   transform: rotateX(25deg);
 }
 
+// Uses margin-left instead of transform: translate
+// More reliable when the component is in active state
 .toggleSwitchKnobLeft {
-  margin-right: 100%;
+  margin-left: 0;
 
   background: #fff;
 }
 
+// Defines the size; component aspect ratio is 2 / 1
+// Width will be double the height
+$toggleSwitchSize: 3em;
+.toggleSwitch {
+  width: $toggleSwitchSize;
+}
+
 .toggleSwitchKnobRight {
-  margin-right: -55%;
+  // Knob is half the size of the toggle button
+  margin-left: math.div($toggleSwitchSize, 2);
 
   background: #333;
 }
