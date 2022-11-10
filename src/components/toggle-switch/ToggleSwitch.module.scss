@@ -1,7 +1,7 @@
 @use 'sass:math';
 
-@use '../../sass-mixins/app-style-defaults';
 @use '../../App.module';
+@use '../../sass-mixins/app-style-defaults';
 
 .toggleSwitch {
   @include app-style-defaults.button;
@@ -13,22 +13,17 @@
 
   aspect-ratio: 2 / 1;
 
-  padding: .25em;
-  border-radius: 50em;
+  border-radius: 50px;
 }
 
+// Scales smaller toggle switches up
+// for larger screens
 @media (min-width: App.$layoutBreakpoint) {
-  .toggleSwitch {
-    transform: scale(2);
+  .toggleSwitchSmall {
+    // Scale up by 2 for larger screens
+    // Move back into container
+    transform: scale(2) translate(-25%, 25%);
   }
-}
-
-.toggleSwitchLight {
-  background: #333;
-}
-
-.toggleSwitchDark {
-  background: #fff;
 }
 
 .toggleSwitchKnob {
@@ -48,24 +43,18 @@
   transform: rotateX(25deg);
 }
 
-// Uses margin-left instead of transform: translate
-// More reliable when the component is in active state
-.toggleSwitchKnobLeft {
-  margin-left: 0;
-
-  background: #fff;
-}
-
-// Defines the size; component aspect ratio is 2 / 1
-// Width will be double the height
-$toggleSwitchSize: 3em;
-.toggleSwitch {
-  width: $toggleSwitchSize;
-}
-
-.toggleSwitchKnobRight {
-  // Knob is half the size of the toggle button
-  margin-left: math.div($toggleSwitchSize, 2);
-
+.toggleSwitchLight {
   background: #333;
+
+  .toggleSwitchKnob {
+    background: #fff;
+  }
+}
+
+.toggleSwitchDark {
+  background: #fff;
+
+  .toggleSwitchKnob {
+    background: #333;
+  }
 }
