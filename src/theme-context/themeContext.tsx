@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { ReactNode, createContext, useState, useEffect } from 'react';
 
 import Themes from './themeOptions';
 
@@ -23,7 +23,18 @@ interface Props {
 }
 
 const ThemeContextProvider = ({ children }: Props) => {
-    const [ theme, setTheme ] = useState(defaultTheme);
+    const themeKey = 'app/theme';
+
+    const loadTheme = () => {
+        return localStorage.getItem(themeKey) as Themes || defaultTheme;
+    };
+
+    const [ theme, setTheme ] = useState(loadTheme());
+
+    const saveTheme = () => {
+        localStorage.setItem(themeKey, theme)
+    };
+    useEffect(saveTheme, [theme])
 
     const getTheme = () => theme;
     const isLightTheme = () => Object.is(theme, Themes.light);

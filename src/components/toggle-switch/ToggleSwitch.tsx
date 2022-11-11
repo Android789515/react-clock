@@ -43,10 +43,12 @@ const ToggleSwitch = ({ scale, isInitiallyToggledOn = false, whenToggledOn, when
         ? toEms(toggleSwitchSize / 2)
         : '0';
 
+    const isToggleSwitchSmall = scale < 2;
     return (
         <button
             className={`
                 ${styles.toggleSwitch}
+                ${isToggleSwitchSmall ? styles.toggleSwitchSmall : ''}
                 ${switchBackground}
             `}
             style={{
