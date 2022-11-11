@@ -29,6 +29,7 @@ $lapBorder: solid 1px;
   padding: .75em 0;
 
   border-top: $lapBorder;
+  border-color: inherit;
 }
 
 .laps > li:last-child {
@@ -38,5 +39,9 @@ $lapBorder: solid 1px;
 @media (min-width: App.$layoutBreakpoint) {
   .laps {
     font-size: 2.5rem;
+  }
+
+  .laps > li {
+    padding: .5em 0;
   }
 }
