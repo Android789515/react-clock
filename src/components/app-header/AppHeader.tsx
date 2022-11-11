@@ -7,7 +7,7 @@ import styles from './AppHeader.module.scss';
 import ToggleSwitch from '../toggle-switch/ToggleSwitch';
 
 const AppHeader = () => {
-    const { toggleTheme } = useContext(themeContext);
+    const { isDarkTheme, toggleTheme } = useContext(themeContext);
 
     return (
         <header
@@ -15,6 +15,7 @@ const AppHeader = () => {
         >
             <ToggleSwitch
                 scale={1}
+                isInitiallyToggledOn={isDarkTheme()}
                 whenToggledOn={toggleTheme}
                 whenToggledOff={toggleTheme}
             />
