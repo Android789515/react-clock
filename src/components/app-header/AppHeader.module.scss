@@ -6,14 +6,21 @@
 
   display: grid;
   grid-template-rows: 3em;
+  justify-content: space-between;
 
   padding: 2em;
 
-  margin-bottom: 5em;
+  margin-bottom: 2.5em;
+}
+
+.appHeader > * {
+  grid-row: 1;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
   .appHeader {
     grid-template-rows: 6em;
+
+    margin-bottom: 5em;
   }
 }
