@@ -1,3 +1,5 @@
-.clockFeatureLinks {
+@use '../../../sass-mixins/app-style-defaults';
 
+.clockFeatureLinks {
+  @include app-style-defaults.list;
 }
