@@ -5,7 +5,7 @@
   grid-column: 1 / -1;
 
   display: grid;
-  grid-template-rows: 3em;
+  grid-template-rows: minmax(3em, auto);
   justify-content: space-between;
 
   padding: 2em;
@@ -19,7 +19,7 @@
 
 @media (min-width: App.$layoutBreakpoint) {
   .appHeader {
-    grid-template-rows: 6em;
+    grid-template-rows: minmax(6em, auto);
 
     margin-bottom: 5em;
   }
