@@ -3,20 +3,21 @@ import { NavLink } from 'react-router-dom';
 import styles from './ClockFeatureLinks.module.scss';
 
 const ClockFeatureLinks = () => {
+    const Links = ['/', 'stopwatch', 'timer'].map((link, index) => (
+        <li key={index}>
+            <NavLink
+                to={link}
+                className={styles.clockFeatureLink}
+            >
+                {link}
+            </NavLink>
+        </li>
+    ));
+
     return (
         <nav>
             <ul className={styles.clockFeatureLinks}>
-                <li>
-                    <NavLink to={'/'}>Time Clock</NavLink>
-                </li>
-
-                <li>
-                    <NavLink to={'stopwatch'}>Stop Watch</NavLink>
-                </li>
-
-                <li>
-                    <NavLink to={'timer'}>Timer</NavLink>
-                </li>
+                {Links}
             </ul>
         </nav>
     );

@@ -3,3 +3,11 @@
 .clockFeatureLinks {
   @include app-style-defaults.list;
 }
+
+.clockFeatureLink {
+  @include app-style-defaults.link;
+}
+
+[aria-current='page'] {
+  text-decoration: underline;
+}
