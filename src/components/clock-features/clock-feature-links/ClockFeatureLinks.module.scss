@@ -11,19 +11,31 @@
   padding: .25em;
 }
 
+.clockFeatureLinks:focus,
+.clockFeatureLinks:hover {
+  .clockFeatureLink {
+    visibility: visible;
+  }
+}
+
 .clockFeatureLinkWrapper {
-  grid-row: 1;
-  grid-column: 1;
+  position: relative;
+  z-index: 0;
+
+  background: #fff;
+
+  transition: transform 250ms;
 }
 
 .clockFeatureLink {
   opacity: .3;
-  visibility: hidden;
 }
 
-[aria-current='page'].clockFeatureLink {
-  opacity: 1;
-  visibility: visible;
+.currentClockFeature {
+  z-index: 1;
+  .clockFeatureLink {
+    opacity: 1;
+  }
 }
 
 @media (min-width: App.$layoutBreakpoint) {
@@ -36,22 +48,10 @@
   }
 }
 
-.clockFeatureLinkDark .clockFeatureLinkIcon {
-  filter: invert(1);
-}
+.clockFeatureLinkDark {
+  .clockFeatureLinkIcon {
+    filter: invert(1);
 
-.clockFeatureLinks:focus,
-.clockFeatureLinks:hover {
-  .clockFeatureLinkWrapper {
-    grid-row: revert;
-    grid-column: revert;
-  }
-
-  .currentClockFeature {
-    grid-column: 1;
-  }
-
-  .clockFeatureLink {
-    visibility: visible;
+    background: #333;
   }
 }

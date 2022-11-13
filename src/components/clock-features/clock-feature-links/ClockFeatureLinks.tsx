@@ -1,3 +1,4 @@
+import { MouseEvent, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import timeClockIcon from './clock-feature-icons/time-clock.svg';
@@ -10,23 +11,44 @@ interface Props {
 }
 
 const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
-    const routeMap = new Map([
-        ['/', timeClockIcon],
-        ['stopwatch', stopWatchIcon],
-        ['timer', timerIcon]
-    ]);
+    const [ routes, updateRoutes ] = useState({
+        '/': timeClockIcon,
+        stopWatch: stopWatchIcon,
+        timer: timerIcon
+    });
+
+    const setActiveLink = ({ target }: MouseEvent) => {
+        const linkIconClicked = (target as HTMLImageElement);
+        const linkForIcon = linkIconClicked.alt.split(' ').at(-1)!;
+
+        updateRoutes(prevRoutes => {
+            return {
+                [linkForIcon]: linkIconClicked.src,
+                ...prevRoutes
+            };
+        });
+    };
+
+    const [ isHovered, setIsHovered ] = useState(false);
 
     const { pathname } = useLocation();
-    const Links = [...routeMap.entries()].map(([link, icon], index) => {
-        const isCurrentFeature = pathname === '/' + link;
+    const Links = Object.entries(routes).map(([link, icon], index) => {
+        const isCurrentFeature = pathname === link || pathname === '/' + link;
 
         return (
             <li
                 key={index}
                 className={`
-                ${isCurrentFeature ? styles.currentClockFeature : ''}
-                ${styles.clockFeatureLinkWrapper}
-            `}
+                    ${isCurrentFeature ? styles.currentClockFeature : ''}
+                    ${styles.clockFeatureLinkWrapper}
+                `}
+                style={{
+                    transform: (
+                        isHovered
+                        ? 'revert'
+                        : `translateX(-${200 * index}%)`
+                    )
+                }}
             >
                 <NavLink
                     to={link}
@@ -39,13 +61,14 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
                         src={icon}
                         alt={`Link to ${link}`}
                         className={styles.clockFeatureLinkIcon}
+                        onClick={setActiveLink}
                     />
                 </NavLink>
             </li>
         );
     });
 
-    const numberOfFeatureLinks = routeMap.size;
+    const numberOfFeatureLinks = Object.keys(routes).length;
     return (
         <nav>
             <ul
@@ -53,6 +76,8 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
                 style={{
                     gridTemplateColumns: `repeat(${numberOfFeatureLinks}, 1fr)`
                 }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
             >
                 {Links}
             </ul>
