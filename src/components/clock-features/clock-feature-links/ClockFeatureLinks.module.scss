@@ -2,10 +2,21 @@
 
 .clockFeatureLinks {
   @include app-style-defaults.list;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 1em;
 }
 
 .clockFeatureLink {
   @include app-style-defaults.link;
+}
+
+.clockFeatureLinkDark {
+
+  .clockFeatureLinkIcon {
+    filter: invert(1);
+  }
 }
 
 [aria-current='page'] {

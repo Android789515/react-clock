@@ -14,7 +14,9 @@ const AppHeader = () => {
         <header
             className={styles.appHeader}
         >
-            <ClockFeatureLinks />
+            <ClockFeatureLinks
+                isDarkTheme={isDarkTheme()}
+            />
 
             <ToggleSwitch
                 scale={1}

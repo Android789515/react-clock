@@ -1,15 +1,35 @@
 import { NavLink } from 'react-router-dom';
 
+import timeClockIcon from './clock-feature-icons/time-clock.svg';
+import stopWatchIcon from './clock-feature-icons/stop-watch.svg';
+import timerIcon from './clock-feature-icons/timer.svg';
 import styles from './ClockFeatureLinks.module.scss';
 
-const ClockFeatureLinks = () => {
-    const Links = ['/', 'stopwatch', 'timer'].map((link, index) => (
+interface Props {
+    isDarkTheme: boolean
+}
+
+const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
+    const routeMap = new Map([
+        ['/', timeClockIcon],
+        ['stopwatch', stopWatchIcon],
+        ['timer', timerIcon]
+    ]);
+
+    const Links = [...routeMap.entries()].map(([link, icon], index) => (
         <li key={index}>
             <NavLink
                 to={link}
-                className={styles.clockFeatureLink}
+                className={`
+                    ${isDarkTheme ? styles.clockFeatureLinkDark : ''}
+                    ${styles.clockFeatureLink}
+                `}
             >
-                {link}
+                <img
+                    src={icon}
+                    alt={`Link to ${link}`}
+                    className={styles.clockFeatureLinkIcon}
+                />
             </NavLink>
         </li>
     ));
