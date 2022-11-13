@@ -22,7 +22,7 @@
   .toggleSwitchSmall {
     // Scale up by 2 for larger screens
     // Move back into container
-    transform: scale(2) translate(-25%, 25%);
+    transform: scale(2) translateX(-25%);
   }
 }
 

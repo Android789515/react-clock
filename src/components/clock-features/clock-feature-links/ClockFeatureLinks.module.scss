@@ -1,3 +1,4 @@
+@use '../../../App.module';
 @use '../../../sass-mixins/app-style-defaults';
 
 .clockFeatureLinks {
@@ -23,6 +24,16 @@
 [aria-current='page'].clockFeatureLink {
   opacity: 1;
   visibility: visible;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .clockFeatureLinks {
+    grid-column-gap: 3em;
+  }
+
+  .clockFeatureLinkIcon {
+    width: 4em;
+  }
 }
 
 .clockFeatureLinkDark .clockFeatureLinkIcon {
