@@ -9,16 +9,13 @@
 }
 
 .clockFeatureLink {
-  @include app-style-defaults.link;
+  opacity: .3;
 }
 
-.clockFeatureLinkDark {
-
-  .clockFeatureLinkIcon {
-    filter: invert(1);
-  }
+[aria-current='page'].clockFeatureLink {
+  opacity: 1;
 }
 
-[aria-current='page'] {
-  text-decoration: underline;
+.clockFeatureLinkDark .clockFeatureLinkIcon {
+  filter: invert(1);
 }
