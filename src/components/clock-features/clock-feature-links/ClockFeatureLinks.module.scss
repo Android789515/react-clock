@@ -6,16 +6,41 @@
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: 1em;
+
+  padding: .25em;
+}
+
+.clockFeatureLinkWrapper {
+  grid-row: 1;
+  grid-column: 1;
 }
 
 .clockFeatureLink {
   opacity: .3;
+  visibility: hidden;
 }
 
 [aria-current='page'].clockFeatureLink {
   opacity: 1;
+  visibility: visible;
 }
 
 .clockFeatureLinkDark .clockFeatureLinkIcon {
   filter: invert(1);
+}
+
+.clockFeatureLinks:focus,
+.clockFeatureLinks:hover {
+  .clockFeatureLinkWrapper {
+    grid-row: revert;
+    grid-column: revert;
+  }
+
+  .currentClockFeature {
+    grid-column: 1;
+  }
+
+  .clockFeatureLink {
+    visibility: visible;
+  }
 }
