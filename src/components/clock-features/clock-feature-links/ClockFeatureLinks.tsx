@@ -45,9 +45,15 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
         );
     });
 
+    const numberOfFeatureLinks = routeMap.size;
     return (
         <nav>
-            <ul className={styles.clockFeatureLinks}>
+            <ul
+                className={styles.clockFeatureLinks}
+                style={{
+                    gridTemplateColumns: `repeat(${numberOfFeatureLinks}, 1fr)`
+                }}
+            >
                 {Links}
             </ul>
         </nav>
