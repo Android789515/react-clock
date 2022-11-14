@@ -1,10 +1,12 @@
 import { MouseEvent, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import timeClockIcon from './clock-feature-icons/time-clock.svg';
 import stopWatchIcon from './clock-feature-icons/stop-watch.svg';
 import timerIcon from './clock-feature-icons/timer.svg';
 import styles from './ClockFeatureLinks.module.scss';
+
+import ClockFeatureLink from './clock-feature-link/ClockFeatureLink';
 
 interface Props {
     isDarkTheme: boolean
@@ -32,7 +34,7 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
     const [ isHovered, setIsHovered ] = useState(false);
 
     const { pathname } = useLocation();
-    const Links = Object.entries(routeIcons).map(([route, icon], index) => {
+    const Links = Object.entries(routeIcons).map(([route, iconPath], index) => {
         const isCurrentFeature = pathname === route || pathname === '/' + route;
 
         return (
@@ -51,20 +53,13 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
                     )
                 }}
             >
-                <NavLink
-                    to={route}
-                    className={`
-                    ${isDarkTheme ? styles.clockFeatureLinkDark : ''}
-                    ${styles.clockFeatureLink}
-                `}
-                >
-                    <img
-                        src={icon}
-                        alt={`Link to ${route}`}
-                        className={styles.clockFeatureLinkIcon}
-                        onClick={setActiveLink}
-                    />
-                </NavLink>
+                <ClockFeatureLink
+                    route={route}
+                    iconPath={iconPath}
+                    isDarkTheme={isDarkTheme}
+                    isActiveLink={isCurrentFeature}
+                    setActiveLink={setActiveLink}
+                />
             </li>
         );
     });

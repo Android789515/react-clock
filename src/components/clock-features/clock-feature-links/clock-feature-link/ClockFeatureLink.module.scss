@@ -1,0 +1,19 @@
+@use '../../../../App.module';
+
+.clockFeatureLink {
+  opacity: .3;
+}
+
+.activeClockFeatureLink {
+  opacity: 1;
+}
+
+.clockFeatureLinkIconDark {
+  filter: invert(1);
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .clockFeatureLinkIcon {
+    width: 3em;
+  }
+}

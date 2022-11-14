@@ -11,13 +11,6 @@
   padding: .25em;
 }
 
-.clockFeatureLinks:focus,
-.clockFeatureLinks:hover {
-  .clockFeatureLink {
-    visibility: visible;
-  }
-}
-
 .clockFeatureLinkWrapper {
   position: relative;
   z-index: 0;
@@ -29,29 +22,14 @@
 
 .clockFeatureLinkWrapperDark {
   background: #333;
-
-  .clockFeatureLinkIcon {
-    filter: invert(1);
-  }
-}
-
-.clockFeatureLink {
-  opacity: .3;
 }
 
 .currentClockFeature {
   z-index: 1;
-  .clockFeatureLink {
-    opacity: 1;
-  }
 }
 
 @media (min-width: App.$layoutBreakpoint) {
   .clockFeatureLinks {
     grid-column-gap: 3em;
-  }
-
-  .clockFeatureLinkIcon {
-    width: 3em;
   }
 }
