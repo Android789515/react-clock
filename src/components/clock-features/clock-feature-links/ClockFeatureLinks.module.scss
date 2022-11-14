@@ -27,6 +27,14 @@
   transition: transform 250ms;
 }
 
+.clockFeatureLinkWrapperDark {
+  background: #333;
+
+  .clockFeatureLinkIcon {
+    filter: invert(1);
+  }
+}
+
 .clockFeatureLink {
   opacity: .3;
 }
@@ -45,13 +53,5 @@
 
   .clockFeatureLinkIcon {
     width: 3em;
-  }
-}
-
-.clockFeatureLinkDark {
-  .clockFeatureLinkIcon {
-    filter: invert(1);
-
-    background: #333;
   }
 }

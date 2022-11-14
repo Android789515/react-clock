@@ -41,6 +41,7 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
                 className={`
                     ${isCurrentFeature ? styles.currentClockFeature : ''}
                     ${styles.clockFeatureLinkWrapper}
+                    ${isDarkTheme ? styles.clockFeatureLinkWrapperDark : ''}
                 `}
                 style={{
                     transform: (
