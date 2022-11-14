@@ -1,0 +1,11 @@
+@use '../../../../App.module';
+
+.clockFeatureLinkIconDark {
+  filter: invert(1);
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .clockFeatureLinkIcon {
+    width: 3em;
+  }
+}

@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './ClockFeatureLink.module.scss';
 
+import ClockFeatureIcon from '../clock-feature-icon/ClockFeatureIcon';
+
 type URL = string;
 type RouteURL = URL;
 type iconPath = URL;
@@ -24,14 +26,11 @@ const ClockFeatureLink = ({ route, iconPath, isDarkTheme, isActiveLink, setActiv
                     ${isActiveLink ? styles.activeClockFeatureLink : ''}
                 `}
         >
-            <img
-                src={iconPath}
-                alt={`Link to ${route}`}
-                className={`
-                    ${styles.clockFeatureLinkIcon}
-                    ${isDarkTheme ? styles.clockFeatureLinkIconDark : ''}
-                `}
-                onClick={setActiveLink}
+            <ClockFeatureIcon
+                iconPath={iconPath}
+                route={route}
+                isDarkTheme={isDarkTheme}
+                setActiveLink={setActiveLink}
             />
         </NavLink>
     );

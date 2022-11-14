@@ -1,9 +1,9 @@
 import { MouseEvent, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import timeClockIcon from './clock-feature-icons/time-clock.svg';
-import stopWatchIcon from './clock-feature-icons/stop-watch.svg';
-import timerIcon from './clock-feature-icons/timer.svg';
+import timeClockIcon from './icons/time-clock.svg';
+import stopWatchIcon from './icons/stop-watch.svg';
+import timerIcon from './icons/timer.svg';
 import styles from './ClockFeatureLinks.module.scss';
 
 import ClockFeatureLink from './clock-feature-link/ClockFeatureLink';
