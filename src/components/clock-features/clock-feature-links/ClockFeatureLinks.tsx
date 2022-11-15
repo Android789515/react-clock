@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import type { IconPath } from '../../../types/linkTypes';
+import useGetRouteIcons from './useGetRouteIcons';
 
-import timeClockIcon from './icons/time-clock.svg';
-import stopWatchIcon from './icons/stop-watch.svg';
-import timerIcon from './icons/timer.svg';
 import styles from './ClockFeatureLinks.module.scss';
 
 import ClockFeatureLink from './clock-feature-link/ClockFeatureLink';
@@ -14,29 +11,10 @@ interface Props {
     isDarkTheme: boolean
 }
 
-interface RouteIcons {
-    '/': IconPath;
-    stopwatch: IconPath;
-    timer: IconPath;
-}
-
 const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
-    const [ routeIcons, updateRouteIcons ] = useState<RouteIcons>({
-        '/': timeClockIcon,
-        stopwatch: stopWatchIcon,
-        timer: timerIcon
-    });
-
     const { pathname } = useLocation();
-    const setActiveLink = () => {
-        const activeLink = pathname.split('/').at(-1) || '/';
-        updateRouteIcons(prevRouteIcons => {
-            return {
-                [activeLink]: routeIcons[activeLink as keyof RouteIcons],
-                ...prevRouteIcons
-            };
-        });
-    };
+
+    const { getRouteIcons, getRouteIconAmount, setActiveLink } = useGetRouteIcons(pathname);
 
     useEffect(() => {
         setActiveLink();
@@ -44,7 +22,7 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
 
     const [ isHovered, setIsHovered ] = useState(false);
 
-    const Links = Object.entries(routeIcons).map(([route, iconPath], index) => {
+    const Links = Object.entries(getRouteIcons()).map(([route, iconPath], index) => {
         const isCurrentFeature = pathname === route || pathname === '/' + route;
 
         return (
@@ -73,13 +51,12 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
         );
     });
 
-    const routeIconAmount = Object.keys(routeIcons).length;
     return (
         <nav>
             <ul
                 className={styles.clockFeatureLinks}
                 style={{
-                    gridTemplateColumns: `repeat(${routeIconAmount}, 1fr)`
+                    gridTemplateColumns: `repeat(${getRouteIconAmount()}, 1fr)`
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
