@@ -1,5 +1,7 @@
-import { MouseEvent, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import type { IconPath } from '../../../types/linkTypes';
 
 import timeClockIcon from './icons/time-clock.svg';
 import stopWatchIcon from './icons/stop-watch.svg';
@@ -12,28 +14,36 @@ interface Props {
     isDarkTheme: boolean
 }
 
+interface RouteIcons {
+    '/': IconPath;
+    stopwatch: IconPath;
+    timer: IconPath;
+}
+
 const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
-    const [ routeIcons, updateRouteIcons ] = useState({
+    const [ routeIcons, updateRouteIcons ] = useState<RouteIcons>({
         '/': timeClockIcon,
-        stopWatch: stopWatchIcon,
+        stopwatch: stopWatchIcon,
         timer: timerIcon
     });
 
-    const setActiveLink = ({ target }: MouseEvent) => {
-        const linkIconClicked = (target as HTMLImageElement);
-        const linkForIcon = linkIconClicked.alt.split(' ').at(-1)!;
-
+    const { pathname } = useLocation();
+    const setActiveLink = () => {
+        const activeLink = pathname.split('/').at(-1) || '/';
         updateRouteIcons(prevRouteIcons => {
             return {
-                [linkForIcon]: linkIconClicked.src,
+                [activeLink]: routeIcons[activeLink as keyof RouteIcons],
                 ...prevRouteIcons
             };
         });
     };
 
+    useEffect(() => {
+        setActiveLink();
+    }, [pathname])
+
     const [ isHovered, setIsHovered ] = useState(false);
 
-    const { pathname } = useLocation();
     const Links = Object.entries(routeIcons).map(([route, iconPath], index) => {
         const isCurrentFeature = pathname === route || pathname === '/' + route;
 
@@ -58,7 +68,6 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
                     iconPath={iconPath}
                     isDarkTheme={isDarkTheme}
                     isActiveLink={isCurrentFeature}
-                    setActiveLink={setActiveLink}
                 />
             </li>
         );
