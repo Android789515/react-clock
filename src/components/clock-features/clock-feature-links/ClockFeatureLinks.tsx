@@ -33,13 +33,7 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
                     ${styles.clockFeatureLinkWrapper}
                     ${isDarkTheme ? styles.clockFeatureLinkWrapperDark : ''}
                 `}
-                style={{
-                    transform: (
-                        isHovered
-                        ? 'revert'
-                        : `translateX(-${200 * index}%)`
-                    )
-                }}
+                style={{ transform: (isHovered ? 'revert' : `translateX(-${200 * index}%)`) }}
             >
                 <ClockFeatureLink
                     route={route}
