@@ -7,6 +7,7 @@ import useClock from '../../../independent-hooks/clock/useClock';
 import styles from './TimeClock.module.scss';
 
 import ClockDisplay from '../../clock-display/ClockDisplay';
+import ToggleSwitch from '../../toggle-switch/ToggleSwitch';
 
 const TimeClock = () => {
     const getCurrentTime = () => {
@@ -41,6 +42,12 @@ const TimeClock = () => {
             <ClockDisplay
                 disabled
                 timeInMilliseconds={currentTime}
+            />
+
+            <ToggleSwitch
+                scale={1}
+                whenToggledOn={() => {}}
+                whenToggledOff={() => {}}
             />
         </main>
     );

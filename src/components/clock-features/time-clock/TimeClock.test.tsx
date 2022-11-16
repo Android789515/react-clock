@@ -22,4 +22,14 @@ describe('TimeClock', () => {
             + date.getSeconds()
         );
     });
+
+    it('Renders a ToggleSwitch component for switching between AM/PM and 24h format', () => {
+        render(
+            <TimeClock />
+        );
+
+        const ToggleSwitch = screen.getByRole(AriaRoles.button);
+
+        expect(ToggleSwitch).toBeInTheDocument();
+    });
 });
