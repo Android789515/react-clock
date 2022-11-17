@@ -1,4 +1,5 @@
-import type { TimeInSeconds, TimeInMilliseconds, Milliseconds, FormattedTime } from '../types/timeTypes';
+import type { TimeInSeconds, TimeInMilliseconds } from '../types/timeTypes';
+import type { Milliseconds, Seconds, FormattedTime } from '../types/timeTypes';
 
 export const toMilliseconds = (timeInSeconds: TimeInSeconds) => {
     return timeInSeconds * 1000;
@@ -26,25 +27,46 @@ const removeSeconds = (milliseconds: Milliseconds) => {
     return Number(String(milliseconds).slice(-3));
 };
 
-export const formatTime = (timeInMilliseconds: TimeInMilliseconds): FormattedTime => {
-
+const formatMilliseconds = (timeInMilliseconds: TimeInMilliseconds) => {
     const milliseconds = removeSeconds(timeInMilliseconds);
     const significantMillisecondDigits = Math.floor(milliseconds / 10);
     const formattedMilliseconds = makeDoubleDigit(significantMillisecondDigits);
 
-    const totalSeconds = Math.floor(toSeconds(timeInMilliseconds));
+    return formattedMilliseconds;
+};
+
+const formatSeconds = (totalSeconds: Seconds) => {
     const formattedSeconds = makeDoubleDigit(totalSeconds % 60);
 
+    return formattedSeconds;
+};
+
+const formatMinutes = (totalSeconds: Seconds) => {
     const totalMinutes = (totalSeconds / 60);
     const formattedMinutes = makeDoubleDigit(Math.floor(totalMinutes  % 60));
 
+    return formattedMinutes;
+};
+
+const formatHours = (totalSeconds: Seconds) => {
     const totalHours = (totalSeconds / 3600);
     const formattedHours = makeDoubleDigit(Math.floor(totalHours % 120));
 
+    return formattedHours;
+};
+
+export const formatTime = (timeInMilliseconds: TimeInMilliseconds): FormattedTime => {
+    const milliseconds = formatMilliseconds(timeInMilliseconds);
+
+    const totalSeconds = Math.floor(toSeconds(timeInMilliseconds));
+    const seconds = formatSeconds(totalSeconds);
+    const minutes = formatMinutes(totalSeconds);
+    const hours = formatHours(totalSeconds);
+
     return {
-        hours: formattedHours,
-        minutes: formattedMinutes,
-        seconds: formattedSeconds,
-        milliseconds: formattedMilliseconds
+        hours,
+        minutes,
+        seconds,
+        milliseconds,
     };
 };
