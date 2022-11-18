@@ -13,7 +13,7 @@ export const getTotalSeconds = (hours: number, minutes: number, seconds: number)
     return (hours * 3600) + (minutes * 60) + seconds;
 };
 
-const makeDoubleDigit = (number: number | string): string => {
+export const makeDoubleDigit = (number: number | string): string => {
     const digitAmount = String(number).length;
 
     if (digitAmount < 2) {
