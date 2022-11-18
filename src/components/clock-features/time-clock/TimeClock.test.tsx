@@ -6,7 +6,7 @@ import { makeDoubleDigit } from '../../../utils/timeConversionUtils';
 import TimeClock from './TimeClock';
 
 describe('TimeClock', () => {
-    it('Renders a non-editable ClockDisplay with the current local time as 24h format', async () => {
+    it('Renders a non-editable ClockDisplay with the current local time as 24h format', () => {
         render(
             <TimeClock />
         );
