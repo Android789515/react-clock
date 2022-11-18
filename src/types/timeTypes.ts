@@ -9,8 +9,6 @@ type FormattedMinutes = string;
 type FormattedSeconds = string;
 type FormattedMilliseconds = string;
 
-export type FormattedTimeUnit = FormattedHours | FormattedMinutes | FormattedSeconds | FormattedMilliseconds;
-
 export interface FormattedTime {
     hours: FormattedHours;
     minutes: FormattedMinutes;
