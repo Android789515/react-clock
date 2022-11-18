@@ -17,6 +17,7 @@ const TimeClock = () => {
         const seconds = currentDate.getSeconds();
         const milliseconds = currentDate.getMilliseconds();
 
+        // Converts every time unit to milliseconds
         return (
             (hours *  3.6e+6)
             + (minutes * 6e+4)
