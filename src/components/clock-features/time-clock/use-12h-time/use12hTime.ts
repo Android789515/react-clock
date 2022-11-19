@@ -5,8 +5,11 @@ const use12hTime = (isInitially12hTime: boolean) => {
 
     const getIs12hTime = () => is12hTime;
 
+    const toggleIs12hTime = () => setIs12hTime(wasIt12hTime => !wasIt12hTime);
+
     return {
-        getIs12hTime
+        getIs12hTime,
+        toggleIs12hTime
     };
 };
 
