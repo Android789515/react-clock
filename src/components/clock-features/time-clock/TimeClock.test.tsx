@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 
 import { AriaRoles } from '../../../types/ariaTypes';
 import { makeDoubleDigit } from '../../../utils/timeConversionUtils';
@@ -32,5 +32,29 @@ describe('TimeClock', () => {
         const ToggleSwitch = screen.getByRole(AriaRoles.button);
 
         expect(ToggleSwitch).toBeInTheDocument();
+    });
+
+    it('Displays 12h format when the toggle switch is toggled on', async () => {
+        render(
+            <TimeClock />
+        );
+
+        const ToggleSwitch = screen.getByRole(AriaRoles.button);
+
+        await waitFor(() => {
+            ToggleSwitch.click();
+        });
+
+        const ClockDisplay = screen.getByRole(AriaRoles.timer);
+
+        const date = new Date();
+        const isPastNoon = date.getHours() > 12;
+
+        const afternoonHours = 12;
+        const adjustedHours = isPastNoon ? date.getHours() - afternoonHours : date.getHours();
+        const dateTimeUnits = [adjustedHours, date.getMinutes(), date.getSeconds()];
+
+        const expectedDisplay = dateTimeUnits.map(makeDoubleDigit).join(':');
+        expect(ClockDisplay).toHaveDisplayValue(expectedDisplay);
     });
 });
