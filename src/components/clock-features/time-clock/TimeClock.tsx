@@ -42,14 +42,14 @@ const TimeClock = () => {
         return () => stopClock();
     }, []);
 
-    const { getIs12hTime, toggleIs12hTime } = use12hTime(false);
+    const { is12hTime, toggleIs12hTime } = use12hTime(false);
     const afternoonHours = 12 * millisecondsPerHour;
 
     return (
         <main className={styles.timeClock}>
             <ClockDisplay
                 disabled
-                timeInMilliseconds={getIs12hTime() ? currentTime - afternoonHours : currentTime}
+                timeInMilliseconds={is12hTime() ? currentTime - afternoonHours : currentTime}
             />
 
             <ToggleSwitch
