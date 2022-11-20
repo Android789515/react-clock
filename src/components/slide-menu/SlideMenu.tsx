@@ -1,8 +1,20 @@
+import type { CSS_Class } from '../../types/CSS_Types';
+
 import styles from './SlideMenu.module.scss';
 
-const SlideMenu = () => {
+interface Props {
+    menuItems: [];
+    customClassName?: CSS_Class;
+}
+
+const SlideMenu = ({ menuItems, customClassName }: Props) => {
     return (
-        <ul className={styles.slideMenu}>
+        <ul
+            className={`
+                ${customClassName}
+                ${styles.slideMenu}
+            `}
+        >
 
         </ul>
     );
