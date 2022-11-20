@@ -8,8 +8,8 @@ describe('use12hTime', () => {
         const isInitially12hTime = true;
         const { result } = renderHook(() => use12hTime(isInitially12hTime));
 
-        const { getIs12hTime } = result.current;
-        expect(getIs12hTime()).toEqual(true);
+        const { is12hTime } = result.current;
+        expect(is12hTime()).toEqual(true);
     });
 
     it('Can switch the time format to 12h', () => {
@@ -20,6 +20,6 @@ describe('use12hTime', () => {
         act(() => toggleIs12hTime());
 
         const not12hTime = false;
-        expect(result.current.getIs12hTime()).toEqual(not12hTime);
+        expect(result.current.is12hTime()).toEqual(not12hTime);
     });
 });
