@@ -5,12 +5,12 @@ import type { CSS_Class } from '../../types/CSS_Types';
 import styles from './SlidingRouteMenu.module.scss';
 
 interface Props {
-    menuItems: [];
-    itemComponent: ReactNode;
+    routes: [];
+    LinkComponent: ReactNode;
     customClassName?: CSS_Class;
 }
 
-const SlidingRouteMenu = ({ menuItems, itemComponent, customClassName }: Props) => {
+const SlidingRouteMenu = ({ routes, LinkComponent, customClassName }: Props) => {
     return (
         <ul
             className={`
