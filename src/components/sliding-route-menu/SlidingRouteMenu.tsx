@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import type { CSS_Class } from '../../types/CSS_Types';
 
-import styles from './SlideMenu.module.scss';
+import styles from './SlidingRouteMenu.module.scss';
 
 interface Props {
     menuItems: [];
@@ -10,12 +10,12 @@ interface Props {
     customClassName?: CSS_Class;
 }
 
-const SlideMenu = ({ menuItems, itemComponent, customClassName }: Props) => {
+const SlidingRouteMenu = ({ menuItems, itemComponent, customClassName }: Props) => {
     return (
         <ul
             className={`
                 ${customClassName}
-                ${styles.slideMenu}
+                ${styles.slidingRouteMenu}
             `}
         >
 
@@ -23,4 +23,4 @@ const SlideMenu = ({ menuItems, itemComponent, customClassName }: Props) => {
     );
 };
 
-export default SlideMenu;
+export default SlidingRouteMenu;
