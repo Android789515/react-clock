@@ -21,7 +21,7 @@ const useGetRouteIcons = (pathname: RouteURL) => {
 
     const getRouteIcons = () => routeIcons;
 
-    const setActiveLink = () => {
+    const setActiveRouteIcon = () => {
         const activeLink = pathname.split('/').at(-1) || '/';
         updateRouteIcons(prevRouteIcons => {
             return {
@@ -33,7 +33,7 @@ const useGetRouteIcons = (pathname: RouteURL) => {
 
     return {
         getRouteIcons,
-        setActiveLink
+        setActiveRouteIcon
     };
 };
 
