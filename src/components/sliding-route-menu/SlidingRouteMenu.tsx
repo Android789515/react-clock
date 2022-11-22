@@ -5,6 +5,8 @@ import type { CSS_Class } from '../../types/CSS_Types';
 
 import styles from './SlidingRouteMenu.module.scss';
 
+import SlidingRouteMenuItem from './sliding-route-menu-item/SlidingRouteMenuItem';
+
 interface Props {
     routes: RouteURL[];
     LinkComponent: ReactNode;
@@ -12,6 +14,12 @@ interface Props {
 }
 
 const SlidingRouteMenu = ({ routes, LinkComponent, customClassName }: Props) => {
+    const Links = routes.map((route, index) => (
+        <SlidingRouteMenuItem key={index}>
+            {LinkComponent}
+        </SlidingRouteMenuItem>
+    ));
+
     return (
         <ul
             className={`
@@ -19,7 +27,7 @@ const SlidingRouteMenu = ({ routes, LinkComponent, customClassName }: Props) => 
                 ${styles.slidingRouteMenu}
             `}
         >
-
+            {Links}
         </ul>
     );
 };
