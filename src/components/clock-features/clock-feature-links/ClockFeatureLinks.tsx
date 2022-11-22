@@ -14,10 +14,10 @@ interface Props {
 const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
     const { pathname } = useLocation();
 
-    const { getRoutesAndIcons, setActiveRouteIcon } = useGetRouteIcons(pathname);
+    const { getRoutesAndIcons, setActiveRouteIcon } = useGetRouteIcons();
 
     useEffect(() => {
-        setActiveRouteIcon();
+        setActiveRouteIcon(pathname);
     }, [pathname])
 
     const [ isHovered, setIsHovered ] = useState(false);

@@ -6,7 +6,7 @@ import timeClockIcon from './icons/time-clock.svg';
 import stopWatchIcon from './icons/stop-watch.svg';
 import timerIcon from './icons/timer.svg';
 
-const useGetRouteIcons = (pathname: RouteURL) => {
+const useGetRouteIcons = () => {
     interface RouteIcons {
         '/': IconPath;
         stopwatch: IconPath;
@@ -21,7 +21,7 @@ const useGetRouteIcons = (pathname: RouteURL) => {
 
     const getRoutesAndIcons = () => Object.entries(routeIcons);
 
-    const setActiveRouteIcon = () => {
+    const setActiveRouteIcon = (pathname: RouteURL) => {
         const activeLink = pathname.split('/').at(-1) || '/';
         updateRouteIcons(prevRouteIcons => {
             return {
