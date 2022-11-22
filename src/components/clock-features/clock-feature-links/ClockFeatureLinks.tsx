@@ -14,15 +14,15 @@ interface Props {
 const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
     const { pathname } = useLocation();
 
-    const { getRouteIcons, getRouteIconAmount, setActiveLink } = useGetRouteIcons(pathname);
+    const { getRoutesAndIcons, setActiveRouteIcon } = useGetRouteIcons();
 
     useEffect(() => {
-        setActiveLink();
+        setActiveRouteIcon(pathname);
     }, [pathname])
 
     const [ isHovered, setIsHovered ] = useState(false);
 
-    const Links = Object.entries(getRouteIcons()).map(([route, iconPath], index) => {
+    const Links = getRoutesAndIcons().map(([route, iconPath], index) => {
         const isCurrentFeature = pathname === route || pathname === '/' + route;
 
         return (
@@ -49,9 +49,6 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
         <nav>
             <ul
                 className={styles.clockFeatureLinks}
-                style={{
-                    gridTemplateColumns: `repeat(${getRouteIconAmount()}, 1fr)`
-                }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onFocus={() => setIsHovered(true)}
