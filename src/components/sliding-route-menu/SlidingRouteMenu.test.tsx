@@ -16,12 +16,14 @@ describe('SlidingRouteMenu', () => {
             <MemoryRouter>
                 <SlidingRouteMenu
                     routes={routes}
-                    LinkComponent={
-                        <ClockFeatureLink
-                            route={''}
-                            iconPath={''}
-                        />
-                    }
+                    LinkComponent={(route) => {
+                        return (
+                            <ClockFeatureLink
+                                route={route}
+                                iconPath={''}
+                            />
+                        );
+                    }}
                 />
             </MemoryRouter>
         );

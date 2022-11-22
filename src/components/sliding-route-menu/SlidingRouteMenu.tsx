@@ -9,14 +9,14 @@ import SlidingRouteMenuItem from './sliding-route-menu-item/SlidingRouteMenuItem
 
 interface Props {
     routes: RouteURL[];
-    LinkComponent: ReactNode;
+    LinkComponent: (route: RouteURL) => ReactNode;
     customClassName?: CSS_Class;
 }
 
 const SlidingRouteMenu = ({ routes, LinkComponent, customClassName }: Props) => {
     const Links = routes.map((route, index) => (
         <SlidingRouteMenuItem key={index}>
-            {LinkComponent}
+            {LinkComponent(route)}
         </SlidingRouteMenuItem>
     ));
 
