@@ -14,7 +14,7 @@ interface Props {
 const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
     const { pathname } = useLocation();
 
-    const { getRouteIcons, getRouteIconAmount, setActiveLink } = useGetRouteIcons(pathname);
+    const { getRouteIcons, setActiveLink } = useGetRouteIcons(pathname);
 
     useEffect(() => {
         setActiveLink();
@@ -49,9 +49,6 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
         <nav>
             <ul
                 className={styles.clockFeatureLinks}
-                style={{
-                    gridTemplateColumns: `repeat(${getRouteIconAmount()}, 1fr)`
-                }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onFocus={() => setIsHovered(true)}
