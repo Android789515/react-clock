@@ -19,7 +19,7 @@ const useGetRouteIcons = (pathname: RouteURL) => {
         timer: timerIcon
     });
 
-    const getRouteIcons = () => routeIcons;
+    const getRoutesAndIcons = () => Object.entries(routeIcons);
 
     const setActiveRouteIcon = () => {
         const activeLink = pathname.split('/').at(-1) || '/';
@@ -32,7 +32,7 @@ const useGetRouteIcons = (pathname: RouteURL) => {
     };
 
     return {
-        getRouteIcons,
+        getRoutesAndIcons,
         setActiveRouteIcon
     };
 };

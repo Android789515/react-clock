@@ -14,7 +14,7 @@ interface Props {
 const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
     const { pathname } = useLocation();
 
-    const { getRouteIcons, setActiveRouteIcon } = useGetRouteIcons(pathname);
+    const { getRoutesAndIcons, setActiveRouteIcon } = useGetRouteIcons(pathname);
 
     useEffect(() => {
         setActiveRouteIcon();
@@ -22,7 +22,7 @@ const ClockFeatureLinks = ({ isDarkTheme }: Props) => {
 
     const [ isHovered, setIsHovered ] = useState(false);
 
-    const Links = Object.entries(getRouteIcons()).map(([route, iconPath], index) => {
+    const Links = getRoutesAndIcons().map(([route, iconPath], index) => {
         const isCurrentFeature = pathname === route || pathname === '/' + route;
 
         return (
