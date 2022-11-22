@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useState } from 'react';
 
 import type { RouteURL } from '../../types/linkTypes';
 import type { CSS_Class } from '../../types/CSS_Types';
@@ -20,12 +21,18 @@ const SlidingRouteMenu = ({ routes, LinkComponent, customClassName }: Props) => 
         </SlidingRouteMenuItem>
     ));
 
+    const [ isHovered, setIsHovered ] = useState(false);
+
     return (
         <ul
             className={`
                 ${customClassName}
                 ${styles.slidingRouteMenu}
             `}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onFocus={() => setIsHovered(true)}
+            onBlur={() => setIsHovered(false)}
         >
             {Links}
         </ul>
