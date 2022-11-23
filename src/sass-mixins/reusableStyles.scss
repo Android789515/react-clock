@@ -5,3 +5,7 @@
 @mixin pillShape {
   border-radius: 50px;
 }
+
+@mixin themeTransition {
+  transition: color 250ms, background 250ms;
+}
