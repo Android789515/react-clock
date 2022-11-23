@@ -1,6 +1,10 @@
+@use 'sass-mixins/reusableStyles';
+
 $layoutBreakpoint: 35.25em;
 
 .app {
+  @include reusableStyles.themeTransition;
+
   display: grid;
   grid-template-rows: max-content max-content;
   grid-row-gap: 7em;
@@ -8,8 +12,6 @@ $layoutBreakpoint: 35.25em;
   grid-template-columns: $sideSpacing auto $sideSpacing;
 
   min-height: 100vh;
-
-  transition: color 250ms, background-color 250ms;
 }
 
 @media (min-width: $layoutBreakpoint) {

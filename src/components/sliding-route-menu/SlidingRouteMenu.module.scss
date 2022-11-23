@@ -1,0 +1,16 @@
+@use '../../App.module';
+@use '../../sass-mixins/app-style-defaults';
+
+.slidingRouteMenu {
+  @include app-style-defaults.list;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 1.25em;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .slidingRouteMenu {
+    grid-column-gap: 3em;
+  }
+}
