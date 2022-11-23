@@ -19,6 +19,7 @@ const SlidingRouteMenu = ({ routes, LinkComponent, customClassName, menuItemClas
     const Links = routes.map((route, index) => (
         <SlidingRouteMenuItem
             key={index}
+            isActiveRoute={index === 0}
             customClassName={menuItemClassName}
         >
             {LinkComponent(route)}
