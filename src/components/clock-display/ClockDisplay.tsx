@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 import { AriaRoles, InputTypes } from '../../types/ariaTypes';
 import type { TimeInMilliseconds, TimeInSeconds } from '../../types/timeTypes';
 import { formatTime, getTotalSeconds } from '../../utils/timeConversionUtils';
-import { prefix, removeCharacter, segmentString } from '../../utils/stringUtils';
+import { removeCharacter, segmentString } from '../../utils/stringUtils';
 
 import styles from './ClockDisplay.module.scss';
 
@@ -29,7 +29,7 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
     };
 
     const segmentTime = (parsedTime: string) => {
-        const zeroPrefixedTime = prefix(parsedTime, '0', maxTimeDigits - parsedTime.length);
+        const zeroPrefixedTime = parsedTime.padStart(maxTimeDigits, '0');
 
         return segmentString(zeroPrefixedTime, 2);
     };
