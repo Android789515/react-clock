@@ -16,17 +16,42 @@ interface Props {
 }
 
 const SlidingRouteMenu = ({ routes, LinkComponent, customClassName, menuItemClassName }: Props) => {
+    const [ isHovered, setIsHovered ] = useState(false);
+
+    const getIconSize = () => {
+        const appLayoutBreakpoint = 564;
+        const isSmallScreen = window.innerWidth < appLayoutBreakpoint;
+
+        // In ems
+        return isSmallScreen ? 1.25 : 3;
+    };
+
+    const getSlideAmount = (routeMenuItemIndex: number) => {
+
+        const isFirstRouteMenuItem = routeMenuItemIndex === 0;
+
+        if (isHovered) {
+            return 'revert';
+        } else if (!isFirstRouteMenuItem) {
+            const minTranslation = getIconSize() * 2;
+            const distanceFromFirst = routeMenuItemIndex;
+
+            return `translateX(-${minTranslation * distanceFromFirst}em)`;
+        }
+    };
+
     const Links = routes.map((route, index) => (
         <SlidingRouteMenuItem
             key={index}
             isActiveRoute={index === 0}
             customClassName={menuItemClassName}
+            customStyle={{
+                transform: getSlideAmount(index)
+            }}
         >
             {LinkComponent(route)}
         </SlidingRouteMenuItem>
     ));
-
-    const [ isHovered, setIsHovered ] = useState(false);
 
     return (
         <ul

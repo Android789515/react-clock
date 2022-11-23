@@ -6,7 +6,7 @@
 
   display: grid;
   grid-auto-flow: column;
-  grid-column-gap: 1em;
+  grid-column-gap: 1.25em;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
