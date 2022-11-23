@@ -12,11 +12,15 @@ interface Props {
     routes: RouteURL[];
     LinkComponent: (route: RouteURL) => ReactNode;
     customClassName?: CSS_Class;
+    menuItemClassName?: CSS_Class;
 }
 
-const SlidingRouteMenu = ({ routes, LinkComponent, customClassName }: Props) => {
+const SlidingRouteMenu = ({ routes, LinkComponent, customClassName, menuItemClassName }: Props) => {
     const Links = routes.map((route, index) => (
-        <SlidingRouteMenuItem key={index}>
+        <SlidingRouteMenuItem
+            key={index}
+            customClassName={menuItemClassName}
+        >
             {LinkComponent(route)}
         </SlidingRouteMenuItem>
     ));
