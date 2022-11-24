@@ -1,7 +1,8 @@
-import { ChangeEvent } from 'react';
+import type { SyntheticEvent } from 'react';
+import { useState, useEffect } from 'react';
 
 import { AriaRoles, InputTypes } from '../../types/ariaTypes';
-import type { TimeInMilliseconds, TimeInSeconds } from '../../types/timeTypes';
+import type { TimeInMilliseconds, TimeInSeconds, FormattedTime } from '../../types/timeTypes';
 import { formatTime, getTotalSeconds } from '../../utils/timeConversionUtils';
 import { removeCharacter, segmentString } from '../../utils/stringUtils';
 
@@ -16,23 +17,16 @@ interface Props {
 
 const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime }: Props) => {
 
-    const maxTimeDigits = 6;
+    const [
+        { hours, minutes, seconds, milliseconds },
+        updateDisplayTime
+    ] = useState<FormattedTime>(formatTime(timeInMilliseconds));
 
-    const limitTimeDigits = (timeEntered: string) => {
-        const isTimeEnteredTooLong = timeEntered.length > maxTimeDigits;
-
-        if (isTimeEnteredTooLong) {
-            return timeEntered.slice(0, maxTimeDigits);
-        } else {
-            return timeEntered;
-        }
+    const refreshDisplayTime = () => {
+        updateDisplayTime(formatTime(timeInMilliseconds))
     };
 
-    const segmentTime = (parsedTime: string) => {
-        const zeroPrefixedTime = parsedTime.padStart(maxTimeDigits, '0');
-
-        return segmentString(zeroPrefixedTime, 2);
-    };
+    useEffect(refreshDisplayTime, [timeInMilliseconds])
 
     const validateTimeEntered = (timeEntered: string) => {
         const isTimeEnteredValidNumber = !Object.is(Number(timeEntered), NaN);
@@ -45,11 +39,29 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
         }
     };
 
+    const maxTimeDigits = 6;
+
+    const limitTimeDigits = (timeEntered: string) => {
+        const isTimeEnteredTooLong = timeEntered.length > maxTimeDigits;
+
+        if (isTimeEnteredTooLong) {
+            return timeEntered.slice(0, maxTimeDigits);
+        } else {
+            return timeEntered;
+        }
+    };
+
     const removeLeadingZeros = (validTimeEntered: string) => {
         return String(Number(validTimeEntered));
     };
 
-    const setDisplayTime = ({ target }: ChangeEvent) => {
+    const segmentTime = (parsedTime: string) => {
+        const zeroPrefixedTime = parsedTime.padStart(maxTimeDigits, '0');
+
+        return segmentString(zeroPrefixedTime, 2);
+    };
+
+    const setDisplayTime = ({ target }: SyntheticEvent) => {
         const timeEntered = (target as HTMLInputElement).value;
 
         const parsableTime = removeCharacter(':', timeEntered);
@@ -58,22 +70,19 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
             removeLeadingZeros(validatedParsableTime)
         );
 
-        const timeSegments = segmentTime(parsedTime).map(segment => Number(segment));
-        const [ hours, minutes, seconds ] = timeSegments;
-
-        const totalSeconds = getTotalSeconds(hours, minutes, seconds);
-
-        if (setTime) {
-            setTime(totalSeconds);
-        }
+        const [ hours, minutes, seconds ] = segmentTime(parsedTime);
+        updateDisplayTime({ hours, minutes, seconds, milliseconds });
     };
 
-    const {
-        hours,
-        minutes,
-        seconds,
-        milliseconds
-    } = formatTime(timeInMilliseconds);
+    type TimeUnits = [hours: number, minutes: number, seconds: number];
+    const submitDisplayTime = () => {
+        if (setTime) {
+            const timeUnits: TimeUnits = (
+                [hours, minutes, seconds].map(timeUnit => Number(timeUnit)) as TimeUnits
+            );
+            setTime(getTotalSeconds(...timeUnits));
+        }
+    };
     return (
         <input
             className={styles.clockDisplay}
@@ -88,6 +97,7 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
                 + (showMilliseconds ? `.${milliseconds}` : '')
             }
             onChange={setDisplayTime}
+            onBlur={submitDisplayTime}
         />
     );
 };
