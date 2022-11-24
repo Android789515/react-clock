@@ -18,9 +18,9 @@ const ClockFeatureLink = ({ route, iconPath, isDarkTheme, isActiveLink }: Props)
         <NavLink
             to={route}
             className={`
-                    ${styles.clockFeatureLink}
-                    ${isActiveLink ? styles.activeClockFeatureLink : ''}
-                `}
+                ${styles.clockFeatureLink}
+                ${isActiveLink ? styles.activeClockFeatureLink : ''}
+            `}
         >
             <ClockFeatureIcon
                 iconPath={iconPath}
