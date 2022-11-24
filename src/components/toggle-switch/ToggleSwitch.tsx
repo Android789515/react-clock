@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useContext, useState } from 'react';
 
 import { themeContext } from '../../theme-context/themeContext';
@@ -12,11 +13,18 @@ const toEms = (number: number) => number + 'em';
 interface Props {
     scale: number;
     isInitiallyToggledOn?: boolean;
+    displayToggleState?: (isToggledOn: boolean) => ReactNode;
     whenToggledOn: ToggleOnFunction;
     whenToggledOff: ToggleOffFunction;
 }
 
-const ToggleSwitch = ({ scale, isInitiallyToggledOn = false, whenToggledOn, whenToggledOff }: Props) => {
+const ToggleSwitch = ({
+    scale,
+    isInitiallyToggledOn = false,
+    displayToggleState,
+    whenToggledOn,
+    whenToggledOff
+}: Props) => {
     const { isLightTheme } = useContext(themeContext);
 
     const switchBackground = isLightTheme()
@@ -45,18 +53,21 @@ const ToggleSwitch = ({ scale, isInitiallyToggledOn = false, whenToggledOn, when
 
     const isToggleSwitchSmall = scale < 2;
     return (
-        <button
-            className={`
+        <div>
+            {displayToggleState && displayToggleState(isToggledOn)}
+
+            <button
+                className={`
                 ${styles.toggleSwitch}
                 ${isToggleSwitchSmall ? styles.toggleSwitchSmall : ''}
                 ${switchBackground}
             `}
-            style={{
-                width: toEms(toggleSwitchSize),
-                padding: toEms(.25 * scale)
-            }}
-            onClick={toggleSwitch}
-        >
+                style={{
+                    width: toEms(toggleSwitchSize),
+                    padding: toEms(.25 * scale)
+                }}
+                onClick={toggleSwitch}
+            >
             <span
                 className={`
                     ${styles.toggleSwitchKnob}
@@ -66,7 +77,8 @@ const ToggleSwitch = ({ scale, isInitiallyToggledOn = false, whenToggledOn, when
                     marginLeft: knobPosition
                 }}
             />
-        </button>
+            </button>
+        </div>
     );
 };
 
