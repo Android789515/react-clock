@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import type { IconPath, RouteURL } from '../../../types/linkTypes';
 
-import timeClockIcon from './icons/time-clock.svg';
-import stopWatchIcon from './icons/stop-watch.svg';
-import timerIcon from './icons/timer.svg';
+import timeClockIcon from '../../../icons/time-clock.svg';
+import stopWatchIcon from '../../../icons/stop-watch.svg';
+import timerIcon from '../../../icons/timer.svg';
 
 const useGetRouteIcons = () => {
     interface RouteIcons {
