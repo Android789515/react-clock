@@ -35,7 +35,7 @@ describe('TimeClock', () => {
     });
 
     it('Displays 12h format when the toggle switch is toggled on', async () => {
-        render(
+        const { rerender } = render(
             <TimeClock />
         );
 
@@ -45,6 +45,9 @@ describe('TimeClock', () => {
             ToggleSwitch.click();
         });
 
+        rerender(
+            <TimeClock />
+        );
         const ClockDisplay = screen.getByRole(AriaRoles.timer);
 
         const date = new Date();
@@ -56,5 +59,33 @@ describe('TimeClock', () => {
 
         const expectedDisplay = dateTimeUnits.map(makeDoubleDigit).join(':');
         expect(ClockDisplay).toHaveDisplayValue(expectedDisplay);
+    });
+
+    it('Shows 24h next to the time format toggle switch when the time format is 24h', () => {
+        render(
+            <TimeClock />
+        );
+
+        // Time is 24h format by default.
+        // Check that it shows 24h.
+        const TimeFormatDisplay = screen.getByText('24H');
+
+        expect(TimeFormatDisplay).toBeInTheDocument();
+    });
+
+    it('Shows AM/PM next to the time format toggle switch when the time format is 12h', async () => {
+        render(
+            <TimeClock />
+        );
+
+        const ToggleSwitch = screen.getByRole(AriaRoles.button);
+
+        await waitFor(() => {
+            ToggleSwitch.click();
+        });
+
+        const TimeFormatDisplay = screen.getByText('AM/PM');
+
+        expect(TimeFormatDisplay).toBeInTheDocument();
     });
 });

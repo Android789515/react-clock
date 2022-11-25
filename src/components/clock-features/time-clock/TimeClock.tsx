@@ -46,17 +46,23 @@ const TimeClock = () => {
     const afternoonHours = 12 * millisecondsPerHour;
 
     return (
-        <main className={styles.timeClock}>
+        <main>
             <ClockDisplay
                 disabled
                 timeInMilliseconds={is12hTime() ? currentTime - afternoonHours : currentTime}
             />
 
-            <ToggleSwitch
-                scale={1}
-                whenToggledOn={() => toggleIs12hTime()}
-                whenToggledOff={() => toggleIs12hTime()}
-            />
+            <div className={styles.timeFormatLayout}>
+                <span className={styles.timeFormat}>
+                    {is12hTime() ? 'AM/PM' : '24H'}
+                </span>
+
+                <ToggleSwitch
+                    scale={1}
+                    whenToggledOn={() => toggleIs12hTime()}
+                    whenToggledOff={() => toggleIs12hTime()}
+                />
+            </div>
         </main>
     );
 };

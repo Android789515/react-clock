@@ -1,3 +1,30 @@
-.timeClock {
+@use '../../../App.module';
 
+.timeFormatLayout {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: .5em;
+  align-items: center;
+
+  max-width: 11.5625em;
+
+  margin: 1em auto 0 auto;
+}
+
+.timeFormat {
+  font-weight: 700;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .timeFormatLayout {
+    max-width: 23.5em;
+
+    padding-left: .5em;
+
+    margin-top: 2em;
+  }
+
+  .timeFormat {
+    font-size: 2rem;
+  }
 }
