@@ -1,3 +1,7 @@
-.themeIcon {
-  
+@use '../../App.module';
+
+@media (min-width: App.$layoutBreakpoint) {
+  .themeIcon {
+    width: 3em;
+  }
 }
