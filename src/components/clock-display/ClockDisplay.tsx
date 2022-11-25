@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react';
 import { AriaRoles, InputTypes } from '../../types/ariaTypes';
 import type { TimeInMilliseconds, TimeInSeconds, FormattedTime } from '../../types/timeTypes';
 import { formatTime, getTotalSeconds } from '../../utils/timeConversionUtils';
-import { removeCharacter, segmentString } from '../../utils/stringUtils';
+import { removeCharacter } from '../../utils/stringUtils';
+import {
+    validateTimeEntered,
+    limitTimeDigits,
+    segmentTime,
+    removeLeadingZeros
+} from './clock-display-utils/clockDisplayUtils';
 
 import styles from './ClockDisplay.module.scss';
 
@@ -27,39 +33,6 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
     };
 
     useEffect(refreshDisplayTime, [timeInMilliseconds])
-
-    const validateTimeEntered = (timeEntered: string) => {
-        const isTimeEnteredValidNumber = !Object.is(Number(timeEntered), NaN);
-
-        if (isTimeEnteredValidNumber) {
-            return timeEntered;
-        } else {
-            const previousValidTime = timeEntered.slice(0, timeEntered.length - 1);
-            return previousValidTime;
-        }
-    };
-
-    const maxTimeDigits = 6;
-
-    const limitTimeDigits = (timeEntered: string) => {
-        const isTimeEnteredTooLong = timeEntered.length > maxTimeDigits;
-
-        if (isTimeEnteredTooLong) {
-            return timeEntered.slice(0, maxTimeDigits);
-        } else {
-            return timeEntered;
-        }
-    };
-
-    const removeLeadingZeros = (validTimeEntered: string) => {
-        return String(Number(validTimeEntered));
-    };
-
-    const segmentTime = (parsedTime: string) => {
-        const zeroPrefixedTime = parsedTime.padStart(maxTimeDigits, '0');
-
-        return segmentString(zeroPrefixedTime, 2);
-    };
 
     const setDisplayTime = ({ target }: SyntheticEvent) => {
         const timeEntered = (target as HTMLInputElement).value;
