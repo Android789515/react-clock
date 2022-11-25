@@ -6,6 +6,6 @@
   border-radius: 50px;
 }
 
-@mixin themeTransition {
-  transition: color 250ms, background 250ms;
+@mixin themeTransition($otherTransitions...) {
+  transition: color 250ms, background 250ms, $otherTransitions;
 }

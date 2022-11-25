@@ -1,14 +1,12 @@
 @use '../../../sass-mixins/reusableStyles';
 
 .slidingRouteMenuItem {
-  @include reusableStyles.themeTransition;
+  @include reusableStyles.themeTransition(transform 250ms);
 
   position: relative;
   z-index: 0;
 
   background: #fff;
-
-  transition: transform 250ms;
 }
 
 .activeSlidingRouteMenuItemDark {
