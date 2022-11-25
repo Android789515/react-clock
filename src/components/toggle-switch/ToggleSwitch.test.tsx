@@ -51,36 +51,4 @@ describe('ToggleSwitch', () => {
 
         expect(toggleOffFunctionSpy).toHaveBeenCalled();
     });
-
-    it('Optionally renders a component to display toggle information, ' +
-        'passing it the toggle state', async () => {
-        const toggleOnMessage = 'Toggled On';
-        const toggleOffMessage = 'Toggled Off';
-
-        render(
-            <ToggleSwitch
-                scale={1}
-                isInitiallyToggledOn
-                displayToggleState={(isToggledOn) => (
-                    <p>{isToggledOn ? toggleOnMessage : toggleOffMessage}</p>
-                )}
-                whenToggledOn={() => {}}
-                whenToggledOff={() => {}}
-            />
-        );
-
-        // The ToggleSwitch is initially toggled on (see above).
-        const ToggleDisplayComponent = screen.getByText(toggleOnMessage);
-
-        expect(ToggleDisplayComponent).toBeInTheDocument();
-
-        const ToggleSwitchComponent = screen.getByRole(AriaRoles.button);
-        await waitFor(() => {
-            ToggleSwitchComponent.click();
-        });
-
-        const UpdatedToggleDisplayComponent = screen.getByText(toggleOffMessage);
-
-        expect(UpdatedToggleDisplayComponent).toBeInTheDocument();
-    });
 });

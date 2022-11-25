@@ -5,6 +5,7 @@ import { themeContext } from '../../theme-context/themeContext';
 import styles from './AppHeader.module.scss';
 
 import ClockFeatureLinks from '../clock-features/clock-feature-links/ClockFeatureLinks';
+import ThemeIcon from '../theme-icon/ThemeIcon';
 import ToggleSwitch from '../toggle-switch/ToggleSwitch';
 
 const AppHeader = () => {
@@ -18,12 +19,18 @@ const AppHeader = () => {
                 isDarkTheme={isDarkTheme()}
             />
 
-            <ToggleSwitch
-                scale={1}
-                isInitiallyToggledOn={isDarkTheme()}
-                whenToggledOn={toggleTheme}
-                whenToggledOff={toggleTheme}
-            />
+            <div className={styles.themeArea}>
+                <ThemeIcon
+                    isDarkTheme={isDarkTheme()}
+                />
+
+                <ToggleSwitch
+                    scale={1}
+                    isInitiallyToggledOn={isDarkTheme()}
+                    whenToggledOn={toggleTheme}
+                    whenToggledOff={toggleTheme}
+                />
+            </div>
         </header>
     );
 };

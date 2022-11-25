@@ -18,10 +18,21 @@
   grid-row: 1;
 }
 
+.themeArea {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: .5em;
+  align-items: center;
+}
+
 @media (min-width: App.$layoutBreakpoint) {
   .appHeader {
     grid-template-rows: minmax(6em, auto);
 
     margin-bottom: 5em;
+  }
+
+  .themeArea {
+    grid-column-gap: 4em;
   }
 }
