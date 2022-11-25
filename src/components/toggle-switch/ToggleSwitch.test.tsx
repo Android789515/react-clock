@@ -61,7 +61,7 @@ describe('ToggleSwitch', () => {
             <ToggleSwitch
                 scale={1}
                 isInitiallyToggledOn
-                displayToggleState={(isToggledOn) => (
+                renderWithToggleState={(isToggledOn) => (
                     <p>{isToggledOn ? toggleOnMessage : toggleOffMessage}</p>
                 )}
                 whenToggledOn={() => {}}

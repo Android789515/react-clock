@@ -13,7 +13,7 @@ const toEms = (number: number) => number + 'em';
 interface Props {
     scale: number;
     isInitiallyToggledOn?: boolean;
-    displayToggleState?: (isToggledOn: boolean) => ReactNode;
+    renderWithToggleState?: (isToggledOn: boolean) => ReactNode;
     whenToggledOn: ToggleOnFunction;
     whenToggledOff: ToggleOffFunction;
 }
@@ -21,7 +21,7 @@ interface Props {
 const ToggleSwitch = ({
     scale,
     isInitiallyToggledOn = false,
-    displayToggleState,
+    renderWithToggleState,
     whenToggledOn,
     whenToggledOff
 }: Props) => {
@@ -54,7 +54,7 @@ const ToggleSwitch = ({
     const isToggleSwitchSmall = scale < 2;
     return (
         <div>
-            {displayToggleState && displayToggleState(isToggledOn)}
+            {renderWithToggleState && renderWithToggleState(isToggledOn)}
 
             <button
                 className={`
