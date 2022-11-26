@@ -7,7 +7,7 @@ import useClock from '../../../independent-hooks/clock/useClock';
 
 import styles from './Timer.module.scss';
 
-import Alarm from './alarm/Alarm';
+import Alarm from '../../alarm/Alarm';
 import ClockDisplay from '../../clock-display/ClockDisplay';
 import TimerProgressBar from './timer-progress-bar/TimerProgressBar';
 import ClockActionButtons from '../../clock-action-buttons/ClockActionButtons';
