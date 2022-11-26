@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { TimeInMilliseconds } from '../../../types/timeTypes';
-import { toMilliseconds } from '../../../utils/timeConversionUtils';
+import { toMilliseconds, formatTime } from '../../../utils/timeConversionUtils';
 import useClock from '../../../independent-hooks/clock/useClock';
 import use12hTime from './use-12h-time/use12hTime';
 
@@ -45,6 +45,13 @@ const TimeClock = () => {
     const { is12hTime, toggleIs12hTime } = use12hTime(false);
     const afternoonHours = 12 * millisecondsPerHour;
 
+    const isAMOrPM = () => {
+        const currentHours = Number(formatTime(currentTime).hours);
+        const isAfternoon = currentHours > 12;
+
+        return isAfternoon ? 'PM' : 'AM'
+    };
+
     return (
         <main>
             <ClockDisplay
@@ -54,7 +61,7 @@ const TimeClock = () => {
 
             <div className={styles.timeFormatLayout}>
                 <span className={styles.timeFormat}>
-                    {is12hTime() ? 'AM/PM' : '24H'}
+                    {is12hTime() ? isAMOrPM() : '24H'}
                 </span>
 
                 <ToggleSwitch
