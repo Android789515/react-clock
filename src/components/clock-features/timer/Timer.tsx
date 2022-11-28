@@ -75,6 +75,7 @@ const Timer = () => {
             <ClockDisplay
                 disabled={isClockStarted()}
                 timeInMilliseconds={toMilliseconds(counterTime.currentTime)}
+                customClassname={styles.timerDisplay}
                 setTime={setTimeToCountFrom}
             />
 

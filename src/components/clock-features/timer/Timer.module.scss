@@ -9,6 +9,13 @@
   grid-column: 1;
 }
 
+.timerDisplay {
+  grid-row: 1;
+  align-self: center;
+
+  z-index: 1;
+}
+
 .timerButtons {
   grid-row: 2;
 
