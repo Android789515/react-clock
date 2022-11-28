@@ -2,10 +2,7 @@
 
 .timer {
   display: grid;
-  grid-template: auto 1fr / 1fr;
   grid-row-gap: 2em;
-  justify-content: center;
-  align-items: center;
 }
 
 .timer > * {
@@ -14,6 +11,8 @@
 
 .timerButtons {
   grid-row: 2;
+
+  padding: 1em;
 }
 
 @media (min-width: App.$layoutBreakpoint) {

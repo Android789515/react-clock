@@ -15,16 +15,14 @@
   color: inherit;
 
   grid-row: 1;
-  justify-self: center;
   align-self: center;
-
-  display: block;
 
   z-index: 1;
   outline: none;
 
   // Fix annoying Firefox issue
   max-width: 270px;
+  margin: auto;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
