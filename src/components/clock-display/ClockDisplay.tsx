@@ -19,7 +19,7 @@ interface Props {
     disabled: boolean;
     showMilliseconds?: boolean;
     timeInMilliseconds: TimeInMilliseconds;
-    customClassname: CSS_Class;
+    customClassname?: CSS_Class;
     setTime?: (time: TimeInSeconds) => void;
 }
 
