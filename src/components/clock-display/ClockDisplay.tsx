@@ -1,8 +1,9 @@
 import type { SyntheticEvent } from 'react';
 import { useState, useEffect } from 'react';
 
-import { AriaRoles, InputTypes } from '../../types/ariaTypes';
 import type { TimeInMilliseconds, TimeInSeconds, FormattedTime } from '../../types/timeTypes';
+import type { CSS_Class } from '../../types/CSS_Types';
+import { AriaRoles, InputTypes } from '../../types/ariaTypes';
 import { formatTime, getTotalSeconds } from '../../utils/timeConversionUtils';
 import { removeCharacter } from '../../utils/stringUtils';
 import {
@@ -18,10 +19,11 @@ interface Props {
     disabled: boolean;
     showMilliseconds?: boolean;
     timeInMilliseconds: TimeInMilliseconds;
+    customClassname: CSS_Class;
     setTime?: (time: TimeInSeconds) => void;
 }
 
-const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime }: Props) => {
+const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customClassname, setTime }: Props) => {
 
     const [
         { hours, minutes, seconds, milliseconds },
@@ -58,7 +60,10 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, setTime 
     };
     return (
         <input
-            className={styles.clockDisplay}
+            className={`
+                ${styles.clockDisplay}
+                ${customClassname}
+            `}
             id={clockDisplayID}
             role={AriaRoles.timer}
             type={InputTypes.text}
