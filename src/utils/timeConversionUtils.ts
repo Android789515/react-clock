@@ -70,3 +70,16 @@ export const formatTime = (timeInMilliseconds: TimeInMilliseconds): FormattedTim
         milliseconds,
     };
 };
+
+export const stringifyTime = (formattedTime: FormattedTime, showMilliseconds: boolean) => {
+    const { hours, minutes, seconds, milliseconds } = formattedTime;
+
+    const stringifiedTime = `${hours}:${minutes}:${seconds}`;
+    const stringifiedMilliseconds = `.${milliseconds}`;
+
+    if (showMilliseconds) {
+        return stringifiedTime + stringifiedMilliseconds;
+    } else {
+        return stringifiedTime;
+    }
+};

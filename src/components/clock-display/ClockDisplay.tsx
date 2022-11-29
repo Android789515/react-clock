@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import type { TimeInMilliseconds, TimeInSeconds, FormattedTime } from '../../types/timeTypes';
 import type { CSS_Class } from '../../types/CSS_Types';
 import { AriaRoles, InputTypes } from '../../types/ariaTypes';
-import { formatTime, getTotalSeconds } from '../../utils/timeConversionUtils';
+import { formatTime, getTotalSeconds, stringifyTime } from '../../utils/timeConversionUtils';
 import { removeCharacter } from '../../utils/stringUtils';
 import {
     validateTimeEntered,
@@ -25,10 +25,7 @@ interface Props {
 
 const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customClassname, setTime }: Props) => {
 
-    const [
-        { hours, minutes, seconds, milliseconds },
-        updateDisplayTime
-    ] = useState<FormattedTime>(formatTime(timeInMilliseconds));
+    const [ displayTime, updateDisplayTime ] = useState<FormattedTime>(formatTime(timeInMilliseconds));
 
     const refreshDisplayTime = () => {
         updateDisplayTime(formatTime(timeInMilliseconds))
@@ -46,16 +43,19 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customCl
         );
 
         const [ hours, minutes, seconds ] = segmentTime(parsedTime);
-        updateDisplayTime({ hours, minutes, seconds, milliseconds });
+        updateDisplayTime(prevTime => {
+            // Milliseconds are not editable by the user.
+            return { hours, minutes, seconds, milliseconds: prevTime.milliseconds };
+        });
     };
 
-    type TimeUnits = [hours: number, minutes: number, seconds: number];
     const submitDisplayTime = () => {
         if (setTime) {
-            const timeUnits: TimeUnits = (
-                [hours, minutes, seconds].map(timeUnit => Number(timeUnit)) as TimeUnits
+            const [ hours, minutes, seconds ] = (
+                Object.values(displayTime).map(timeUnit => Number(timeUnit))
             );
-            setTime(getTotalSeconds(...timeUnits));
+            // Milliseconds are not editable by the user, so excluded.
+            setTime(getTotalSeconds(hours, minutes, seconds));
         }
     };
     return (
@@ -68,12 +68,7 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customCl
             role={AriaRoles.timer}
             type={InputTypes.text}
             disabled={disabled}
-            value={
-                hours + ':'
-                + minutes + ':'
-                + seconds
-                + (showMilliseconds ? `.${milliseconds}` : '')
-            }
+            value={stringifyTime(displayTime, showMilliseconds || false)}
             onChange={setDisplayTime}
             onBlur={submitDisplayTime}
         />
