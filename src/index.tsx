@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
 import { ThemeContextProvider } from './theme-context/themeContext';
+import { AlarmSchedulerProvider } from './alarm-scheduler/alarmScheduler';
 import App from './App';
 
 import TimeClock from './components/clock-features/time-clock/TimeClock';
@@ -40,7 +41,9 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <ThemeContextProvider>
-            <RouterProvider router={router} />
+            <AlarmSchedulerProvider>
+                <RouterProvider router={router} />
+            </AlarmSchedulerProvider>
         </ThemeContextProvider>
     </React.StrictMode>,
 );
