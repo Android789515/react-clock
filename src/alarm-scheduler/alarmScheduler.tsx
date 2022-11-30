@@ -18,7 +18,7 @@ interface Props {
 }
 
 const AlarmSchedulerProvider = ({ children }: Props) => {
-    const [ alarms, updateAlarms ] = useState<StringifiedTime[]>([]);
+    const [ alarms, updateAlarms ] = useState<Set<StringifiedTime>>(new Set([]));
 
     const addAlarm = (time: FormattedTime) => {
 
