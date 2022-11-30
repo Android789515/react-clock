@@ -4,10 +4,10 @@ export type TimeInMilliseconds = number;
 export type Seconds = number;
 export type TimeInSeconds = number;
 
-type FormattedHours = string;
-type FormattedMinutes = string;
-type FormattedSeconds = string;
-type FormattedMilliseconds = string;
+type FormattedHours = `0${string}` | string;
+type FormattedMinutes = `0${string}` | string;
+type FormattedSeconds = `0${string}` | string;
+type FormattedMilliseconds = `0${string}` | string;
 
 export interface FormattedTime {
     hours: FormattedHours;
@@ -15,3 +15,5 @@ export interface FormattedTime {
     seconds: FormattedSeconds;
     milliseconds: FormattedMilliseconds;
 }
+
+export type StringifiedTime = `${FormattedHours}:${FormattedMinutes}:${FormattedSeconds}`;

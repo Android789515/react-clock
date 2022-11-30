@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
-import type { FormattedTime } from '../types/timeTypes';
+import type { FormattedTime, StringifiedTime } from '../types/timeTypes';
 
 interface AlarmSchedulerFunctions {
     addAlarm: (time: FormattedTime) => void;
@@ -18,6 +18,8 @@ interface Props {
 }
 
 const AlarmSchedulerProvider = ({ children }: Props) => {
+    const [ alarms, updateAlarms ] = useState<StringifiedTime[]>([]);
+
     const addAlarm = (time: FormattedTime) => {
 
     };
