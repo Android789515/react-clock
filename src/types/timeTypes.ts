@@ -16,4 +16,7 @@ export interface FormattedTime {
     milliseconds: FormattedMilliseconds;
 }
 
-export type StringifiedTime = `${FormattedHours}:${FormattedMinutes}:${FormattedSeconds}`;
+export type StringifiedTime = (
+    `${FormattedHours}:${FormattedMinutes}:${FormattedSeconds}`
+    | `${FormattedHours}:${FormattedMinutes}:${FormattedSeconds}.${FormattedMilliseconds}`
+);
