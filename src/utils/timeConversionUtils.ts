@@ -1,4 +1,4 @@
-import type { TimeInSeconds, TimeInMilliseconds } from '../types/timeTypes';
+import type { TimeInSeconds, TimeInMilliseconds, StringifiedTime } from '../types/timeTypes';
 import type { Milliseconds, Seconds, FormattedTime } from '../types/timeTypes';
 
 export const toMilliseconds = (timeInSeconds: TimeInSeconds) => {
@@ -74,11 +74,11 @@ export const formatTime = (timeInMilliseconds: TimeInMilliseconds): FormattedTim
 export const stringifyTime = (formattedTime: FormattedTime, showMilliseconds: boolean) => {
     const { hours, minutes, seconds, milliseconds } = formattedTime;
 
-    const stringifiedTime = `${hours}:${minutes}:${seconds}`;
+    const stringifiedTime: StringifiedTime = `${hours}:${minutes}:${seconds}`;
     const stringifiedMilliseconds = `.${milliseconds}`;
 
     if (showMilliseconds) {
-        return stringifiedTime + stringifiedMilliseconds;
+        return stringifiedTime + stringifiedMilliseconds as StringifiedTime;
     } else {
         return stringifiedTime;
     }

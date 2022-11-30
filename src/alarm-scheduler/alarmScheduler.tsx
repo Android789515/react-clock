@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { createContext, useState } from 'react';
 
 import type { FormattedTime, StringifiedTime } from '../types/timeTypes';
+import { stringifyTime } from '../utils/timeConversionUtils';
 
 interface AlarmSchedulerFunctions {
     addAlarm: (time: FormattedTime) => void;
@@ -21,11 +22,19 @@ const AlarmSchedulerProvider = ({ children }: Props) => {
     const [ alarms, updateAlarms ] = useState<Set<StringifiedTime>>(new Set<StringifiedTime>([]));
 
     const addAlarm = (time: FormattedTime) => {
-
+        const newAlarm = stringifyTime(time, false);
+        updateAlarms(prevAlarms => (
+            new Set<StringifiedTime>([ ...prevAlarms, newAlarm])
+        ));
     };
 
     const removeAlarm = (time: FormattedTime) => {
+        const alarmToRemove = stringifyTime(time, false);
+        updateAlarms(prevAlarms => {
+            prevAlarms.delete(alarmToRemove);
 
+            return prevAlarms;
+        });
     };
 
     return (
