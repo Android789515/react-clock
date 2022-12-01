@@ -1,35 +1,27 @@
-import { segmentString } from '../../../utils/stringUtils';
+import { isNumber, segmentString } from '../../../utils/stringUtils';
 
-export const validateTimeEntered = (timeEntered: string) => {
-    const isTimeEnteredValidNumber = !Object.is(Number(timeEntered), NaN);
+export const wasValidTimeEntered = (timeEntered: string) => {
+    const lastCharacterEntered = timeEntered.at(-1)!;
 
-    if (isTimeEnteredValidNumber) {
-        return timeEntered;
-    } else {
-        const previousValidTime = timeEntered.slice(0, timeEntered.length - 1);
-        return previousValidTime;
-    }
-};
-
-// Called after validating the time entered.
-export const removeLeadingZeros = (validTimeEntered: string) => {
-    return String(Number(validTimeEntered));
+    return isNumber(lastCharacterEntered);
 };
 
 const maxTimeDigits = 6;
-
-export const limitTimeDigits = (timeEntered: string) => {
-    const isTimeEnteredTooLong = timeEntered.length > maxTimeDigits;
-
-    if (isTimeEnteredTooLong) {
-        return timeEntered.slice(0, maxTimeDigits);
-    } else {
-        return timeEntered;
-    }
-};
 
 export const segmentTime = (parsedTime: string) => {
     const zeroPrefixedTime = parsedTime.padStart(maxTimeDigits, '0');
 
     return segmentString(zeroPrefixedTime, 2);
+};
+
+export const shiftTimeLeft = (timeEntered: string) => {
+    const firstDigitInTime = Number(timeEntered.at(0));
+    const canShiftTime = firstDigitInTime === 0;
+
+    if (canShiftTime) {
+        const shiftedTime = timeEntered.slice(1);
+        return segmentTime(shiftedTime);
+    } else {
+        return segmentTime(timeEntered);
+    }
 };

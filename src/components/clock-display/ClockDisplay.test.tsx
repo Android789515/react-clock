@@ -84,4 +84,33 @@ describe('ClockDisplay', () => {
         const expectedDisplayAfterChange = '12:59:43';
         expect(UpdatedComponent).toHaveDisplayValue(expectedDisplayAfterChange);
     });
+
+    it('Only accepts valid numbers when changing the time', () => {
+        let time: TimeInMilliseconds = 0;
+        const { rerender } = render(
+            <ClockDisplay
+                disabled={false}
+                timeInMilliseconds={time}
+                // User enters time in seconds, and it must
+                // be converted to ms to be re-passed as a prop.
+                setTime={newTime => time = toMilliseconds(newTime)}
+            />
+        );
+
+        const Component = screen.getByRole(AriaRoles.timer);
+        fireEvent.change(Component, { target: { value: 'invalid' } });
+        rerender(
+            <ClockDisplay
+                disabled={false}
+                timeInMilliseconds={time}
+                // User enters time in seconds, and it must
+                // be converted to ms to be re-passed as a prop.
+                setTime={newTime => time = toMilliseconds(newTime)}
+            />
+        );
+
+        const UpdatedComponent = screen.getByRole(AriaRoles.timer);
+        const expectedDisplayAfterChange = '00:00:00';
+        expect(UpdatedComponent).toHaveDisplayValue(expectedDisplayAfterChange);
+    });
 });

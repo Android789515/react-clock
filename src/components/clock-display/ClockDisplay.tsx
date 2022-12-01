@@ -6,12 +6,7 @@ import type { CSS_Class } from '../../types/CSS_Types';
 import { AriaRoles, InputTypes } from '../../types/ariaTypes';
 import { formatTime, getTotalSeconds, stringifyTime } from '../../utils/timeConversionUtils';
 import { removeCharacter } from '../../utils/stringUtils';
-import {
-    validateTimeEntered,
-    limitTimeDigits,
-    segmentTime,
-    removeLeadingZeros
-} from './clock-display-utils/clockDisplayUtils';
+import { wasValidTimeEntered, shiftTimeLeft } from './clock-display-utils/clockDisplayUtils';
 
 import styles from './ClockDisplay.module.scss';
 
@@ -35,18 +30,15 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customCl
 
     const setDisplayTime = ({ target }: SyntheticEvent) => {
         const timeEntered = (target as HTMLInputElement).value;
+        if (wasValidTimeEntered(timeEntered)) {
+            const parsedTime = removeCharacter(':', timeEntered);
 
-        const parsableTime = removeCharacter(':', timeEntered);
-        const validatedParsableTime = validateTimeEntered(parsableTime);
-        const parsedTime = limitTimeDigits(
-            removeLeadingZeros(validatedParsableTime)
-        );
-
-        const [ hours, minutes, seconds ] = segmentTime(parsedTime);
-        updateDisplayTime(prevTime => {
-            // Milliseconds are not editable by the user.
-            return { hours, minutes, seconds, milliseconds: prevTime.milliseconds };
-        });
+            const [ hours, minutes, seconds ] = shiftTimeLeft(parsedTime);
+            updateDisplayTime(prevTime => {
+                // Milliseconds are not editable by the user.
+                return { hours, minutes, seconds, milliseconds: prevTime.milliseconds };
+            });
+        }
     };
 
     const submitDisplayTime = () => {

@@ -19,3 +19,5 @@ export const segmentString = (string: string, segmentLength: number) => {
 
     return segmentableString.split(splitCharacter);
 };
+
+export const isNumber = (string: string) => !Object.is(Number(string), NaN);
