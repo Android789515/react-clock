@@ -1,12 +1,12 @@
 import type { SyntheticEvent } from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import type { TimeInMilliseconds, TimeInSeconds, FormattedTime } from '../../types/timeTypes';
+import type { FormattedTime, TimeInMilliseconds, TimeInSeconds } from '../../types/timeTypes';
 import type { CSS_Class } from '../../types/CSS_Types';
 import { AriaRoles, InputTypes } from '../../types/ariaTypes';
 import { formatTime, getTotalSeconds, stringifyTime } from '../../utils/timeConversionUtils';
 import { removeCharacter } from '../../utils/stringUtils';
-import { wasValidTimeEntered, shiftTimeLeft } from './clock-display-utils/clockDisplayUtils';
+import { shiftTimeLeft, wasValidTimeEntered } from './clock-display-utils/clockDisplayUtils';
 
 import styles from './ClockDisplay.module.scss';
 
@@ -57,7 +57,7 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customCl
                 ${customClassname}
             `}
             id={clockDisplayID}
-            role={AriaRoles.timer}
+            role={disabled ? AriaRoles.timer : AriaRoles.textInput}
             type={InputTypes.text}
             disabled={disabled}
             value={stringifyTime(displayTime, showMilliseconds || false)}

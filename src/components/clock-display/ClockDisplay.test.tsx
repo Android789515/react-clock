@@ -7,6 +7,28 @@ import { toMilliseconds } from '../../utils/timeConversionUtils';
 import ClockDisplay from './ClockDisplay';
 
 describe('ClockDisplay', () => {
+    it('Has a timer role when disabled and a textbox role when editable', () => {
+        const { rerender } = render(
+            <ClockDisplay
+                disabled
+                timeInMilliseconds={0}
+            />
+        );
+
+        const ComponentAsTimer = screen.getByRole(AriaRoles.timer);
+        expect(ComponentAsTimer).toBeInTheDocument();
+
+        rerender(
+            <ClockDisplay
+                disabled={false}
+                timeInMilliseconds={0}
+            />
+        );
+
+        const ComponentAsInput = screen.getByRole(AriaRoles.textInput);
+        expect(ComponentAsInput).toBeInTheDocument();
+    });
+
     it('Displays a formatted time in milliseconds ' +
         'as hours:minutes:seconds.milliseconds (milliseconds are optional)', () => {
 
@@ -38,7 +60,7 @@ describe('ClockDisplay', () => {
             />
         );
 
-        const Component = screen.getByRole(AriaRoles.timer);
+        const Component = screen.getByRole(AriaRoles.textInput);
         fireEvent.change(Component, { target: { value: '12' } });
         rerender(
             <ClockDisplay
@@ -50,7 +72,7 @@ describe('ClockDisplay', () => {
             />
         );
 
-        const UpdatedComponent = screen.getByRole(AriaRoles.timer);
+        const UpdatedComponent = screen.getByRole(AriaRoles.textInput);
         const expectedDisplayAfterChange = '00:00:12';
         expect(UpdatedComponent).toHaveDisplayValue(expectedDisplayAfterChange);
     });
@@ -68,7 +90,7 @@ describe('ClockDisplay', () => {
             />
         );
 
-        const Component = screen.getByRole(AriaRoles.timer);
+        const Component = screen.getByRole(AriaRoles.textInput);
         fireEvent.change(Component, { target: { value: '1259436' } });
         rerender(
             <ClockDisplay
@@ -80,7 +102,7 @@ describe('ClockDisplay', () => {
             />
         );
 
-        const UpdatedComponent = screen.getByRole(AriaRoles.timer);
+        const UpdatedComponent = screen.getByRole(AriaRoles.textInput);
         const expectedDisplayAfterChange = '12:59:43';
         expect(UpdatedComponent).toHaveDisplayValue(expectedDisplayAfterChange);
     });
@@ -97,7 +119,7 @@ describe('ClockDisplay', () => {
             />
         );
 
-        const Component = screen.getByRole(AriaRoles.timer);
+        const Component = screen.getByRole(AriaRoles.textInput);
         fireEvent.change(Component, { target: { value: 'invalid' } });
         rerender(
             <ClockDisplay
@@ -109,7 +131,7 @@ describe('ClockDisplay', () => {
             />
         );
 
-        const UpdatedComponent = screen.getByRole(AriaRoles.timer);
+        const UpdatedComponent = screen.getByRole(AriaRoles.textInput);
         const expectedDisplayAfterChange = '00:00:00';
         expect(UpdatedComponent).toHaveDisplayValue(expectedDisplayAfterChange);
     });
