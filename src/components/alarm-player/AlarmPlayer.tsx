@@ -6,7 +6,7 @@ interface Props {
     shouldRingAlarm: boolean;
 }
 
-const Alarm = ({ shouldRingAlarm }: Props) => {
+const AlarmPlayer = ({ shouldRingAlarm }: Props) => {
     const audioRef = useRef<HTMLAudioElement>(null);
 
     const ringAlarm = () => {
@@ -39,4 +39,4 @@ const Alarm = ({ shouldRingAlarm }: Props) => {
     );
 };
 
-export default Alarm;
+export default AlarmPlayer;

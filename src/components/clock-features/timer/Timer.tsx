@@ -7,7 +7,7 @@ import useClock from '../../../independent-hooks/clock/useClock';
 
 import styles from './Timer.module.scss';
 
-import Alarm from '../../alarm/Alarm';
+import AlarmPlayer from '../../alarm-player/AlarmPlayer';
 import ClockDisplay from '../../clock-display/ClockDisplay';
 import TimerProgressBar from './timer-progress-bar/TimerProgressBar';
 import ClockActionButtons from '../../clock-action-buttons/ClockActionButtons';
@@ -69,7 +69,7 @@ const Timer = () => {
                 ${isTimerActive ? styles.timerActive : styles.timerInactive}
             `}
         >
-            <Alarm
+            <AlarmPlayer
                 shouldRingAlarm={isClockStarted() && counterTime.currentTime === 0}
             />
             <ClockDisplay
