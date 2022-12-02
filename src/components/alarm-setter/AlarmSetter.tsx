@@ -2,9 +2,9 @@ import styles from './AlarmSetter.module.scss';
 
 const AlarmSetter = () => {
     return (
-        <form className={styles.alarmSetter}>
+        <label className={styles.alarmSetter}>
 
-        </form>
+        </label>
     );
 };
 
