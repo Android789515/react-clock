@@ -56,7 +56,7 @@ describe('ClockDisplay', () => {
                 timeInMilliseconds={time}
                 // User enters time in seconds, and it must
                 // be converted to ms to be re-passed as a prop.
-                setTime={newTime => time = toMilliseconds(newTime)}
+                onSubmit={newTime => time = toMilliseconds(newTime)}
             />
         );
 
@@ -68,7 +68,7 @@ describe('ClockDisplay', () => {
                 timeInMilliseconds={time}
                 // User enters time in seconds, and it must
                 // be converted to ms to be re-passed as a prop.
-                setTime={newTime => time = toMilliseconds(newTime)}
+                onSubmit={newTime => time = toMilliseconds(newTime)}
             />
         );
 
@@ -91,7 +91,7 @@ describe('ClockDisplay', () => {
                 timeInMilliseconds={time}
                 // User enters time in seconds, and it must
                 // be converted to ms to be re-passed as a prop.
-                setTime={setTimeFunction.setTime}
+                onSubmit={setTimeFunction.setTime}
             />
         );
 
@@ -116,7 +116,7 @@ describe('ClockDisplay', () => {
                 timeInMilliseconds={time}
                 // User enters time in seconds, and it must
                 // be converted to ms to be re-passed as a prop.
-                setTime={setTimeFunction.setTime}
+                onSubmit={setTimeFunction.setTime}
             />
         );
 
@@ -135,7 +135,7 @@ describe('ClockDisplay', () => {
                 timeInMilliseconds={time}
                 // User enters time in seconds, and it must
                 // be converted to ms to be re-passed as a prop.
-                setTime={newTime => time = toMilliseconds(newTime)}
+                onSubmit={newTime => time = toMilliseconds(newTime)}
             />
         );
 
@@ -147,7 +147,7 @@ describe('ClockDisplay', () => {
                 timeInMilliseconds={time}
                 // User enters time in seconds, and it must
                 // be converted to ms to be re-passed as a prop.
-                setTime={newTime => time = toMilliseconds(newTime)}
+                onSubmit={newTime => time = toMilliseconds(newTime)}
             />
         );
 
@@ -164,7 +164,7 @@ describe('ClockDisplay', () => {
                 timeInMilliseconds={time}
                 // User enters time in seconds, and it must
                 // be converted to ms to be re-passed as a prop.
-                setTime={newTime => time = toMilliseconds(newTime)}
+                onSubmit={newTime => time = toMilliseconds(newTime)}
             />
         );
 
@@ -176,7 +176,7 @@ describe('ClockDisplay', () => {
                 timeInMilliseconds={time}
                 // User enters time in seconds, and it must
                 // be converted to ms to be re-passed as a prop.
-                setTime={newTime => time = toMilliseconds(newTime)}
+                onSubmit={newTime => time = toMilliseconds(newTime)}
             />
         );
 

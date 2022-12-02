@@ -76,7 +76,7 @@ const Timer = () => {
                 disabled={isClockStarted()}
                 timeInMilliseconds={toMilliseconds(counterTime.currentTime)}
                 customClassname={styles.timerDisplay}
-                setTime={setTimeToCountFrom}
+                onSubmit={setTimeToCountFrom}
             />
 
             <TimerProgressBar

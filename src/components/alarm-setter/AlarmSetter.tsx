@@ -1,8 +1,22 @@
+import { useContext } from 'react';
+
+import type { TimeInSeconds } from '../../types/timeTypes';
+import { alarmScheduler } from '../../alarm-scheduler/alarmScheduler';
+import { formatTime, toMilliseconds } from '../../utils/timeConversionUtils';
+
 import styles from './AlarmSetter.module.scss';
 
 import ClockDisplay from '../clock-display/ClockDisplay';
 
 const AlarmSetter = () => {
+    const { addAlarm } = useContext(alarmScheduler);
+
+    const createAlarm = (seconds: TimeInSeconds) => {
+        const formattedTime = formatTime(toMilliseconds(seconds));
+
+        addAlarm(formattedTime);
+    };
+
     return (
         <label className={styles.alarmSetter}>
             Set alarm for:
@@ -10,6 +24,7 @@ const AlarmSetter = () => {
             <ClockDisplay
                 disabled={false}
                 timeInMilliseconds={0}
+                onSubmit={createAlarm}
             />
         </label>
     );

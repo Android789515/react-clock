@@ -15,10 +15,10 @@ interface Props {
     showMilliseconds?: boolean;
     timeInMilliseconds: TimeInMilliseconds;
     customClassname?: CSS_Class;
-    setTime?: (time: TimeInSeconds) => void;
+    onSubmit?: (time: TimeInSeconds) => void;
 }
 
-const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customClassname, setTime }: Props) => {
+const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customClassname, onSubmit }: Props) => {
 
     const [ displayTime, updateDisplayTime ] = useState<FormattedTime>(formatTime(timeInMilliseconds));
 
@@ -42,12 +42,12 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customCl
     };
 
     const submitDisplayTime = () => {
-        if (setTime) {
+        if (onSubmit) {
             const [ hours, minutes, seconds ] = (
                 Object.values(displayTime).map(timeUnit => Number(timeUnit))
             );
             // Milliseconds are not editable by the user, so excluded.
-            setTime(getTotalSeconds(hours, minutes, seconds));
+            onSubmit(getTotalSeconds(hours, minutes, seconds));
         }
     };
 
