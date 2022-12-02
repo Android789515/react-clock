@@ -1,4 +1,4 @@
-import { screen, fireEvent, render } from '@testing-library/react';
+import { screen, fireEvent, render, waitFor } from '@testing-library/react';
 
 import { AriaRoles } from '../../types/ariaTypes';
 import type { TimeInMilliseconds } from '../../types/timeTypes';
@@ -75,6 +75,31 @@ describe('ClockDisplay', () => {
         const UpdatedComponent = screen.getByRole(AriaRoles.textInput);
         const expectedDisplayAfterChange = '00:00:12';
         expect(UpdatedComponent).toHaveDisplayValue(expectedDisplayAfterChange);
+    });
+
+    it('Sets its displayed time when blurred', async () => {
+        const setTimeFunction = {
+            setTime: (time: TimeInMilliseconds) => {}
+        };
+
+        const setTimeSpy = jest.spyOn(setTimeFunction, 'setTime');
+
+        let time: TimeInMilliseconds = 0;
+        render(
+            <ClockDisplay
+                disabled={false}
+                timeInMilliseconds={time}
+                // User enters time in seconds, and it must
+                // be converted to ms to be re-passed as a prop.
+                setTime={setTimeFunction.setTime}
+            />
+        );
+
+        const Component = screen.getByRole(AriaRoles.textInput);
+        await waitFor(() => Component.focus());
+        await waitFor(() => Component.blur());
+
+        expect(setTimeSpy).toHaveBeenCalled();
     });
 
     it('Accepts a new display time of up to 6 characters', () => {
