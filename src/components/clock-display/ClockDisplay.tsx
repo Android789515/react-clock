@@ -1,4 +1,4 @@
-import type { SyntheticEvent } from 'react';
+import type { SyntheticEvent, KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
 
 import type { FormattedTime, TimeInMilliseconds, TimeInSeconds } from '../../types/timeTypes';
@@ -50,6 +50,13 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customCl
             setTime(getTotalSeconds(hours, minutes, seconds));
         }
     };
+
+    const submitDisplayTimeOnEnter = ({ key }: KeyboardEvent) => {
+        if (key === 'Enter') {
+            submitDisplayTime();
+        }
+    };
+
     return (
         <input
             className={`
@@ -63,6 +70,7 @@ const ClockDisplay = ({ disabled, showMilliseconds, timeInMilliseconds, customCl
             value={stringifyTime(displayTime, showMilliseconds || false)}
             onChange={setDisplayTime}
             onBlur={submitDisplayTime}
+            onKeyDown={submitDisplayTimeOnEnter}
         />
     );
 };

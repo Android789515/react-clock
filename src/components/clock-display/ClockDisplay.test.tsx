@@ -102,6 +102,30 @@ describe('ClockDisplay', () => {
         expect(setTimeSpy).toHaveBeenCalled();
     });
 
+    it('Sets its displayed time when the enter key is pressed while focused', () => {
+        const setTimeFunction = {
+            setTime: (time: TimeInMilliseconds) => {}
+        };
+
+        const setTimeSpy = jest.spyOn(setTimeFunction, 'setTime');
+
+        let time: TimeInMilliseconds = 0;
+        render(
+            <ClockDisplay
+                disabled={false}
+                timeInMilliseconds={time}
+                // User enters time in seconds, and it must
+                // be converted to ms to be re-passed as a prop.
+                setTime={setTimeFunction.setTime}
+            />
+        );
+
+        const Component = screen.getByRole(AriaRoles.textInput);
+        fireEvent.keyDown(Component, { key: 'Enter' });
+
+        expect(setTimeSpy).toHaveBeenCalled();
+    });
+
     it('Accepts a new display time of up to 6 characters', () => {
 
         let time: TimeInMilliseconds = 0;
