@@ -9,20 +9,17 @@ import styles from './App.module.scss';
 import AppHeader from './components/app-header/AppHeader';
 
 const App = () => {
-    const { isDarkTheme, toggleTheme } = useContext(themeContext);
+    const { isLightTheme } = useContext(themeContext);
 
     return (
         <div
             role={AriaRoles.application}
             className={`
                 ${styles.app}
-                ${isDarkTheme() ? styles.darkTheme : styles.lightTheme}
+                ${isLightTheme() ? styles.lightTheme : styles.darkTheme}
             `}
         >
-            <AppHeader
-                isDarkTheme={isDarkTheme()}
-                toggleTheme={toggleTheme}
-            />
+            <AppHeader />
 
             <Outlet />
         </div>
