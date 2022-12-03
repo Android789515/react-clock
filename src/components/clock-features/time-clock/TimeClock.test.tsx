@@ -73,7 +73,7 @@ describe('TimeClock', () => {
         expect(TimeFormatDisplay).toBeInTheDocument();
     });
 
-    it('Shows AM/PM next to the time format toggle switch when the time format is 12h', async () => {
+    it('Shows AM or PM when the time format is 12H', async () => {
         render(
             <TimeClock />
         );
@@ -84,8 +84,18 @@ describe('TimeClock', () => {
             ToggleSwitch.click();
         });
 
-        const TimeFormatDisplay = screen.getByText('AM/PM');
+        const TimeDisplayAM = screen.queryByText('AM');
+        const TimeDisplayPM = screen.queryByText('PM');
 
-        expect(TimeFormatDisplay).toBeInTheDocument();
+        expect(TimeDisplayAM || TimeDisplayPM).toBeInTheDocument();
+    });
+
+    it('Renders an AlarmSetter component', () => {
+        render(
+            <TimeClock />
+        );
+
+        const AlarmSetter = screen.getByText('Set alarm for:');
+        expect(AlarmSetter).toBeInTheDocument();
     });
 });
