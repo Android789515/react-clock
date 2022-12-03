@@ -5,7 +5,8 @@
 .timeClock > *:not(.timeClockDisplay) {
   max-width: 11.5625em;
 
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .timeFormatLayout {
