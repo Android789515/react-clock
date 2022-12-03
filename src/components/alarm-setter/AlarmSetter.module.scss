@@ -1,3 +1,16 @@
-.alarmSetter {
+.alarmSetterLayout {
+  display: flex;
+  justify-content: space-between;
 
+  max-width: 11.5625em;
+
+  margin: auto;
+}
+
+.alarmSetter {
+  font-size: 1rem;
+
+  max-width: 4em;
+
+  margin: 0;
 }

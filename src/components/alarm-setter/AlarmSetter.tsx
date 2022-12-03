@@ -18,12 +18,13 @@ const AlarmSetter = () => {
     };
 
     return (
-        <label className={styles.alarmSetter}>
+        <label className={styles.alarmSetterLayout}>
             Set alarm for:
 
             <ClockDisplay
                 disabled={false}
                 timeInMilliseconds={0}
+                customClassname={styles.alarmSetter}
                 onSubmit={createAlarm}
             />
         </label>
