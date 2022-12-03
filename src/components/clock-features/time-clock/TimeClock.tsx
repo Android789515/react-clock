@@ -54,10 +54,11 @@ const TimeClock = () => {
     };
 
     return (
-        <main>
+        <main className={styles.timeClock}>
             <ClockDisplay
                 disabled
                 timeInMilliseconds={is12hTime() ? currentTime - afternoonHours : currentTime}
+                customClassname={styles.timeClockDisplay}
             />
 
             <div className={styles.timeFormatLayout}>
