@@ -8,9 +8,12 @@
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: .5em;
-  align-items: center;
+  align-items: end;
 
-  margin-bottom: 1em;
+  border-bottom: solid 1px;
+  padding-bottom: .5em;
+
+  margin-bottom: .75em;
 }
 
 .timeFormat {
@@ -19,7 +22,10 @@
 
 @media (min-width: App.$layoutBreakpoint) {
   .timeFormatLayout {
-    margin-bottom: 3em;
+    border-bottom: solid 1px;
+    padding-bottom: 1em;
+
+    margin-bottom: 2.75em;
   }
 
   .timeFormat {
