@@ -1,7 +1,11 @@
 @use '../../../App.module';
 
+.timeClock > *:not(.timeClockDisplay) {
+  padding-left: .25em;
+}
+
 .timeClockDisplay {
-  margin-bottom: .25em;
+  margin-bottom: .125em;
 }
 
 .timeFormatLayout {
@@ -9,6 +13,8 @@
   grid-auto-flow: column;
   grid-column-gap: .5em;
   align-items: center;
+
+  margin-bottom: 1em;
 }
 
 .timeFormat {
