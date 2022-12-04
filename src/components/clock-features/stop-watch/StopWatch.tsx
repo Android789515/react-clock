@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { AriaRoles } from '../../../types/ariaTypes';
-import useClock from '../../../independent-hooks/clock/useClock';
+import useClock from '../../../independent-hooks/use-clock/useClock';
 import useLaps from '../../laps/useLaps/useLaps';
 
 import styles from './StopWatch.module.scss';

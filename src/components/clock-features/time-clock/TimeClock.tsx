@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { TimeInMilliseconds } from '../../../types/timeTypes';
 import { toMilliseconds, formatTime } from '../../../utils/timeConversionUtils';
-import useClock from '../../../independent-hooks/clock/useClock';
+import useClock from '../../../independent-hooks/use-clock/useClock';
 import use12hTime from './use-12h-time/use12hTime';
 
 import styles from './TimeClock.module.scss';
