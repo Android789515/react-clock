@@ -18,6 +18,10 @@
 }
 
 @media (min-width: App.$layoutBreakpoint) {
+  .timeFormatLayout {
+    margin-bottom: 3em;
+  }
+
   .timeFormat {
     font-size: 2rem;
   }
