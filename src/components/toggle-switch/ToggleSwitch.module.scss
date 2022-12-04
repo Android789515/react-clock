@@ -13,17 +13,10 @@
 
   aspect-ratio: 2 / 1;
 
-  border-radius: 50px;
-}
+  width: 3em;
+  padding: .25em;
 
-// Scales smaller toggle switches up
-// for larger screens
-@media (min-width: App.$layoutBreakpoint) {
-  .toggleSwitch {
-    // Scale up by 2 for larger screens
-    // Move back into container
-    transform: scale(2) translateX(-25%);
-  }
+  border-radius: 50px;
 }
 
 .toggleSwitchKnob {
@@ -41,6 +34,26 @@
 
 .toggleSwitch:active .toggleSwitchKnob {
   transform: rotateX(25deg);
+}
+
+.toggleSwitchKnobLeft {
+  margin-left: 0;
+}
+
+.toggleSwitchKnobRight {
+  margin-left: 1.5em;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .toggleSwitch {
+    width: 6em;
+
+    padding: .5em;
+  }
+
+  .toggleSwitchKnobRight {
+    margin-left: 3em;
+  }
 }
 
 .toggleSwitchLight {

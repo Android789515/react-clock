@@ -16,7 +16,6 @@ describe('ToggleSwitch', () => {
 
         render(
             <ToggleSwitch
-                scale={1}
                 whenToggledOn={toggleFunctions.toggleOnFunction}
                 whenToggledOff={() => {}}
             />
@@ -36,7 +35,6 @@ describe('ToggleSwitch', () => {
 
         render(
             <ToggleSwitch
-                scale={1}
                 isInitiallyToggledOn
                 whenToggledOn={() => {}}
                 whenToggledOff={toggleFunctions.toggleOffFunction}
