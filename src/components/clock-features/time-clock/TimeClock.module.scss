@@ -1,9 +1,5 @@
 @use '../../../App.module';
 
-.timeClock > *:not(.timeClockDisplay) {
-  padding-left: .25em;
-}
-
 .timeClockDisplay {
   margin-bottom: .125em;
 }
