@@ -25,10 +25,8 @@
 }
 
 @media (min-width: App.$layoutBreakpoint) {
-  .timeFormatLayout {
+  .timeClock > *:not(.timeClockDisplay) {
     max-width: 23.5em;
-
-    padding-left: .5em;
   }
 
   .timeFormat {
