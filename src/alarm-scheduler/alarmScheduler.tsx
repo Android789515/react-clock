@@ -31,9 +31,10 @@ const AlarmSchedulerProvider = ({ children }: Props) => {
     const removeAlarm = (time: FormattedTime) => {
         const alarmToRemove = stringifyTime(time, false);
         updateAlarms(prevAlarms => {
-            prevAlarms.delete(alarmToRemove);
+            const newAlarms = new Set<StringifiedTime>(prevAlarms);
+            newAlarms.delete(alarmToRemove);
 
-            return prevAlarms;
+            return newAlarms;
         });
     };
 
