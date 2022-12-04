@@ -9,13 +9,15 @@
   margin-right: auto;
 }
 
+.timeClockDisplay {
+  margin-bottom: .25em;
+}
+
 .timeFormatLayout {
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: .5em;
   align-items: center;
-
-  margin-top: 1em;
 }
 
 .timeFormat {
