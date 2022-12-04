@@ -16,17 +16,14 @@
 
   outline: none;
 
-  // Fix annoying Firefox issue
-  max-width: 270px;
-  margin-left: auto;
-  margin-right: auto;
+  display: block;
+
+  // Keeps it the proper size.
+  width: 7ch;
 }
 
 @media (min-width: App.$layoutBreakpoint) {
   .clockDisplay {
     font-size: 6rem;
-
-    // Fix annoying Firefox issue
-    max-width: 520px;
   }
 }

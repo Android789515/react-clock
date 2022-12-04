@@ -1,14 +1,5 @@
 @use '../../../App.module';
 
-// Maintains consistent width on children.
-// Has to be done because Firefox....
-.timeClock > *:not(.timeClockDisplay) {
-  max-width: 11.5625em;
-
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .timeClockDisplay {
   margin-bottom: .25em;
 }
@@ -25,10 +16,6 @@
 }
 
 @media (min-width: App.$layoutBreakpoint) {
-  .timeClock > *:not(.timeClockDisplay) {
-    max-width: 23.5em;
-  }
-
   .timeFormat {
     font-size: 2rem;
   }
