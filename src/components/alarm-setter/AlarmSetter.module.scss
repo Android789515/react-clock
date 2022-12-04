@@ -1,3 +1,5 @@
+@use '../../App.module';
+
 .alarmSetterLayout {
   display: flex;
   justify-content: space-between;
@@ -7,4 +9,11 @@
   font-size: 1rem;
 
   margin: 0;
+}
+
+@media (min-width: App.$layoutBreakpoint) {
+  .alarmSetterLayout,
+  .alarmSetter {
+    font-size: 1.5rem;
+  }
 }
