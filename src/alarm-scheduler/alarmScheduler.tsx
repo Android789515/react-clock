@@ -7,11 +7,13 @@ import { stringifyTime } from '../utils/timeConversionUtils';
 interface AlarmSchedulerFunctions {
     addAlarm: (time: FormattedTime) => void;
     removeAlarm: (time: FormattedTime) => void;
+    getAlarms: () => Set<StringifiedTime>;
 }
 
 const alarmScheduler = createContext<AlarmSchedulerFunctions>({
     addAlarm: (time: FormattedTime) => {},
-    removeAlarm: (time: FormattedTime) => {}
+    removeAlarm: (time: FormattedTime) => {},
+    getAlarms: () => new Set<StringifiedTime>()
 });
 
 interface Props {
@@ -38,10 +40,15 @@ const AlarmSchedulerProvider = ({ children }: Props) => {
         });
     };
 
+    const getAlarms = () => {
+        return alarms;
+    };
+
     return (
         <alarmScheduler.Provider value={{
             addAlarm,
-            removeAlarm
+            removeAlarm,
+            getAlarms
         }}>
             {children}
         </alarmScheduler.Provider>
