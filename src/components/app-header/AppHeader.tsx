@@ -25,7 +25,6 @@ const AppHeader = () => {
                 />
 
                 <ToggleSwitch
-                    scale={1}
                     isInitiallyToggledOn={isDarkTheme()}
                     whenToggledOn={toggleTheme}
                     whenToggledOff={toggleTheme}

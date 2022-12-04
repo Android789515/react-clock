@@ -65,7 +65,6 @@ const TimeClock = () => {
                 </span>
 
                 <ToggleSwitch
-                    scale={1}
                     whenToggledOn={() => toggleIs12hTime()}
                     whenToggledOff={() => toggleIs12hTime()}
                 />

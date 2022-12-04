@@ -7,16 +7,13 @@ import styles from './ToggleSwitch.module.scss';
 type ToggleOnFunction = () => void;
 type ToggleOffFunction = () => void;
 
-const toEms = (number: number) => number + 'em';
-
 interface Props {
-    scale: number;
     isInitiallyToggledOn?: boolean;
     whenToggledOn: ToggleOnFunction;
     whenToggledOff: ToggleOffFunction;
 }
 
-const ToggleSwitch = ({ scale, isInitiallyToggledOn = false, whenToggledOn, whenToggledOff }: Props) => {
+const ToggleSwitch = ({ isInitiallyToggledOn = false, whenToggledOn, whenToggledOff }: Props) => {
     const { isLightTheme } = useContext(themeContext);
 
     const switchBackground = isLightTheme()
@@ -37,24 +34,16 @@ const ToggleSwitch = ({ scale, isInitiallyToggledOn = false, whenToggledOn, when
 
     const toggleSwitch = () => isToggledOn ? toggleOff() : toggleOn();
 
-    const toggleSwitchSize = scale * 3;
-
     const knobPosition = isToggledOn
-        ? toEms(toggleSwitchSize / 2)
-        : '0';
+        ? styles.toggleSwitchKnobRight
+        : styles.toggleSwitchKnobLeft;
 
-    const isToggleSwitchSmall = scale < 2;
     return (
         <button
             className={`
                 ${styles.toggleSwitch}
-                ${isToggleSwitchSmall ? styles.toggleSwitchSmall : ''}
                 ${switchBackground}
             `}
-            style={{
-                width: toEms(toggleSwitchSize),
-                padding: toEms(.25 * scale)
-            }}
             onClick={toggleSwitch}
         >
             <span
@@ -62,9 +51,6 @@ const ToggleSwitch = ({ scale, isInitiallyToggledOn = false, whenToggledOn, when
                     ${styles.toggleSwitchKnob}
                     ${knobPosition}
                 `}
-                style={{
-                    marginLeft: knobPosition
-                }}
             />
         </button>
     );
