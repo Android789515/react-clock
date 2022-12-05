@@ -10,6 +10,7 @@ import styles from './TimeClock.module.scss';
 import ClockDisplay from '../../clock-display/ClockDisplay';
 import ToggleSwitch from '../../toggle-switch/ToggleSwitch';
 import AlarmSetter from '../../alarm-setter/AlarmSetter';
+import Alarms from '../../alarms/Alarms';
 
 const TimeClock = () => {
     const millisecondsPerHour = 3.6e+6;
@@ -73,6 +74,8 @@ const TimeClock = () => {
             </div>
 
             <AlarmSetter />
+
+            <Alarms />
         </main>
     );
 };

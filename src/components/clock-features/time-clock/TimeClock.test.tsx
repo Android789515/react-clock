@@ -34,6 +34,15 @@ describe('TimeClock', () => {
         expect(ToggleSwitch).toBeInTheDocument();
     });
 
+    it('Renders an Alarms component for displaying alarms scheduled', () => {
+        render(
+            <TimeClock />
+        );
+
+        const AlarmsComponent = screen.getByRole(AriaRoles.list);
+        expect(AlarmsComponent).toBeInTheDocument();
+    });
+
     it('Displays 12h format when the toggle switch is toggled on', async () => {
         const { rerender } = render(
             <TimeClock />
