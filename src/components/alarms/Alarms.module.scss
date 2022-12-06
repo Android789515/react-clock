@@ -1,3 +1,5 @@
-.alarms {
+@use '../../sass-mixins/app-style-defaults';
 
+.alarms {
+  @include app-style-defaults.list;
 }
