@@ -9,7 +9,8 @@ interface Props {
 const Alarm = ({ alarm }: Props) => {
     return (
         <li className={styles.alarm}>
-            {alarm}
+            <span>Alarm set for: </span>
+            <span>{alarm}</span>
         </li>
     );
 };
