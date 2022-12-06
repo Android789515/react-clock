@@ -13,6 +13,7 @@ const Alarms = () => {
         return (
             <Alarm
                 key={index}
+                alarm={alarm}
             />
         );
     });

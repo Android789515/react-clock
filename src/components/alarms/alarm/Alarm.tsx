@@ -1,9 +1,15 @@
+import type { StringifiedTime } from '../../../types/timeTypes';
+
 import styles from './Alarm.module.scss';
 
-const Alarm = () => {
+interface Props {
+    alarm: StringifiedTime;
+}
+
+const Alarm = ({ alarm }: Props) => {
     return (
         <li className={styles.alarm}>
-            Test
+            {alarm}
         </li>
     );
 };
